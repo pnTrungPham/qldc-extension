@@ -1,0 +1,1224 @@
+# Copyright (C) 2026 
+# This file is distributed under the same license as the Resident Management plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Resident Management 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/quan-li-dan-cu\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-21T02:47:54+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: quan-li-dan-cu\n"
+
+#. Plugin Name of the plugin
+#: quan-li-dan-cu.php
+#: includes/Engine/Admin/AdminPage.php:33
+msgid "Resident Management"
+msgstr ""
+
+#. Description of the plugin
+#: quan-li-dan-cu.php
+msgid "Manage residents from the WordPress admin."
+msgstr ""
+
+#: includes/Controllers/ResidentRestController.php:139
+msgid "Sorry, you are not allowed to do that."
+msgstr ""
+
+#: includes/Controllers/ResidentRestController.php:178
+msgid "Could not save the changes."
+msgstr ""
+
+#: includes/Controllers/ResidentRestController.php:190
+msgid "Could not empty the trash."
+msgstr ""
+
+#: includes/Controllers/ResidentRestController.php:239
+msgid "Nothing was changed. Please try again."
+msgstr ""
+
+#: includes/Engine/Admin/AdminPage.php:34
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:62
+msgid "Residents"
+msgstr ""
+
+#: includes/Models/Resident.php:43
+msgid "Full name must be 2–120 characters."
+msgstr ""
+
+#: includes/Models/Resident.php:48
+msgid "Invalid phone number."
+msgstr ""
+
+#: includes/Models/Resident.php:53
+msgid "Invalid year of birth."
+msgstr ""
+
+#: includes/Models/Resident.php:58
+msgid "Invalid examination date."
+msgstr ""
+
+#: includes/Models/Resident.php:63
+msgid "ID number must be 4, 9 or 12 digits; only the last 4 are kept."
+msgstr ""
+
+#: includes/Models/Settings.php:30
+msgid "The code can only use letters without accents, digits and hyphens, with no spaces, 2–12 characters."
+msgstr ""
+
+#: includes/Models/Settings.php:37
+msgid "The ward name needs 2 to 80 characters."
+msgstr ""
+
+#: includes/Services/BackupService.php:39
+msgid "The backup could not be created on this server."
+msgstr ""
+
+#: includes/Services/BackupService.php:61
+msgid "Could not save a copy of the current data first, so nothing was changed."
+msgstr ""
+
+#: includes/Services/BackupService.php:67
+msgid "The backup could not be restored. Your current data is unchanged."
+msgstr ""
+
+#: includes/Services/BackupService.php:114
+msgid "This file was not made by this site, or it is damaged."
+msgstr ""
+
+#: includes/Services/ImportService.php:62
+msgid "Nothing was written. Please try again."
+msgstr ""
+
+#: includes/Services/ImportService.php:126
+msgid "Full name is missing."
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Something went wrong."
+msgstr ""
+
+#: assets/dist/js/main.js:1
+#: assets/dist/js/main.js:7
+msgid "Male"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+#: assets/dist/js/main.js:7
+msgid "Female"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Other"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+#: assets/dist/js/main.js:56
+msgid "Head of household"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Spouse"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Child"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Parent"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Grandparent"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Grandchild"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Sibling"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Unverified"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Verified"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Expired"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Not required"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Poor household"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Near-poor household"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Elderly"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Person with disability"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Policy family"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Limited mobility"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Needs evacuation support"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Needs basic medical support"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Permanent"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Temporary resident"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Temporarily absent"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Moved away"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+msgid "Unknown"
+msgstr ""
+
+#: assets/dist/js/main.js:1
+#: assets/dist/js/main.js:78
+msgid "People"
+msgstr ""
+
+#. translators: %s: number of households
+#: assets/dist/js/main.js:3
+msgid "in %s households"
+msgstr ""
+
+#: assets/dist/js/main.js:3
+msgid "Average household"
+msgstr ""
+
+#: assets/dist/js/main.js:3
+msgid "people per household"
+msgstr ""
+
+#: assets/dist/js/main.js:3
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:64
+msgid "Health exam 2026"
+msgstr ""
+
+#. translators: 1: people examined, 2: total people
+#: assets/dist/js/main.js:5
+msgid "%1$s of %2$s examined"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+msgid "Missing phone number"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+msgid "people to call back for a number"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+msgid "Residence status"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+#: assets/dist/js/main.js:80
+msgid "Population"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+msgid "Children (under 16)"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+msgid "Working age (16–59)"
+msgstr ""
+
+#: assets/dist/js/main.js:5
+msgid "Elderly (60 and over)"
+msgstr ""
+
+#. translators: %d: people without a year of birth
+#: assets/dist/js/main.js:7
+msgid "%d person has no year of birth and is not counted above."
+msgid_plural "%d people have no year of birth and are not counted above."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/dist/js/main.js:7
+msgid "Not recorded"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "Policy & support"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "Data to complete"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "No phone number"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "No year of birth"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "Documents not verified"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "Documents expired"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "Recent activity"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "All good"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "Someone"
+msgstr ""
+
+#: assets/dist/js/main.js:7
+msgid "a resident"
+msgstr ""
+
+#. translators: 1: user, 2: resident name
+#: assets/dist/js/main.js:8
+msgid "%1$s added %2$s"
+msgstr ""
+
+#. translators: 1: user, 2: resident name
+#: assets/dist/js/main.js:9
+msgid "%1$s updated %2$s"
+msgstr ""
+
+#. translators: 1: user, 2: resident name
+#: assets/dist/js/main.js:10
+msgid "%1$s moved %2$s to the trash"
+msgstr ""
+
+#. translators: 1: user, 2: resident name
+#: assets/dist/js/main.js:11
+msgid "%1$s restored %2$s from the trash"
+msgstr ""
+
+#. translators: 1: user, 2: resident name
+#: assets/dist/js/main.js:12
+msgid "%1$s permanently deleted %2$s"
+msgstr ""
+
+#. translators: 1: user
+#: assets/dist/js/main.js:13
+msgid "%1$s imported residents"
+msgstr ""
+
+#. translators: 1: user
+#: assets/dist/js/main.js:14
+msgid "%1$s restored a backup"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "You do not have permission to use this page."
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:26
+#: assets/dist/js/main.js:36
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:64
+msgid "Full name"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:26
+#: assets/dist/js/main.js:36
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:64
+msgid "Year of birth"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:26
+#: assets/dist/js/main.js:36
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:64
+msgid "Phone"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Health insurance number"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:66
+#: assets/dist/js/main.js:74
+msgid "Examined"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:66
+#: assets/dist/js/main.js:74
+msgid "Not examined"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+msgid "Examination date"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+msgid "Examination place"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Household role"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:64
+msgid "Head"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Member"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:26
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+msgid "Relationship to head"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+msgid "Household code"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:36
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:64
+msgid "Address"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+msgid "Occupation"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+msgid "Policy labels"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:56
+msgid "Situation notes"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Health & insurance template"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Phone book template"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "All columns"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+#: assets/dist/js/main.js:26
+#: assets/dist/js/main.js:36
+#: assets/dist/js/main.js:56
+msgid "Gender"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "ID number (last 4 digits)"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Notes"
+msgstr ""
+
+#: assets/dist/js/main.js:14
+msgid "Column mapping (fix it if a guess is wrong)"
+msgstr ""
+
+#. translators: %d: number of rows
+#: assets/dist/js/main.js:16
+msgid "%d row"
+msgid_plural "%d rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/dist/js/main.js:16
+msgid "Remove"
+msgstr ""
+
+#. translators: %d: column number
+#: assets/dist/js/main.js:18
+msgid "Column %d"
+msgstr ""
+
+#: assets/dist/js/main.js:18
+msgid "— Skip —"
+msgstr ""
+
+#. translators: 1: file name, 2: number of sheets
+#: assets/dist/js/main.js:20
+msgid "%1$s has %2$d sheets. Only the first one was read."
+msgstr ""
+
+#. translators: %s: file name
+#: assets/dist/js/main.js:22
+msgid "No data rows found in %s."
+msgstr ""
+
+#. translators: %s: file name
+#: assets/dist/js/main.js:24
+msgid "Could not read %s."
+msgstr ""
+
+#. translators: 1: number of rows, 2: number of files, 3: file names
+#: assets/dist/js/main.js:26
+msgid "Read %1$d rows from %2$d files: %3$s"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Drop Excel or CSV files here, or choose them."
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Reading…"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Choose files"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Address of the house"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+#: assets/dist/js/main.js:56
+msgid "Health exam 2026 done"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Remove this person"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Add a household member"
+msgstr ""
+
+#: assets/dist/js/main.js:26
+msgid "Enter at least one full name before adding the household."
+msgstr ""
+
+#. translators: %d: number of people
+#: assets/dist/js/main.js:28
+msgid "Added %d person to the waiting list. You can type the next household."
+msgid_plural "Added %d people to the waiting list. You can type the next household."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/dist/js/main.js:28
+msgid "Put this household on the waiting list"
+msgstr ""
+
+#: assets/dist/js/main.js:28
+msgid "Paste the message here. Leave one blank line between households."
+msgstr ""
+
+#: assets/dist/js/main.js:28
+msgid "Fill in a sample chat message"
+msgstr ""
+
+#: assets/dist/js/main.js:28
+msgid "Pasted table"
+msgstr ""
+
+#. translators: %d: number of rows
+#: assets/dist/js/main.js:30
+msgid "Read %d rows."
+msgstr ""
+
+#: assets/dist/js/main.js:30
+msgid "No data rows found."
+msgstr ""
+
+#. translators: %d: number of people
+#: assets/dist/js/main.js:32
+msgid "Read %d people."
+msgstr ""
+
+#: assets/dist/js/main.js:32
+msgid "Nothing readable found. Each person needs a name and a 4-digit year of birth."
+msgstr ""
+
+#: assets/dist/js/main.js:32
+msgid "Read pasted data"
+msgstr ""
+
+#: assets/dist/js/main.js:32
+msgid "File"
+msgstr ""
+
+#: assets/dist/js/main.js:32
+msgid "Pasted"
+msgstr ""
+
+#: assets/dist/js/main.js:32
+#: assets/dist/js/main.js:74
+msgid "Paper form"
+msgstr ""
+
+#. translators: %d: number of rows
+#: assets/dist/js/main.js:34
+msgid "Waiting list · %d row"
+msgid_plural "Waiting list · %d rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: rows to add, 2: rows that update an existing person, 3: invalid rows
+#: assets/dist/js/main.js:36
+msgid "%1$d new · %2$d updates · %3$d invalid"
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "Discard all"
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "ID numbers were found in the data. Only the last 4 digits are kept."
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "No row has a full name. Choose the Full name column again in Column mapping."
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "Source"
+msgstr ""
+
+#: assets/dist/js/main.js:36
+#: assets/dist/js/main.js:64
+msgid "Relationship"
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "Household"
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "Update"
+msgstr ""
+
+#: assets/dist/js/main.js:36
+msgid "Invalid"
+msgstr ""
+
+#. translators: 1: rows shown, 2: total rows
+#: assets/dist/js/main.js:38
+msgid "Showing the first %1$d of %2$d rows. All rows are imported on confirm."
+msgstr ""
+
+#: assets/dist/js/main.js:38
+msgid "Update people who already exist (same name + year of birth, or same name + last 4 ID digits)"
+msgstr ""
+
+#: assets/dist/js/main.js:38
+msgid "Nobody was saved."
+msgstr ""
+
+#: assets/dist/js/main.js:38
+msgid "Data saved."
+msgstr ""
+
+#: assets/dist/js/main.js:38
+msgid "Importing…"
+msgstr ""
+
+#: assets/dist/js/main.js:38
+msgid "Confirm import into the data"
+msgstr ""
+
+#: assets/dist/js/main.js:38
+msgid "Until you press this, nothing is saved."
+msgstr ""
+
+#. translators: 1: current page, 2: total pages
+#: assets/dist/js/main.js:40
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: assets/dist/js/main.js:40
+msgid "Previous page"
+msgstr ""
+
+#: assets/dist/js/main.js:40
+msgid "Next page"
+msgstr ""
+
+#: assets/dist/js/main.js:40
+msgid "Go to"
+msgstr ""
+
+#. translators: %d: number of residents
+#: assets/dist/js/main.js:42
+msgid "Permanently delete %d resident?"
+msgid_plural "Permanently delete %d residents?"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of residents
+#: assets/dist/js/main.js:44
+msgid "Move %d resident to the trash?"
+msgid_plural "Move %d residents to the trash?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/dist/js/main.js:44
+msgid "This cannot be undone. The only way back is a backup file."
+msgstr ""
+
+#: assets/dist/js/main.js:44
+msgid "You can restore them from the trash."
+msgstr ""
+
+#: assets/dist/js/main.js:44
+#: assets/dist/js/main.js:48
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:80
+msgid "Cancel"
+msgstr ""
+
+#. translators: %d: number of residents deleted permanently
+#: assets/dist/js/main.js:46
+msgid "Permanently deleted %d resident."
+msgid_plural "Permanently deleted %d residents."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of residents moved to the trash
+#: assets/dist/js/main.js:48
+msgid "Moved %d resident to the trash."
+msgid_plural "Moved %d residents to the trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/dist/js/main.js:48
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:68
+msgid "Delete permanently"
+msgstr ""
+
+#: assets/dist/js/main.js:48
+#: assets/dist/js/main.js:50
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:58
+msgid "Move to trash"
+msgstr ""
+
+#: assets/dist/js/main.js:48
+msgid "Move this resident to the trash?"
+msgstr ""
+
+#: assets/dist/js/main.js:48
+msgid "This person will be removed from the list. You can restore them from the trash."
+msgstr ""
+
+#. translators: %s: resident full name
+#: assets/dist/js/main.js:50
+msgid "Moved %s to the trash"
+msgstr ""
+
+#. translators: %d: number of residents restored from the trash
+#: assets/dist/js/main.js:52
+msgid "Restored %d resident."
+msgid_plural "Restored %d residents."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of residents changed
+#: assets/dist/js/main.js:54
+msgid "Updated %d resident."
+msgid_plural "Updated %d residents."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of selected residents
+#: assets/dist/js/main.js:56
+msgid "%d selected"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Bulk Actions"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:68
+#: assets/dist/js/main.js:78
+#: assets/dist/js/main.js:80
+msgid "Restore"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Change residence status"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Mark as examined"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Mark as not examined"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Document verification"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Field support flags"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Health insurance (BHYT) number"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+msgid "Saved"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:80
+msgid "Saving…"
+msgstr ""
+
+#: assets/dist/js/main.js:56
+#: assets/dist/js/main.js:80
+msgid "Save"
+msgstr ""
+
+#. translators: %d: number of people in the household
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:66
+msgid "%d person"
+msgid_plural "%d people"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:62
+msgid "Add resident"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Share"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Saved."
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "You have unsaved changes. Close anyway?"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Stay"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Close"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Search name, address, phone…"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+#: assets/dist/js/main.js:64
+#: assets/dist/js/main.js:74
+msgid "Residence"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Has number"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Missing number"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Clear filters"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Not updated"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Share resident information"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Only the ticked fields are sent. ID, health and internal notes are never included."
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Copied. Open your chat app, long-press the message box and choose Paste."
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Could not copy. Select the text above and copy it by hand."
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Confirm share"
+msgstr ""
+
+#: assets/dist/js/main.js:58
+msgid "Overview"
+msgstr ""
+
+#. translators: %d: number of residents in the trash
+#: assets/dist/js/main.js:60
+msgid "%d resident in the trash"
+msgid_plural "%d residents in the trash"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: number of residents, 2: number of households
+#: assets/dist/js/main.js:62
+msgid "%1$s people · %2$s households"
+msgstr ""
+
+#: assets/dist/js/main.js:62
+msgid "Empty trash"
+msgstr ""
+
+#: assets/dist/js/main.js:62
+msgid "Import data"
+msgstr ""
+
+#. translators: %d: number of residents in the trash
+#: assets/dist/js/main.js:64
+msgid "Trash (%d)"
+msgstr ""
+
+#: assets/dist/js/main.js:64
+msgid "Select all"
+msgstr ""
+
+#: assets/dist/js/main.js:64
+msgid "Deleted"
+msgstr ""
+
+#: assets/dist/js/main.js:66
+msgid "No number"
+msgstr ""
+
+#. translators: %s: resident full name
+#: assets/dist/js/main.js:68
+msgid "Restored %s"
+msgstr ""
+
+#: assets/dist/js/main.js:68
+#: assets/dist/js/main.js:76
+msgid "Loading…"
+msgstr ""
+
+#: assets/dist/js/main.js:68
+msgid "The trash is empty."
+msgstr ""
+
+#: assets/dist/js/main.js:68
+#: assets/dist/js/main.js:76
+msgid "No matching residents."
+msgstr ""
+
+#. translators: 1: first row number, 2: last row number, 3: total people
+#: assets/dist/js/main.js:70
+msgid "Showing %1$d–%2$d of %3$d people"
+msgstr ""
+
+#: assets/dist/js/main.js:70
+msgid "Rows per page"
+msgstr ""
+
+#. translators: %d: rows per page
+#: assets/dist/js/main.js:72
+msgid "%d rows"
+msgstr ""
+
+#: assets/dist/js/main.js:72
+msgid "Import"
+msgstr ""
+
+#: assets/dist/js/main.js:72
+msgid "Add people from an Excel file, a pasted message or a paper form. Review the list, then confirm."
+msgstr ""
+
+#: assets/dist/js/main.js:72
+msgid "Download Excel template"
+msgstr ""
+
+#. translators: 1: people added, 2: households added, 3: people updated, 4: rows skipped
+#: assets/dist/js/main.js:74
+msgid "Data saved. Added %1$d people in %2$d households · Updated %3$d · Skipped %4$d"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "View residents now"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Excel / CSV file"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Paste raw data"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Export"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Choose who is in the file and which columns it has, then download or print."
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Who is in the file"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Keyword"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Health exam"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Policy"
+msgstr ""
+
+#: assets/dist/js/main.js:74
+msgid "Columns"
+msgstr ""
+
+#. translators: 1: number of people in the file, 2: rows shown on screen
+#: assets/dist/js/main.js:76
+msgid "Preview · %1$d people · the screen shows %2$d rows, the file has all of them"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Internal data. Do not share without permission."
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "The print window was blocked. Allow pop-ups for this site and try again."
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Print list (PDF)"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Resident-list"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Download Excel"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Choose at least one column."
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Backup"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Only administrator accounts can back up and restore."
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Keep a copy of your data, or go back to an earlier copy."
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Create a backup"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "backup"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+#: assets/dist/js/main.js:80
+msgid "Working…"
+msgstr ""
+
+#: assets/dist/js/main.js:76
+msgid "Back up data"
+msgstr ""
+
+#. translators: 1: number of households, 2: number of people
+#: assets/dist/js/main.js:78
+msgid "Backup done: %1$d households, %2$d people."
+msgstr ""
+
+#: assets/dist/js/main.js:78
+msgid "A .kpb file only opens on the WordPress site that made it. To move to another site, use a database export tool."
+msgstr ""
+
+#: assets/dist/js/main.js:78
+msgid "Choose a .kpb file"
+msgstr ""
+
+#: assets/dist/js/main.js:78
+msgid "Backup date"
+msgstr ""
+
+#: assets/dist/js/main.js:78
+msgid "Households"
+msgstr ""
+
+#: assets/dist/js/main.js:78
+msgid "Restore this backup"
+msgstr ""
+
+#. translators: 1: backup date, 2: households, 3: people
+#: assets/dist/js/main.js:80
+msgid "Restored the backup from %1$s: %2$d households, %3$d people. The data that was in use before was saved first."
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Restore this backup?"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "All current residents are replaced by the backup. A copy of the current data is saved first."
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Backup restored."
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Toggle theme"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Light"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Dark"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "System"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Ward name"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Ward name saved"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Ward code"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "2–12 characters: letters without accents, digits and hyphens."
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Delete all residents and settings when the plugin is deleted"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Ward settings"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Page not found"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Something went wrong"
+msgstr ""
+
+#: assets/dist/js/main.js:80
+msgid "Back to overview"
+msgstr ""

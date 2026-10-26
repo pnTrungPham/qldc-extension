@@ -1,0 +1,112 @@
+import { keepPreviousData, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query';
+
+import { api } from './client';
+
+/** Residents changed: the lists, and the numbers on the overview, are stale. */
+export const invalidateResidents = (queryClient: QueryClient) =>
+  queryClient.invalidateQueries({ predicate: (query) => query.queryKey[0] === 'residents' || query.queryKey[0] === 'stats' });
+
+/** Mirror Models\Resident constants and the qldc_residents columns (Engine\ActDeact). */
+export type Gender = '' | 'male' | 'female' | 'other';
+export type Relation = 'head' | 'spouse' | 'child' | 'parent' | 'grandparent' | 'grandchild' | 'sibling' | 'other';
+export type ResidenceStatus = 'permanent' | 'temporary' | 'absent' | 'moved' | 'unknown';
+export type VerifyStatus = 'unverified' | 'verified' | 'expired' | 'not_required';
+
+export type ResidentInput = {
+  household_code: string;
+  full_name: string;
+  birth_year: number | null;
+  gender: Gender;
+  phone: string;
+  address: string;
+  relation: Relation;
+  is_head: boolean;
+  residence_status: ResidenceStatus;
+  verify_status: VerifyStatus;
+  occupation: string;
+  policy_tags: string[];
+  support_flags: string[];
+  id_last4: string;
+  bhyt_number: string;
+  health_exam: boolean;
+  exam_date: string | null;
+  exam_place: string;
+  note: string;
+};
+
+export type Resident = ResidentInput & {
+  id: number;
+  /** Residents sharing household_code (list only). */
+  household_size?: number;
+  created_at: string;
+  updated_at: string;
+  created_by: number;
+  updated_by: number;
+  /** Set while the resident is in the trash. */
+  deleted_at: string | null;
+};
+
+export type ResidentPage = {
+  items: Resident[];
+  total: number;
+  total_pages: number;
+  households: number;
+  /** Residents currently in the trash. */
+  trashed: number;
+};
+
+export function useResidents(params: { page: number; per_page: number; search: string; status?: string; exam?: string; phone?: string; trash?: boolean }) {
+  const query = new URLSearchParams(
+    Object.entries(params)
+      .filter(([, value]) => value !== undefined && value !== '' && value !== false)
+      .map(([key, value]) => [key, String(value)]),
+  );
+
+  return useQuery({
+    queryKey: ['residents', params],
+    queryFn: () => api<ResidentPage>(`/residents?${query}`),
+    placeholderData: keepPreviousData,
+  });
+}
+
+/** Create when id is absent, else patch only the given fields. */
+export function useSaveResident() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id?: number; data: Partial<ResidentInput> }) =>
+      id ? api<Resident>(`/residents/${id}`, 'PATCH', data) : api<Resident>('/residents', 'POST', data),
+    onSuccess: () => invalidateResidents(queryClient),
+  });
+}
+
+export function useDeleteResident() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api<boolean>(`/residents/${id}`, 'DELETE'),
+    onSuccess: () => invalidateResidents(queryClient),
+  });
+}
+
+export type BulkAction =
+  | { action: 'delete' | 'restore' | 'purge' }
+  | { action: 'set_residence_status'; value: ResidenceStatus }
+  | { action: 'set_health_exam'; value: 'yes' | 'no' };
+
+/** One change for many residents, applied all-or-nothing. Resolves with how many rows changed. */
+export function useBulkResidents() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ ids, ...change }: { ids: number[] } & BulkAction) =>
+      api<{ affected: number }>('/residents/bulk', 'POST', { ids, ...change }),
+    onSuccess: () => invalidateResidents(queryClient),
+  });
+}
+
+/** Deletes everything in the trash for good. */
+export function useEmptyTrash() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => api<{ affected: number }>('/residents/trash', 'DELETE'),
+    onSuccess: () => invalidateResidents(queryClient),
+  });
+}

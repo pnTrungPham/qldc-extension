@@ -1,0 +1,64 @@
+/* No Tailwind preflight: it would restyle all of wp-admin. Base styles are scoped to #qldc-root,
+   plus [data-slot] because portals (Dialog, Popover…) render outside it. */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tw-animate-css';
+
+/* Unlayered + nested under body.qldc-ui (AdminPage::body_class): wp-admin CSS is unlayered,
+   so layered utilities would lose to rules like `a { color }` regardless of specificity. */
+.qldc-ui {
+  @import 'tailwindcss/utilities.css';
+}
+
+@custom-variant dark (&:is(.qldc-dark *));
+
+/* Design tokens + utilities used by components/ui. */
+@import './styles/theme.css';
+@import './styles/utility.css';
+
+@layer base {
+  :where(#qldc-root, [data-slot]),
+  :where(#qldc-root, [data-slot]) *,
+  :where(#qldc-root, [data-slot]) *::before,
+  :where(#qldc-root, [data-slot]) *::after {
+    box-sizing: border-box;
+    border: 0 solid var(--color-border);
+  }
+  :where(#qldc-root, [data-slot]) {
+    color: var(--color-foreground);
+  }
+  :where(#qldc-root, [data-slot]) :is(h1, h2, h3, p) {
+    margin: 0;
+  }
+  :where(#qldc-root, [data-slot]) table {
+    border-collapse: collapse;
+  }
+  :where(#qldc-root, [data-slot]) :is(button, input, select, textarea) {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+/* Undo wp-admin link styles (blue, underline, focus shadow) inside the app. Specificity (0,1,1)
+   ties core's a:hover/a:focus and wins by load order; utilities (0,2,0) still override it. */
+.qldc-ui :where(#qldc-root, [data-slot]) a {
+  color: inherit;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+/* This stylesheet loads only on the plugin screen: full-bleed app, wp-admin gutters off. */
+#wpcontent {
+  padding-left: 0 !important;
+}
+#wpbody-content {
+  padding-bottom: 0;
+}
+body.qldc-ui,
+#wpwrap {
+  background: var(--color-muted);
+}
+#screen-meta,
+#screen-meta-links {
+  display: none;
+}

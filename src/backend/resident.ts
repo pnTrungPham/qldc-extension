@@ -78,7 +78,7 @@ export function sanitize(input: Record<string, unknown>): ResidentInput | Invali
  * WordPress sanitize_text_field / sanitize_textarea_field: strip tags and %-encoded octets; the single-line
  * variant also collapses whitespace. Unlike WP, a stray `<` is kept as is (React escapes it on render).
  */
-function textField(value: string, keepNewlines = false): string {
+export function textField(value: string, keepNewlines = false): string {
   let filtered = value
     .replace(/<(script|style)[^>]*?>[\s\S]*?<\/\1>/gi, '')
     .replace(/<[^>]*>/g, '')

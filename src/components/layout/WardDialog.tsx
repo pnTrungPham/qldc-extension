@@ -4,7 +4,6 @@ import { toast } from 'sonner';
 import { i18n } from '@/lib/i18n';
 import { useSaveSettings, useSettings } from '@/lib/api/settings.api';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -15,12 +14,11 @@ export default function WardDialog({ onClose }: { onClose: () => void }) {
   const save = useSaveSettings();
   const [code, setCode] = useState(settings.ward_code);
   const [name, setName] = useState(settings.ward_name);
-  const [deleteOnUninstall, setDeleteOnUninstall] = useState(settings.delete_on_uninstall);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     save.mutate(
-      { ward_code: code, ward_name: name, delete_on_uninstall: deleteOnUninstall },
+      { ward_code: code, ward_name: name },
       {
         onSuccess: () => {
           toast.success(i18n.__('Ward name saved', 'quan-li-dan-cu'));
@@ -54,10 +52,6 @@ export default function WardDialog({ onClose }: { onClose: () => void }) {
             <Label htmlFor="ward_name">{i18n.__('Ward name', 'quan-li-dan-cu')}</Label>
             <Input id="ward_name" value={name} onChange={(e) => setName(e.target.value)} maxLength={80} />
           </div>
-          <label className="flex items-start gap-2 text-sm">
-            <Checkbox className="mt-0.5" checked={deleteOnUninstall} onCheckedChange={(checked) => setDeleteOnUninstall(!!checked)} />
-            {i18n.__('Delete all residents and settings when the plugin is deleted', 'quan-li-dan-cu')}
-          </label>
           {save.isError && <p className="text-sm text-destructive">{save.error.message}</p>}
           <DialogFooter>
             <Button type="button" variant="outline" onClick={onClose}>

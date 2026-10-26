@@ -7,7 +7,6 @@ import { api } from './client';
 export type Settings = {
   ward_code: string;
   ward_name: string;
-  delete_on_uninstall: boolean;
 };
 
 const settingsQuery = queryOptions({

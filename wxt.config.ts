@@ -4,7 +4,7 @@ import { defineConfig } from 'wxt';
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   manifest: {
-    name: 'Resident Management',
+    name: 'Quản lí dân cư',
     permissions: ['unlimitedStorage'],
     // No popup, so a toolbar click reaches background.ts.
     action: {},

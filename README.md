@@ -27,8 +27,8 @@ pnpm check        # typecheck
 
 ## Translations
 
-UI text is English, translated with `@wordpress/i18n` from `locales/quan-li-dan-cu-vi.po`. Chrome's
-language picks Vietnamese (`vi*`) or English. Needs PHP and wp-cli.
+UI text is English, translated with `@wordpress/i18n` from `locales/quan-li-dan-cu-vi.po`. The app
+always shows Vietnamese. Needs PHP and wp-cli.
 
 ```sh
 ./scripts/i18n.sh makepot   # build, then extract strings → locales/quan-li-dan-cu.pot

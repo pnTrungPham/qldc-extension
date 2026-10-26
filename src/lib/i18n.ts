@@ -24,4 +24,5 @@ export function loadLocale(locale: string): void {
 }
 
 // Here, not in main.tsx: tabs.tsx and labels.ts translate at module load, before main.tsx's body runs.
-loadLocale(navigator.language);
+// Always Vietnamese: the users are Vietnamese whatever their browser's language.
+loadLocale('vi');

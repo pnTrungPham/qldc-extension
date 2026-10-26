@@ -6,7 +6,8 @@ import type { ApiError } from '@/lib/api/client';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { retry: false, refetchOnWindowFocus: false },
+    // Refetch on focus (the default): a change made in another app tab shows up here.
+    queries: { retry: false },
   },
   // Every failed save toasts, so a page never fails silently. Failed reads render in the page.
   mutationCache: new MutationCache({

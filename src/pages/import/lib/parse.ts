@@ -1,13 +1,8 @@
+import { fold } from '@/lib/fold';
+
 import { emptyRow, type PendingRow, type RawTable, type Target } from './targets';
 
-/** Lowercase and accent-free, so "Họ và tên" and "ho va ten" compare equal. */
-export const fold = (text: string) =>
-  text
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/đ/gi, 'd')
-    .toLowerCase()
-    .trim();
+export { fold };
 
 // Exact entries are short abbreviations that would otherwise match inside other words.
 const GUESSES: Array<{ target: Target; exact: string[]; includes: string[] }> = [

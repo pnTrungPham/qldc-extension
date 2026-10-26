@@ -4,6 +4,7 @@ import { i18n } from '@/lib/i18n';
 
 import { recent } from './audit';
 import { transaction } from './db';
+import { commit, MAX_ROWS, preview } from './import';
 import { EXPORT_COLUMNS, isInvalid, POLICY_TAGS, RESIDENCE_STATUSES, sanitize, type Invalid } from './resident';
 import * as residents from './residents';
 import { getSettings, saveSettings } from './settings';
@@ -62,6 +63,8 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
   ['GET', /^\/settings$/, async () => getSettings()],
   ['POST', /^\/settings$/, async (_, __, body) => valid(await saveSettings(body))],
   ['GET', /^\/stats$/, async () => ({ ...(await residents.stats()), recent: await recent(RECENT) })],
+  ['POST', /^\/import\/preview$/, async (_, __, body) => preview(...importArgs(body))],
+  ['POST', /^\/import\/commit$/, async (_, __, body) => commit(...importArgs(body))],
   ['GET', /^\/export$/, async (_, query) => {
     // Unknown columns are dropped, so ID digits never leave the database even when asked for.
     const asked = query.getAll('columns[]');
@@ -85,6 +88,11 @@ export async function route<T>(path: string, method = 'GET', data?: unknown): Pr
     if (match) return (await handler(match.slice(1), url.searchParams, (data ?? {}) as Json)) as T;
   }
   return fail('rest_no_route', 'No route was found matching the URL and request method.');
+}
+
+function importArgs({ rows, auto_update = true }: Json): [unknown[], boolean] {
+  if (!Array.isArray(rows) || rows.length > MAX_ROWS) invalid();
+  return [rows as unknown[], auto_update !== false];
 }
 
 /** One change for many residents, all or nothing. Returns how many rows changed. */

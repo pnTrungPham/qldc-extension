@@ -1,7 +1,7 @@
 import { beforeEach, expect, test } from 'vitest';
 
 import { recent } from '@/backend/audit';
-import { db } from '@/backend/db';
+import { db, transaction } from '@/backend/db';
 import { sanitize } from '@/backend/resident';
 import * as residents from '@/backend/residents';
 import type { Resident, ResidentInput } from '@/lib/api/residents.api';
@@ -98,4 +98,15 @@ test('update logs only the changed fields', async () => {
 
 test('all() orders by household, head first', async () => {
   expect((await residents.all({})).map((r) => r.id)).toEqual([an.id, binh.id]);
+});
+
+test('transaction() rolls back nested repository writes, even from a plain arrow callback', async () => {
+  const work = async () => {
+    await residents.update(an.id, input({ ...an, phone: '0909999888' }));
+    await residents.trash(binh.id);
+    throw new Error('stop');
+  };
+  await expect(transaction(() => work())).rejects.toThrow('stop');
+  expect(await residents.find(an.id)).toMatchObject({ phone: '0903412885' });
+  expect(await residents.find(binh.id)).not.toBeNull();
 });

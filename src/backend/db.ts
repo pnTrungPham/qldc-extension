@@ -30,5 +30,7 @@ export const now = () => new Date().toISOString().slice(0, 19).replace('T', ' ')
  * (fetch, timers) lets IndexedDB commit the transaction early.
  */
 export function transaction<T>(work: () => Promise<T>): Promise<T> {
-  return db.transaction('rw', db.residents, db.audit, db.meta, work);
+  // Dexie follows native `await` only when the scope function itself is `async`; a plain arrow that
+  // returns a promise loses the transaction after its first await, and later writes escape it.
+  return db.transaction('rw', db.residents, db.audit, db.meta, async () => await work());
 }

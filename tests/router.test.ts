@@ -84,6 +84,12 @@ test('stats include recent activity', async () => {
   expect(await route('/stats')).toMatchObject({ people: 2, recent: [{ action: 'create', resident: 'Trần Thị Bình' }, { action: 'create' }] });
 });
 
+test('import routes', async () => {
+  expect(await route('/import/preview', 'POST', { rows: [{ full_name: 'Lê Văn Cường' }], auto_update: true })).toMatchObject({ will_add: 1 });
+  expect(await route('/import/commit', 'POST', { rows: [{ full_name: 'Lê Văn Cường' }] })).toMatchObject({ added_people: 1 });
+  await expect(route('/import/preview', 'POST', { rows: Array(5001).fill({}) })).rejects.toMatchObject({ code: 'invalid_arguments' });
+});
+
 test('an unknown route rejects with rest_no_route', async () => {
   await expect(route('/nope')).rejects.toMatchObject({ code: 'rest_no_route' });
 });

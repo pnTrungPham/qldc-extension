@@ -70,9 +70,21 @@ async function fileHandles(dir: FileSystemDirectoryHandle) {
 export async function writeBackup(dir: FileSystemDirectoryHandle, kind: BackupKind, file: BackupFile, at = new Date()) {
   const names = (await fileHandles(dir)).map((h) => h.name);
   const name = backupName(kind, at, new Set(names));
-  const writable = await (await dir.getFileHandle(name, { create: true })).createWritable();
-  await writable.write(JSON.stringify(file));
-  await writable.close();
+  const handle = await dir.getFileHandle(name, { create: true });
+  try {
+    const writable = await handle.createWritable();
+    try {
+      await writable.write(JSON.stringify(file));
+      await writable.close();
+    } catch (e) {
+      await writable.abort().catch(() => {});
+      throw e;
+    }
+  } catch (e) {
+    // create:true left an empty file under the final name; never leave it to count or restore
+    await dir.removeEntry(name).catch(() => {});
+    throw e;
+  }
   for (const old of toPrune([...names, name])) await dir.removeEntry(old);
   return name;
 }

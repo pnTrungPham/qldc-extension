@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { BackupFile } from '@/lib/api/backup.api';
 import { backupName, listBackups, toPrune, writeBackup } from '@/lib/backup-folder';
 
-function fakeDir(initial: string[] = []) {
+function fakeDir(initial: string[] = [], failWrite?: Error) {
   const files = new Map<string, string>(initial.map((n) => [n, '{}']));
   const dir = {
     files,
@@ -13,13 +13,21 @@ function fakeDir(initial: string[] = []) {
     async *entries() {
       for await (const h of dir.values()) yield [h.name, h] as const;
     },
-    async getFileHandle(name: string) {
+    async getFileHandle(name: string, opts?: { create?: boolean }) {
+      if (opts?.create) files.set(name, '');
       return {
         kind: 'file',
         name,
         async createWritable() {
           let text = '';
-          return { write: async (s: string) => void (text = s), close: async () => void files.set(name, text) };
+          return {
+            write: async (s: string) => {
+              if (failWrite) throw failWrite;
+              text = s;
+            },
+            abort: async () => {},
+            close: async () => void files.set(name, text),
+          };
         },
       };
     },
@@ -65,6 +73,13 @@ describe('writeBackup', () => {
     await writeBackup(dir, 'sao-luu', snap, at);
     expect(dir.files.size).toBe(2);
     for (const text of dir.files.values()) expect(JSON.parse(text)).toEqual(snap);
+  });
+  it('removes the empty file when the write fails', async () => {
+    const boom = new Error('boom');
+    const dir = fakeDir([], boom);
+    await expect(writeBackup(dir, 'sao-luu', snap, at)).rejects.toBe(boom);
+    expect(dir.files.size).toBe(0);
+    expect(await listBackups(dir)).toEqual([]);
   });
   it('prunes', async () => {
     const dir = fakeDir(Array.from({ length: 30 }, (_, i) => sl(i + 1)));

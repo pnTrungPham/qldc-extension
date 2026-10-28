@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Download, Folder, FolderOpen, Undo2, Upload } from 'lucide-react';
+import { Check, Download, Folder, FolderOpen, Undo2, Upload } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { i18n } from '@/lib/i18n';
@@ -134,7 +134,7 @@ export default function BackupTab() {
 
   function commitDays() {
     if (days === null) return;
-    saveOptions.mutate({ auto, days: Number(days) }, { onSuccess: () => setDays(null) });
+    saveOptions.mutate({ auto, days: Number(days) }, { onSuccess: () => setDays(null), onError: () => setDays(null) });
   }
 
   function toggleAuto(checked: boolean) {
@@ -353,8 +353,14 @@ function Entry({ entry, selected, onPick }: { entry: Entry; selected: boolean; o
         )}
         <span className="truncate text-xs text-muted-foreground">{entry.name}</span>
       </div>
-      <Button variant={selected ? 'primary-soft' : 'outline'} size="sm" disabled={info === 'damaged' || info === null} onClick={onPick}>
-        {i18n.__('Choose', 'quan-li-dan-cu')}
+      <Button variant={selected ? 'primary-soft' : 'outline'} size="sm" disabled={info === 'damaged' || info === null} aria-pressed={selected} onClick={onPick}>
+        {selected ? (
+          <>
+            <Check /> {i18n.__('Selected', 'quan-li-dan-cu')}
+          </>
+        ) : (
+          i18n.__('Choose', 'quan-li-dan-cu')
+        )}
       </Button>
     </div>
   );

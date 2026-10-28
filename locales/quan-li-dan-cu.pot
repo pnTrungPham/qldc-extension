@@ -7,1280 +7,1284 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-28T15:27:37+00:00\n"
+"POT-Creation-Date: 2026-10-28T15:29:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: quan-li-dan-cu\n"
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Full name must be 2–120 characters."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Invalid phone number."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Invalid year of birth."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Invalid examination date."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "ID number must be 4, 9 or 12 digits; only the last 4 are kept."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "This is not a backup file, or it is damaged."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Nothing was written. Please try again."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Full name is missing."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "The code can only use letters without accents, digits and hyphens, with no spaces, 2–12 characters."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "The ward name needs 2 to 80 characters."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Enter a whole number of days from 1 to 30."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Nothing was changed. Please try again."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:1
+#: chunks/app-C_oECW4B.js:56
 msgid "The backup could not be saved."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Automatic backup needs permission to use the backup folder."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Continue automatic backup"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:1
+#: chunks/app-C_oECW4B.js:56
 msgid "The backup folder is gone. Choose it again in Settings."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "It has been a while since the last backup."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Open backup settings"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Something went wrong."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:1
+#: chunks/app-C_oECW4B.js:7
 msgid "Male"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:1
+#: chunks/app-C_oECW4B.js:7
 msgid "Female"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Other"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:1
+#: chunks/app-C_oECW4B.js:54
 msgid "Head of household"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Spouse"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Child"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Parent"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Grandparent"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Grandchild"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Sibling"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Unverified"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Verified"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Expired"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Not required"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Poor household"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Near-poor household"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Elderly"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Person with disability"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Policy family"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Limited mobility"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Needs evacuation support"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Needs basic medical support"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Permanent"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Temporary resident"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Temporarily absent"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Moved away"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
+#: chunks/app-C_oECW4B.js:1
 msgid "Unknown"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:1
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:1
+#: chunks/app-C_oECW4B.js:58
 msgid "People"
 msgstr ""
 
 #. translators: %s: number of households
-#: chunks/app-DjaEftu3.js:3
+#: chunks/app-C_oECW4B.js:3
 msgid "in %s households"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:3
+#: chunks/app-C_oECW4B.js:3
 msgid "Average household"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:3
+#: chunks/app-C_oECW4B.js:3
 msgid "people per household"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:3
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:3
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:68
 msgid "Health exam 2026"
 msgstr ""
 
 #. translators: 1: people examined, 2: total people
-#: chunks/app-DjaEftu3.js:5
+#: chunks/app-C_oECW4B.js:5
 msgid "%1$s of %2$s examined"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
+#: chunks/app-C_oECW4B.js:5
 msgid "Missing phone number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
+#: chunks/app-C_oECW4B.js:5
 msgid "people to call back for a number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:5
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
 msgid "Residence status"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:5
+#: chunks/app-C_oECW4B.js:80
 msgid "Population"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
+#: chunks/app-C_oECW4B.js:5
 msgid "Children (under 16)"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
+#: chunks/app-C_oECW4B.js:5
 msgid "Working age (16–59)"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:5
+#: chunks/app-C_oECW4B.js:5
 msgid "Elderly (60 and over)"
 msgstr ""
 
 #. translators: %d: people without a year of birth
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "%d person has no year of birth and is not counted above."
 msgid_plural "%d people have no year of birth and are not counted above."
 msgstr[0] ""
 msgstr[1] ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Not recorded"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Policy & support"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Data to complete"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "No phone number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "No year of birth"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Documents not verified"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Documents expired"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Recent activity"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "All good"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "Someone"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:7
+#: chunks/app-C_oECW4B.js:7
 msgid "a resident"
 msgstr ""
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-DjaEftu3.js:8
+#: chunks/app-C_oECW4B.js:8
 msgid "%1$s added %2$s"
 msgstr ""
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-DjaEftu3.js:9
+#: chunks/app-C_oECW4B.js:9
 msgid "%1$s updated %2$s"
 msgstr ""
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-DjaEftu3.js:10
+#: chunks/app-C_oECW4B.js:10
 msgid "%1$s moved %2$s to the trash"
 msgstr ""
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-DjaEftu3.js:11
+#: chunks/app-C_oECW4B.js:11
 msgid "%1$s restored %2$s from the trash"
 msgstr ""
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-DjaEftu3.js:12
+#: chunks/app-C_oECW4B.js:12
 msgid "%1$s permanently deleted %2$s"
 msgstr ""
 
 #. translators: 1: user
-#: chunks/app-DjaEftu3.js:13
+#: chunks/app-C_oECW4B.js:13
 msgid "%1$s imported residents"
 msgstr ""
 
 #. translators: 1: user
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "%1$s restored a backup"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:26
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:26
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:68
 msgid "Full name"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:26
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:26
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:68
 msgid "Year of birth"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:26
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:26
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:68
 msgid "Phone"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Health insurance number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:70
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:70
+#: chunks/app-C_oECW4B.js:78
 msgid "Examined"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:70
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:70
+#: chunks/app-C_oECW4B.js:78
 msgid "Not examined"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
 msgid "Examination date"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
 msgid "Examination place"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Household role"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:68
 msgid "Head"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Member"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:26
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:26
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
 msgid "Relationship to head"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
 msgid "Household code"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:68
 msgid "Address"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
 msgid "Occupation"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
 msgid "Policy labels"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:54
 msgid "Situation notes"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Health & insurance template"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Phone book template"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "All columns"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
-#: chunks/app-DjaEftu3.js:26
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:14
+#: chunks/app-C_oECW4B.js:26
+#: chunks/app-C_oECW4B.js:54
 msgid "Gender"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "ID number (last 4 digits)"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Notes"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:14
+#: chunks/app-C_oECW4B.js:14
 msgid "Column mapping (fix it if a guess is wrong)"
 msgstr ""
 
 #. translators: %d: number of rows
-#: chunks/app-DjaEftu3.js:16
+#: chunks/app-C_oECW4B.js:16
 msgid "%d row"
 msgid_plural "%d rows"
 msgstr[0] ""
 msgstr[1] ""
 
-#: chunks/app-DjaEftu3.js:16
+#: chunks/app-C_oECW4B.js:16
 msgid "Remove"
 msgstr ""
 
 #. translators: %d: column number
-#: chunks/app-DjaEftu3.js:18
+#: chunks/app-C_oECW4B.js:18
 msgid "Column %d"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:18
+#: chunks/app-C_oECW4B.js:18
 msgid "— Skip —"
 msgstr ""
 
 #. translators: 1: file name, 2: number of sheets
-#: chunks/app-DjaEftu3.js:20
+#: chunks/app-C_oECW4B.js:20
 msgid "%1$s has %2$d sheets. Only the first one was read."
 msgstr ""
 
 #. translators: %s: file name
-#: chunks/app-DjaEftu3.js:22
+#: chunks/app-C_oECW4B.js:22
 msgid "No data rows found in %s."
 msgstr ""
 
 #. translators: %s: file name
-#: chunks/app-DjaEftu3.js:24
+#: chunks/app-C_oECW4B.js:24
 msgid "Could not read %s."
 msgstr ""
 
 #. translators: 1: number of rows, 2: number of files, 3: file names
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Read %1$d rows from %2$d files: %3$s"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Drop Excel or CSV files here, or choose them."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Reading…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Choose files"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Address of the house"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:26
+#: chunks/app-C_oECW4B.js:54
 msgid "Health exam 2026 done"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Remove this person"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Add a household member"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:26
+#: chunks/app-C_oECW4B.js:26
 msgid "Enter at least one full name before adding the household."
 msgstr ""
 
 #. translators: %d: number of people
-#: chunks/app-DjaEftu3.js:28
+#: chunks/app-C_oECW4B.js:28
 msgid "Added %d person to the waiting list. You can type the next household."
 msgid_plural "Added %d people to the waiting list. You can type the next household."
 msgstr[0] ""
 msgstr[1] ""
 
-#: chunks/app-DjaEftu3.js:28
+#: chunks/app-C_oECW4B.js:28
 msgid "Put this household on the waiting list"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:28
+#: chunks/app-C_oECW4B.js:28
 msgid "Paste the message here. Leave one blank line between households."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:28
+#: chunks/app-C_oECW4B.js:28
 msgid "Fill in a sample chat message"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:28
+#: chunks/app-C_oECW4B.js:28
 msgid "Pasted table"
 msgstr ""
 
 #. translators: %d: number of rows
-#: chunks/app-DjaEftu3.js:30
+#: chunks/app-C_oECW4B.js:30
 msgid "Read %d rows."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:30
+#: chunks/app-C_oECW4B.js:30
 msgid "No data rows found."
 msgstr ""
 
 #. translators: %d: number of people
-#: chunks/app-DjaEftu3.js:32
+#: chunks/app-C_oECW4B.js:32
 msgid "Read %d people."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:32
+#: chunks/app-C_oECW4B.js:32
 msgid "Nothing readable found. Each person needs a name and a 4-digit year of birth."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:32
+#: chunks/app-C_oECW4B.js:32
 msgid "Read pasted data"
 msgstr ""
 
 #. translators: 1: current page, 2: total pages
-#: chunks/app-DjaEftu3.js:34
+#: chunks/app-C_oECW4B.js:34
 msgid "Page %1$d of %2$d"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:34
+#: chunks/app-C_oECW4B.js:34
 msgid "Previous page"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:34
+#: chunks/app-C_oECW4B.js:34
 msgid "Next page"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:34
+#: chunks/app-C_oECW4B.js:34
 msgid "Go to"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:34
+#: chunks/app-C_oECW4B.js:34
 msgid "File"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:34
+#: chunks/app-C_oECW4B.js:34
 msgid "Pasted"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:34
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:34
+#: chunks/app-C_oECW4B.js:78
 msgid "Paper form"
 msgstr ""
 
 #. translators: %d: number of rows
-#: chunks/app-DjaEftu3.js:36
+#: chunks/app-C_oECW4B.js:36
 msgid "Waiting list · %d row"
 msgid_plural "Waiting list · %d rows"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: rows to add, 2: rows that update an existing person, 3: invalid rows
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "%1$d new · %2$d updates · %3$d invalid"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Discard all"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "ID numbers were found in the data. Only the last 4 digits are kept."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "No row has a full name. Choose the Full name column again in Column mapping."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Source"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Update"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Invalid"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Update people who already exist (same name + year of birth, or same name + last 4 ID digits)"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Nobody was saved."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Data saved."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Importing…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Confirm import into the data"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:38
+#: chunks/app-C_oECW4B.js:38
 msgid "Until you press this, nothing is saved."
 msgstr ""
 
 #. translators: %d: number of residents
-#: chunks/app-DjaEftu3.js:40
+#: chunks/app-C_oECW4B.js:40
 msgid "Permanently delete %d resident?"
 msgid_plural "Permanently delete %d residents?"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of residents
-#: chunks/app-DjaEftu3.js:42
+#: chunks/app-C_oECW4B.js:42
 msgid "Move %d resident to the trash?"
 msgid_plural "Move %d residents to the trash?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: chunks/app-DjaEftu3.js:42
+#: chunks/app-C_oECW4B.js:42
 msgid "This cannot be undone. The only way back is a backup file."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:42
+#: chunks/app-C_oECW4B.js:42
 msgid "You can restore them from the trash."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:42
-#: chunks/app-DjaEftu3.js:46
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:42
+#: chunks/app-C_oECW4B.js:46
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:58
 msgid "Cancel"
 msgstr ""
 
 #. translators: %d: number of residents deleted permanently
-#: chunks/app-DjaEftu3.js:44
+#: chunks/app-C_oECW4B.js:44
 msgid "Permanently deleted %d resident."
 msgid_plural "Permanently deleted %d residents."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of residents moved to the trash
-#: chunks/app-DjaEftu3.js:46
+#: chunks/app-C_oECW4B.js:46
 msgid "Moved %d resident to the trash."
 msgid_plural "Moved %d residents to the trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: chunks/app-DjaEftu3.js:46
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:72
+#: chunks/app-C_oECW4B.js:46
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:72
 msgid "Delete permanently"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:46
-#: chunks/app-DjaEftu3.js:48
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:46
+#: chunks/app-C_oECW4B.js:48
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:56
 msgid "Move to trash"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:46
+#: chunks/app-C_oECW4B.js:46
 msgid "Move this resident to the trash?"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:46
+#: chunks/app-C_oECW4B.js:46
 msgid "This person will be removed from the list. You can restore them from the trash."
 msgstr ""
 
 #. translators: %s: resident full name
-#: chunks/app-DjaEftu3.js:48
+#: chunks/app-C_oECW4B.js:48
 msgid "Moved %s to the trash"
 msgstr ""
 
 #. translators: %d: number of residents restored from the trash
-#: chunks/app-DjaEftu3.js:50
+#: chunks/app-C_oECW4B.js:50
 msgid "Restored %d resident."
 msgid_plural "Restored %d residents."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of residents changed
-#: chunks/app-DjaEftu3.js:52
+#: chunks/app-C_oECW4B.js:52
 msgid "Updated %d resident."
 msgid_plural "Updated %d residents."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of selected residents
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "%d selected"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Bulk Actions"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:58
-#: chunks/app-DjaEftu3.js:60
-#: chunks/app-DjaEftu3.js:72
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:58
+#: chunks/app-C_oECW4B.js:60
+#: chunks/app-C_oECW4B.js:72
 msgid "Restore"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Change residence status"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Mark as examined"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Mark as not examined"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Document verification"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Field support flags"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Health insurance (BHYT) number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
+#: chunks/app-C_oECW4B.js:54
 msgid "Saved"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:62
 msgid "Saving…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:54
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:54
+#: chunks/app-C_oECW4B.js:62
 msgid "Save"
 msgstr ""
 
 #. translators: %d: number of people in the household
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:70
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:70
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:66
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:66
 msgid "Add resident"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Share"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Saved."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "You have unsaved changes. Close anyway?"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Stay"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Close"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Search name, address, phone…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
-#: chunks/app-DjaEftu3.js:68
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:56
+#: chunks/app-C_oECW4B.js:68
+#: chunks/app-C_oECW4B.js:78
 msgid "Residence"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Has number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Missing number"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Clear filters"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Not updated"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Share resident information"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Only the ticked fields are sent. ID, health and internal notes are never included."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Copied. Open your chat app, long-press the message box and choose Paste."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Could not copy. Select the text above and copy it by hand."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Confirm share"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Backup saved to the folder."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Backup downloaded."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Allow access to the backup folder to save a backup."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "Automatic backup"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:56
+#: chunks/app-C_oECW4B.js:56
 msgid "No backup yet"
 msgstr ""
 
 #. translators: %s: date and time of the last backup
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Last backup: %s"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Keeps a copy of all data in a folder you choose."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Backup folder"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "No folder chosen"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Change folder"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Choose folder"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Choose a folder, ideally inside iCloud Drive or Google Drive, so a copy also leaves this computer."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Back up automatically"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Every"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "days"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "This browser cannot save to a folder: backups are downloaded instead."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
-#: chunks/app-DjaEftu3.js:60
+#: chunks/app-C_oECW4B.js:58
+#: chunks/app-C_oECW4B.js:60
 msgid "Working…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Back up now"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Allow access"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Backup files are not encrypted: keep the folder somewhere only you can open."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Go back to an earlier copy. The current data is saved first."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "No backups in this folder yet."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Choose a backup folder in the card above to see its copies here."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Choose another file…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Undo the last restore"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Backup date"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Households"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Restore this backup"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Undo the last restore?"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Restore this backup?"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "The data from before the last restore comes back, and the current data is saved first."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "All current residents are replaced by the backup. A copy of the current data is saved first."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:58
+#: chunks/app-C_oECW4B.js:58
 msgid "Backup restored."
 msgstr ""
 
 #. translators: 1: backup date, 2: households, 3: people
-#: chunks/app-DjaEftu3.js:60
+#: chunks/app-C_oECW4B.js:60
 msgid "Restored the backup from %1$s: %2$d households, %3$d people. The data that was in use before was saved first."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:60
+#: chunks/app-C_oECW4B.js:60
 msgid "Undo"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:60
+#: chunks/app-C_oECW4B.js:60
 msgid "Damaged file"
 msgstr ""
 
 #. translators: 1: number of households, 2: number of people
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
 msgid "%1$d households, %2$d people"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
+msgid "Selected"
+msgstr ""
+
+#: chunks/app-C_oECW4B.js:62
 msgid "Choose"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
 msgid "Ward name saved"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
 msgid "Ward code"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
 msgid "2–12 characters: letters without accents, digits and hyphens."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
 msgid "Ward name"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
+#: chunks/app-C_oECW4B.js:62
 msgid "Overview"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:62
-#: chunks/app-DjaEftu3.js:66
+#: chunks/app-C_oECW4B.js:62
+#: chunks/app-C_oECW4B.js:66
 msgid "Residents"
 msgstr ""
 
 #. translators: %d: number of residents in the trash
-#: chunks/app-DjaEftu3.js:64
+#: chunks/app-C_oECW4B.js:64
 msgid "%d resident in the trash"
 msgid_plural "%d residents in the trash"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: number of residents, 2: number of households
-#: chunks/app-DjaEftu3.js:66
+#: chunks/app-C_oECW4B.js:66
 msgid "%1$s people · %2$s households"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:66
+#: chunks/app-C_oECW4B.js:66
 msgid "Empty trash"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:66
+#: chunks/app-C_oECW4B.js:66
 msgid "Import data"
 msgstr ""
 
 #. translators: %d: number of residents in the trash
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:68
 msgid "Trash (%d)"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:68
 msgid "Select all"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:68
 msgid "Relationship"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:68
+#: chunks/app-C_oECW4B.js:68
 msgid "Deleted"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:70
+#: chunks/app-C_oECW4B.js:70
 msgid "No number"
 msgstr ""
 
 #. translators: %s: resident full name
-#: chunks/app-DjaEftu3.js:72
+#: chunks/app-C_oECW4B.js:72
 msgid "Restored %s"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:72
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:72
+#: chunks/app-C_oECW4B.js:80
 msgid "Loading…"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:72
+#: chunks/app-C_oECW4B.js:72
 msgid "The trash is empty."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:72
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:72
+#: chunks/app-C_oECW4B.js:80
 msgid "No matching residents."
 msgstr ""
 
 #. translators: 1: first row number, 2: last row number, 3: total people
-#: chunks/app-DjaEftu3.js:74
+#: chunks/app-C_oECW4B.js:74
 msgid "Showing %1$d–%2$d of %3$d people"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:74
+#: chunks/app-C_oECW4B.js:74
 msgid "Rows per page"
 msgstr ""
 
 #. translators: %d: rows per page
-#: chunks/app-DjaEftu3.js:76
+#: chunks/app-C_oECW4B.js:76
 msgid "%d rows"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:76
+#: chunks/app-C_oECW4B.js:76
 msgid "Import"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:76
+#: chunks/app-C_oECW4B.js:76
 msgid "Add people from an Excel file, a pasted message or a paper form. Review the list, then confirm."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:76
+#: chunks/app-C_oECW4B.js:76
 msgid "Download Excel template"
 msgstr ""
 
 #. translators: 1: people added, 2: households added, 3: people updated, 4: rows skipped
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Data saved. Added %1$d people in %2$d households · Updated %3$d · Skipped %4$d"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "View residents now"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Excel / CSV file"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Paste raw data"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Export"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Choose who is in the file and which columns it has, then download or print."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Who is in the file"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Keyword"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Health exam"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Policy"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:78
+#: chunks/app-C_oECW4B.js:78
 msgid "Columns"
 msgstr ""
 
 #. translators: 1: number of people in the file, 2: rows shown on screen
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Preview · %1$d people · the screen shows %2$d rows, the file has all of them"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Internal data. Do not share without permission."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "The print window was blocked. Allow pop-ups for this site and try again."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Print list (PDF)"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Resident-list"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Download Excel"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Choose at least one column."
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Settings"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "General"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Backup & restore"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Toggle theme"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Light"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Dark"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "System"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Page not found"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Something went wrong"
 msgstr ""
 
-#: chunks/app-DjaEftu3.js:80
+#: chunks/app-C_oECW4B.js:80
 msgid "Back to overview"
 msgstr ""

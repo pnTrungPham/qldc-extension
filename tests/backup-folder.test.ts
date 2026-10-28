@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import type { BackupFile } from '@/lib/api/backup.api';
 import { backupName, listBackups, toPrune, writeBackup } from '@/lib/backup-folder';
@@ -97,5 +97,22 @@ describe('listBackups', () => {
       [sl(3), 'sao-luu'],
       [sl(1), 'sao-luu'],
     ]);
+  });
+});
+
+describe('writeBackup pruning', () => {
+  it('keeps the new file and logs when an old one cannot be removed', async () => {
+    const dir = fakeDir(Array.from({ length: 30 }, (_, i) => sl(i + 1)));
+    dir.removeEntry = async () => {
+      throw new DOMException('', 'NoModificationAllowedError');
+    };
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      const name = await writeBackup(dir, 'sao-luu', snap, at);
+      expect(dir.files.has(name)).toBe(true);
+      expect(spy).toHaveBeenCalled();
+    } finally {
+      spy.mockRestore();
+    }
   });
 });

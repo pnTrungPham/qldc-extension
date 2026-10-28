@@ -85,7 +85,8 @@ export async function writeBackup(dir: FileSystemDirectoryHandle, kind: BackupKi
     await dir.removeEntry(name).catch(() => {});
     throw e;
   }
-  for (const old of toPrune([...names, name])) await dir.removeEntry(old);
+  // pruning is housekeeping: the new file is already safe, so a stuck old one must not fail the backup
+  for (const old of toPrune([...names, name])) await dir.removeEntry(old).catch(console.error);
   return name;
 }
 

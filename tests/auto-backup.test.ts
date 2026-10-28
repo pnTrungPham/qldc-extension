@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { db } from '@/backend/db';
 import { route } from '@/backend/router';
 import { i18n } from '@/lib/i18n';
-import { backUpNow, backupAfterImport, restoreBackup, runDueBackup } from '@/lib/auto-backup';
+import { backUpNow, backupAfterImport, restoreBackup, runDueBackup, undoLastRestore } from '@/lib/auto-backup';
 import { downloadBackup, folderAccess, getFolder, writeBackup } from '@/lib/backup-folder';
 
 vi.mock('@/lib/backup-folder', async (importOriginal) => ({
@@ -85,6 +85,25 @@ test('restore still goes ahead when the safety copy cannot be written', async ()
   await restoreBackup(file);
   expect(await db.residents.count()).toBe(0);
   expect((await route<{ can_undo: boolean }>('/backup/status', 'GET')).can_undo).toBe(true);
+});
+
+test('undo writes a safety copy first and still goes ahead when that fails', async () => {
+  const file = await route<{ residents: unknown[] }>('/backup', 'POST');
+  await restoreBackup(file);
+  await route('/residents', 'POST', { full_name: 'Lê Văn Cường' });
+  vi.mocked(writeBackup).mockClear();
+  vi.mocked(writeBackup).mockImplementation(async () => {
+    expect(await db.residents.count()).toBe(1);
+    return 'x';
+  });
+  await undoLastRestore();
+  expect(vi.mocked(writeBackup).mock.calls[0][1]).toBe('truoc-khoi-phuc');
+  expect(await db.residents.count()).toBe(0);
+
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  vi.mocked(writeBackup).mockRejectedValue(new DOMException('', 'QuotaExceededError'));
+  await undoLastRestore();
+  expect(await db.residents.count()).toBe(1);
 });
 
 // --- startAutoBackup ---

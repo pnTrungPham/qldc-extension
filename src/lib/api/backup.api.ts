@@ -5,7 +5,7 @@ import type { AuditRow } from '@/backend/db';
 import type { Resident } from './residents.api';
 import { api } from './client';
 import type { Settings } from './settings.api';
-import { restoreBackup } from '../auto-backup';
+import { restoreBackup, undoLastRestore } from '../auto-backup';
 
 /** The backup file: every table, as plain JSON. */
 export type BackupFile = {
@@ -28,6 +28,8 @@ export type BackupStatus = BackupOptions & {
   overdue: boolean;
   warned_today: boolean;
   can_undo: boolean;
+  /** What undo would bring back, null when there is nothing to undo. */
+  undo: BackupSummary | null;
 };
 
 const statusQuery = queryOptions({
@@ -63,7 +65,7 @@ export function useRestoreBackup() {
 export function useUndoRestore() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => api<BackupSummary>('/restore/undo', 'POST'),
+    mutationFn: undoLastRestore,
     onSuccess: () => queryClient.invalidateQueries(),
   });
 }

@@ -112,3 +112,25 @@ test('done and warned', async () => {
   await restore(await snapshot());
   expect(await route('/backup/status')).toMatchObject({ can_undo: true });
 });
+
+test('status reports what undo would bring back', async () => {
+  expect(await route('/backup/status')).toMatchObject({ undo: null, can_undo: false });
+  const file = await snapshot();
+  await addThird();
+  await restore(file);
+  expect(await route('/backup/status')).toMatchObject({ can_undo: true, undo: { date: expect.any(String), households: 1, people: 2 } });
+});
+
+test('restore writes audit rows with the four fields only', async () => {
+  const file = (await snapshot()) as unknown as { audit: Record<string, unknown>[] };
+  file.audit = [
+    { id: 5, action: 'create', resident_id: 1, changed_fields: ['full_name'], created_at: 'x', note: 'Nguyễn Văn An' },
+    { id: 5, action: 'update', resident_id: 1, changed_fields: [], created_at: 'y' },
+    { action: 'delete', resident_id: 2, changed_fields: [], created_at: 'z' },
+  ];
+  await restore(file);
+  const rows = await db.audit.toArray();
+  expect(rows).toHaveLength(3);
+  for (const row of rows) expect(Object.keys(row).sort()).toEqual(['action', 'changed_fields', 'created_at', 'id', 'resident_id']);
+  expect(rows.map((r) => r.action)).toEqual(['create', 'update', 'delete']);
+});

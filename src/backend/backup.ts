@@ -72,7 +72,10 @@ async function replaceAll({ file, rows }: Checked): Promise<BackupSummary> {
     const before = await read();
     await Promise.all([db.residents.clear(), db.audit.clear()]);
     await db.residents.bulkAdd(rows);
-    await db.audit.bulkAdd(file.audit as AuditRow[]);
+    // field names only, new ids in file order: nothing references audit ids
+    await db.audit.bulkAdd(
+      file.audit.map(({ action, resident_id, changed_fields, created_at }) => ({ action, resident_id, changed_fields, created_at }) as AuditRow),
+    );
     await db.meta.put({ key: 'settings', value: file.settings });
     await db.meta.put({ key: BEFORE_RESTORE, value: before });
   });
@@ -113,13 +116,16 @@ const meta = async <T>(key: string): Promise<T | undefined> => (await db.meta.ge
 export async function getBackupStatus(at = new Date()): Promise<BackupStatus> {
   const options = (await meta<BackupOptions>('backup-options')) ?? DEFAULT_OPTIONS;
   const last = (await meta<string>('backup-last')) ?? null;
+  const kept = (await meta<BackupFile>(BEFORE_RESTORE)) ?? null;
+  const undo = kept && summarize(kept.created_at, kept.residents);
   return {
     ...options,
     last_backup_at: last,
     due: isDue(options, last, at),
     overdue: isOverdue(options, last, (await db.residents.count()) > 0, at),
     warned_today: (await meta<string>('backup-warned')) === localDay(at),
-    can_undo: (await db.meta.get(BEFORE_RESTORE)) !== undefined,
+    can_undo: undo !== null,
+    undo,
   };
 }
 

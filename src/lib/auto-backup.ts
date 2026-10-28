@@ -43,13 +43,22 @@ export async function backupAfterImport(): Promise<RunResult> {
   return status.auto && dir ? backUpNow() : 'skipped';
 }
 
-export async function restoreBackup(file: unknown): Promise<BackupSummary> {
+async function safetyCopy() {
   try {
     await backUpNow('truoc-khoi-phuc');
   } catch (e) {
     console.error(e); // the in-database before-restore copy still protects the data
   }
+}
+
+export async function restoreBackup(file: unknown): Promise<BackupSummary> {
+  await safetyCopy();
   return api<BackupSummary>('/restore/commit', 'POST', { file });
+}
+
+export async function undoLastRestore(): Promise<BackupSummary> {
+  await safetyCopy();
+  return api<BackupSummary>('/restore/undo', 'POST');
 }
 
 let running: (() => void) | null = null;

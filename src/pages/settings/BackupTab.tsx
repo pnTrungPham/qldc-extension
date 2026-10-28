@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 
-import { runMessage } from './run-message';
+import { runMessage } from '@/lib/run-message';
 
 /** UTC "Y-m-d H:i:s" (last backup) or ISO (file's created_at) → the viewer's local date and time. */
 const formatDate = (utc: string) => new Date(utc.includes('T') ? utc : utc.replace(' ', 'T') + 'Z').toLocaleString();
@@ -54,7 +54,7 @@ export default function BackupTab() {
   }, []);
 
   if (!status.data) return null;
-  const { auto, last_backup_at, can_undo, overdue, days: savedDays } = status.data;
+  const { auto, last_backup_at, undo: undoInfo, overdue, days: savedDays } = status.data;
 
   const report = (r: RunResult) => {
     setMessage(runMessage(r));
@@ -267,9 +267,9 @@ export default function BackupTab() {
               e.target.value = '';
             }}
           />
-          {can_undo && (
+          {undoInfo && (
             <Button variant="ghost" size="sm" className="text-muted-foreground" onClick={() => ask('undo')}>
-              <Undo2 /> {i18n.__('Undo the last restore', 'quan-li-dan-cu')}
+              <Undo2 /> {i18n.__('Undo the last restore', 'quan-li-dan-cu')} ({formatDate(undoInfo.date)})
             </Button>
           )}
         </div>
@@ -301,6 +301,13 @@ export default function BackupTab() {
                   : i18n.__('All current residents are replaced by the backup. A copy of the current data is saved first.', 'quan-li-dan-cu')}
               </DialogDescription>
             </DialogHeader>
+            {confirming === 'undo' && undoInfo && (
+              <div className="grid gap-3 sm:grid-cols-3">
+                <Stat label={i18n.__('Backup date', 'quan-li-dan-cu')} value={formatDate(undoInfo.date)} />
+                <Stat label={i18n.__('Households', 'quan-li-dan-cu')} value={String(undoInfo.households)} />
+                <Stat label={i18n.__('People', 'quan-li-dan-cu')} value={String(undoInfo.people)} />
+              </div>
+            )}
             {error && <p className="m-0 text-sm text-destructive">{error.message}</p>}
             <DialogFooter>
               <Button variant="outline" onClick={() => setConfirming(null)}>

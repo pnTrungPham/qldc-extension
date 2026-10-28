@@ -1,5 +1,10 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import { toast } from 'sonner';
+
+import { i18n } from '@/lib/i18n';
+import { runMessage } from '@/lib/run-message';
+import type { RunResult } from '../auto-backup';
 import { backupAfterImport } from '../auto-backup';
 import { api } from './client';
 import { invalidateResidents } from './residents.api';
@@ -21,6 +26,17 @@ export function useImportPreview(rows: Row[], autoUpdate: boolean) {
   });
 }
 
+/** The import already succeeded: a backup problem is only reported, never thrown. */
+export async function handleAfterImport(run: Promise<RunResult>): Promise<void> {
+  try {
+    const result = await run;
+    if (result === 'needs-access' || result === 'missing') toast.warning(runMessage(result) ?? '');
+  } catch (e) {
+    console.error(e);
+    toast.error(i18n.__('The backup could not be saved.', 'quan-li-dan-cu'));
+  }
+}
+
 export function useCommitImport() {
   const queryClient = useQueryClient();
   return useMutation({
@@ -28,7 +44,7 @@ export function useCommitImport() {
       api<ImportResult>('/import/commit', 'POST', { rows, auto_update: autoUpdate }),
     onSuccess: () => {
       invalidateResidents(queryClient);
-      void backupAfterImport();
+      void handleAfterImport(backupAfterImport());
     },
   });
 }

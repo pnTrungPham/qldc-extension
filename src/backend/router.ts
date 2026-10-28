@@ -3,6 +3,7 @@ import type { ResidentInput } from '@/lib/api/residents.api';
 import { i18n } from '@/lib/i18n';
 
 import { recent } from './audit';
+import { inspect, restore, snapshot, undoRestore } from './backup';
 import { transaction } from './db';
 import { commit, MAX_ROWS, preview } from './import';
 import { EXPORT_COLUMNS, isInvalid, POLICY_TAGS, RESIDENCE_STATUSES, sanitize, type Invalid } from './resident';
@@ -65,6 +66,10 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
   ['GET', /^\/stats$/, async () => ({ ...(await residents.stats()), recent: await recent(RECENT) })],
   ['POST', /^\/import\/preview$/, async (_, __, body) => preview(...importArgs(body))],
   ['POST', /^\/import\/commit$/, async (_, __, body) => commit(...importArgs(body))],
+  ['POST', /^\/backup$/, async () => snapshot()],
+  ['POST', /^\/restore\/inspect$/, async (_, __, { file }) => valid(inspect(file))],
+  ['POST', /^\/restore\/commit$/, async (_, __, { file }) => restore(file)],
+  ['POST', /^\/restore\/undo$/, async () => undoRestore()],
   ['GET', /^\/export$/, async (_, query) => {
     // Unknown columns are dropped, so ID digits never leave the database even when asked for.
     const asked = query.getAll('columns[]');

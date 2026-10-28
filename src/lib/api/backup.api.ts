@@ -1,21 +1,18 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AuditRow } from '@/backend/db';
 
-import { api } from './client';
+import type { Resident } from './residents.api';
+import type { Settings } from './settings.api';
 
-/** Mirror Services\BackupService. `content` is the base64 of the .kpb file. */
+/** The backup file: every table, as plain JSON. */
+export type BackupFile = {
+  format: 'qldc-backup';
+  version: 1;
+  created_at: string;
+  counts: { households: number; people: number };
+  residents: Resident[];
+  audit: AuditRow[];
+  settings: Settings;
+};
+
+/** What a backup holds; `date` is its `created_at`. */
 export type BackupSummary = { date: string; households: number; people: number };
-
-export const useCreateBackup = () =>
-  useMutation({ mutationFn: () => api<BackupSummary & { content: string }>('/backup', 'POST', {}) });
-
-export const useInspectBackup = () =>
-  useMutation({ mutationFn: (content: string) => api<BackupSummary>('/restore/inspect', 'POST', { content }) });
-
-export function useRestoreBackup() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (content: string) => api<BackupSummary>('/restore/commit', 'POST', { content }),
-    // Residents, ward settings and the export preview all changed.
-    onSuccess: () => queryClient.invalidateQueries(),
-  });
-}

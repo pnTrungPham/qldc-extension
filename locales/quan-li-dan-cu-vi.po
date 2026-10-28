@@ -14,1136 +14,1221 @@ msgstr ""
 "X-Domain: quan-li-dan-cu\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Nothing was changed. Please try again."
 msgstr "Chưa thay đổi gì. Vui lòng thử lại."
 
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:60
+#: chunks/app-D3mTc3Gc.js:60
+#: chunks/app-D3mTc3Gc.js:64
 msgid "Residents"
 msgstr "Cư dân"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Full name must be 2–120 characters."
 msgstr "Họ tên cần từ 2 đến 120 ký tự."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Invalid phone number."
 msgstr "Số điện thoại sai dạng. Máy không lưu."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Invalid year of birth."
 msgstr "Năm sinh không hợp lệ."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Invalid examination date."
 msgstr "Ngày khám không hợp lệ."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "ID number must be 4, 9 or 12 digits; only the last 4 are kept."
 msgstr "Số CCCD/CMND cần 4, 9 hoặc 12 chữ số; máy chỉ giữ 4 số cuối."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "The code can only use letters without accents, digits and hyphens, with no spaces, 2–12 characters."
 msgstr "Mã không lưu được: chỉ dùng chữ không dấu, số, dấu gạch ngang, viết liền, 2–12 ký tự."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "The ward name needs 2 to 80 characters."
 msgstr "Tên khu phố cần từ 2 đến 80 ký tự."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Nothing was written. Please try again."
 msgstr "Chưa ghi được gì. Vui lòng thử lại."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Full name is missing."
 msgstr "Thiếu họ tên."
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Something went wrong."
 msgstr "Đã có lỗi xảy ra."
 
-#: chunks/app-NOd1curO.js:1
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:1
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Male"
 msgstr "Nam"
 
-#: chunks/app-NOd1curO.js:1
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:1
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Female"
 msgstr "Nữ"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Other"
 msgstr "Khác"
 
-#: chunks/app-NOd1curO.js:1
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:1
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Head of household"
 msgstr "Chủ hộ"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Spouse"
 msgstr "Vợ/Chồng"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Child"
 msgstr "Con"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Parent"
 msgstr "Cha/Mẹ"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Grandparent"
 msgstr "Ông/Bà"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Grandchild"
 msgstr "Cháu"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Sibling"
 msgstr "Anh/Chị/Em"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Unverified"
 msgstr "Chưa xác minh"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Verified"
 msgstr "Đã xác minh"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Expired"
 msgstr "Hết hạn"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Not required"
 msgstr "Không yêu cầu"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Poor household"
 msgstr "Hộ nghèo"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Near-poor household"
 msgstr "Hộ cận nghèo"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Elderly"
 msgstr "Người cao tuổi"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Person with disability"
 msgstr "Người khuyết tật"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Policy family"
 msgstr "Gia đình chính sách"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Limited mobility"
 msgstr "Khó khăn vận động"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Needs evacuation support"
 msgstr "Cần hỗ trợ khi sơ tán"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Needs basic medical support"
 msgstr "Cần hỗ trợ y tế cơ bản"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Permanent"
 msgstr "Thường trú"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Temporary resident"
 msgstr "Tạm trú"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Temporarily absent"
 msgstr "Tạm vắng"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Moved away"
 msgstr "Đã chuyển đi"
 
-#: chunks/app-NOd1curO.js:1
+#: chunks/app-D3mTc3Gc.js:1
 msgid "Unknown"
 msgstr "Chưa xác định"
 
-#: chunks/app-NOd1curO.js:1
-#: chunks/app-NOd1curO.js:76
+#: chunks/app-D3mTc3Gc.js:1
+#: chunks/app-D3mTc3Gc.js:56
 msgid "People"
 msgstr "Số nhân khẩu"
 
 #. translators: %s: number of households
-#: chunks/app-NOd1curO.js:3
+#: chunks/app-D3mTc3Gc.js:3
 msgid "in %s households"
 msgstr "trong %s hộ"
 
-#: chunks/app-NOd1curO.js:3
+#: chunks/app-D3mTc3Gc.js:3
 msgid "Average household"
 msgstr "Bình quân mỗi hộ"
 
-#: chunks/app-NOd1curO.js:3
+#: chunks/app-D3mTc3Gc.js:3
 msgid "people per household"
 msgstr "nhân khẩu mỗi hộ"
 
-#: chunks/app-NOd1curO.js:3
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:3
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Health exam 2026"
 msgstr "Khám SK 2026"
 
 #. translators: 1: people examined, 2: total people
-#: chunks/app-NOd1curO.js:5
+#: chunks/app-D3mTc3Gc.js:5
 msgid "%1$s of %2$s examined"
 msgstr "%1$s trên %2$s người đã khám"
 
-#: chunks/app-NOd1curO.js:5
+#: chunks/app-D3mTc3Gc.js:5
 msgid "Missing phone number"
 msgstr "Thiếu số điện thoại"
 
-#: chunks/app-NOd1curO.js:5
+#: chunks/app-D3mTc3Gc.js:5
 msgid "people to call back for a number"
 msgstr "người cần hỏi lại số điện thoại"
 
-#: chunks/app-NOd1curO.js:5
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:5
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Residence status"
 msgstr "Tình trạng cư trú"
 
-#: chunks/app-NOd1curO.js:5
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:5
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Population"
 msgstr "Dân cư"
 
-#: chunks/app-NOd1curO.js:5
+#: chunks/app-D3mTc3Gc.js:5
 msgid "Children (under 16)"
 msgstr "Trẻ em (dưới 16 tuổi)"
 
-#: chunks/app-NOd1curO.js:5
+#: chunks/app-D3mTc3Gc.js:5
 msgid "Working age (16–59)"
 msgstr "Trong độ tuổi lao động (16–59)"
 
-#: chunks/app-NOd1curO.js:5
+#: chunks/app-D3mTc3Gc.js:5
 msgid "Elderly (60 and over)"
 msgstr "Người cao tuổi (từ 60 tuổi)"
 
 #. translators: %d: people without a year of birth
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "%d person has no year of birth and is not counted above."
 msgid_plural "%d people have no year of birth and are not counted above."
 msgstr[0] "%d người chưa có năm sinh nên không tính ở trên."
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Not recorded"
 msgstr "Chưa ghi nhận"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Policy & support"
 msgstr "Chính sách & hỗ trợ"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Data to complete"
 msgstr "Dữ liệu cần bổ sung"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "No phone number"
 msgstr "Chưa có số điện thoại"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "No year of birth"
 msgstr "Chưa có năm sinh"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Documents not verified"
 msgstr "Giấy tờ chưa xác minh"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Documents expired"
 msgstr "Giấy tờ hết hạn"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Recent activity"
 msgstr "Hoạt động gần đây"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "All good"
 msgstr "Đã đủ"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "Someone"
 msgstr "Có người"
 
-#: chunks/app-NOd1curO.js:7
+#: chunks/app-D3mTc3Gc.js:7
 msgid "a resident"
 msgstr "một cư dân"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-NOd1curO.js:8
+#: chunks/app-D3mTc3Gc.js:8
 msgid "%1$s added %2$s"
 msgstr "%1$s đã thêm %2$s"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-NOd1curO.js:9
+#: chunks/app-D3mTc3Gc.js:9
 msgid "%1$s updated %2$s"
 msgstr "%1$s đã cập nhật %2$s"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-NOd1curO.js:10
+#: chunks/app-D3mTc3Gc.js:10
 msgid "%1$s moved %2$s to the trash"
 msgstr "%1$s đã chuyển %2$s vào thùng rác"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-NOd1curO.js:11
+#: chunks/app-D3mTc3Gc.js:11
 msgid "%1$s restored %2$s from the trash"
 msgstr "%1$s đã khôi phục %2$s từ thùng rác"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-NOd1curO.js:12
+#: chunks/app-D3mTc3Gc.js:12
 msgid "%1$s permanently deleted %2$s"
 msgstr "%1$s đã xoá vĩnh viễn %2$s"
 
 #. translators: 1: user
-#: chunks/app-NOd1curO.js:13
+#: chunks/app-D3mTc3Gc.js:13
 msgid "%1$s imported residents"
 msgstr "%1$s đã nhập danh sách cư dân"
 
 #. translators: 1: user
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "%1$s restored a backup"
 msgstr "%1$s đã khôi phục một bản sao lưu"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:26
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:26
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Full name"
 msgstr "Họ và tên"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:26
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:26
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Year of birth"
 msgstr "Năm sinh"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:26
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:26
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Phone"
 msgstr "Số điện thoại"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Health insurance number"
 msgstr "Số thẻ BHYT"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:64
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:68
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Examined"
 msgstr "Đã khám"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:64
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:68
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Not examined"
 msgstr "Chưa khám"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Examination date"
 msgstr "Ngày khám"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Examination place"
 msgstr "Đơn vị khám"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Household role"
 msgstr "Vai trò hộ"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Head"
 msgstr "Chủ hộ"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Member"
 msgstr "Thành viên"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:26
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:26
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Relationship to head"
 msgstr "Quan hệ với chủ hộ"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Household code"
 msgstr "Mã hộ"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Address"
 msgstr "Địa chỉ"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Occupation"
 msgstr "Nghề nghiệp"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Policy labels"
 msgstr "Nhãn chính sách"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Situation notes"
 msgstr "Ghi chú hoàn cảnh"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Health & insurance template"
 msgstr "Mẫu Y tế & BHYT"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Phone book template"
 msgstr "Mẫu Danh bạ SĐT"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "All columns"
 msgstr "Tất cả cột"
 
-#: chunks/app-NOd1curO.js:14
-#: chunks/app-NOd1curO.js:26
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:14
+#: chunks/app-D3mTc3Gc.js:26
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Gender"
 msgstr "Giới tính"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "ID number (last 4 digits)"
 msgstr "4 số cuối CCCD"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Notes"
 msgstr "Ghi chú"
 
-#: chunks/app-NOd1curO.js:14
+#: chunks/app-D3mTc3Gc.js:14
 msgid "Column mapping (fix it if a guess is wrong)"
 msgstr "Ghép cột (sửa nếu đoán sai)"
 
 #. translators: %d: number of rows
-#: chunks/app-NOd1curO.js:16
+#: chunks/app-D3mTc3Gc.js:16
 msgid "%d row"
 msgid_plural "%d rows"
 msgstr[0] "%d dòng"
 
-#: chunks/app-NOd1curO.js:16
+#: chunks/app-D3mTc3Gc.js:16
 msgid "Remove"
 msgstr "Bỏ"
 
 #. translators: %d: column number
-#: chunks/app-NOd1curO.js:18
+#: chunks/app-D3mTc3Gc.js:18
 msgid "Column %d"
 msgstr "Cột %d"
 
-#: chunks/app-NOd1curO.js:18
+#: chunks/app-D3mTc3Gc.js:18
 msgid "— Skip —"
 msgstr "— Bỏ qua —"
 
 #. translators: %s: file name
-#: chunks/app-NOd1curO.js:22
+#: chunks/app-D3mTc3Gc.js:22
 msgid "No data rows found in %s."
 msgstr "Không thấy dòng dữ liệu nào trong %s."
 
 #. translators: %s: file name
-#: chunks/app-NOd1curO.js:24
+#: chunks/app-D3mTc3Gc.js:24
 msgid "Could not read %s."
 msgstr "Không đọc được %s."
 
 #. translators: 1: file name, 2: number of sheets
-#: chunks/app-NOd1curO.js:20
+#: chunks/app-D3mTc3Gc.js:20
 msgid "%1$s has %2$d sheets. Only the first one was read."
 msgstr "%1$s có %2$d sheet. Chỉ sheet đầu tiên được đọc."
 
 #. translators: 1: number of rows, 2: number of files, 3: file names
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Read %1$d rows from %2$d files: %3$s"
 msgstr "Đã đọc %1$d dòng từ %2$d file: %3$s"
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Drop Excel or CSV files here, or choose them."
 msgstr "Thả file Excel hoặc CSV vào đây, hoặc bấm chọn file."
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Reading…"
 msgstr "Đang đọc…"
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Choose files"
 msgstr "Chọn file"
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Address of the house"
 msgstr "Địa chỉ của nhà"
 
-#: chunks/app-NOd1curO.js:26
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:26
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Health exam 2026 done"
 msgstr "Đã khám sức khỏe 2026"
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Remove this person"
 msgstr "Xóa người này"
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Add a household member"
 msgstr "Thêm người trong hộ"
 
-#: chunks/app-NOd1curO.js:26
+#: chunks/app-D3mTc3Gc.js:26
 msgid "Enter at least one full name before adding the household."
 msgstr "Nhập ít nhất một họ tên trước khi thêm hộ."
 
 #. translators: %d: number of people
-#: chunks/app-NOd1curO.js:28
+#: chunks/app-D3mTc3Gc.js:28
 msgid "Added %d person to the waiting list. You can type the next household."
 msgid_plural "Added %d people to the waiting list. You can type the next household."
 msgstr[0] "Đã thêm %d người vào danh sách chờ. Có thể gõ hộ tiếp theo."
 
-#: chunks/app-NOd1curO.js:28
+#: chunks/app-D3mTc3Gc.js:28
 msgid "Put this household on the waiting list"
 msgstr "Đưa hộ này vào danh sách chờ"
 
-#: chunks/app-NOd1curO.js:28
+#: chunks/app-D3mTc3Gc.js:28
 msgid "Paste the message here. Leave one blank line between households."
 msgstr "Dán tin nhắn vào đây. Mỗi hộ cách nhau một dòng trống."
 
-#: chunks/app-NOd1curO.js:28
+#: chunks/app-D3mTc3Gc.js:28
 msgid "Fill in a sample chat message"
 msgstr "Điền ví dụ tin Zalo"
 
-#: chunks/app-NOd1curO.js:28
+#: chunks/app-D3mTc3Gc.js:28
 msgid "Pasted table"
 msgstr "Bảng đã dán"
 
 #. translators: %d: number of rows
-#: chunks/app-NOd1curO.js:30
+#: chunks/app-D3mTc3Gc.js:30
 msgid "Read %d rows."
 msgstr "Đã đọc %d dòng."
 
-#: chunks/app-NOd1curO.js:30
+#: chunks/app-D3mTc3Gc.js:30
 msgid "No data rows found."
 msgstr "Không thấy dòng dữ liệu nào."
 
 #. translators: %d: number of people
-#: chunks/app-NOd1curO.js:32
+#: chunks/app-D3mTc3Gc.js:32
 msgid "Read %d people."
 msgstr "Đã đọc %d người."
 
-#: chunks/app-NOd1curO.js:32
+#: chunks/app-D3mTc3Gc.js:32
 msgid "Nothing readable found. Each person needs a name and a 4-digit year of birth."
 msgstr "Không đọc được gì. Mỗi người cần có họ tên và năm sinh 4 chữ số."
 
-#: chunks/app-NOd1curO.js:32
+#: chunks/app-D3mTc3Gc.js:32
 msgid "Read pasted data"
 msgstr "Đọc dữ liệu đã dán"
 
-#: chunks/app-NOd1curO.js:34
+#: chunks/app-D3mTc3Gc.js:34
 msgid "File"
 msgstr "File"
 
-#: chunks/app-NOd1curO.js:34
+#: chunks/app-D3mTc3Gc.js:34
 msgid "Pasted"
 msgstr "Dán"
 
-#: chunks/app-NOd1curO.js:34
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:34
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Paper form"
 msgstr "Phiếu giấy"
 
 #. translators: %d: number of rows
-#: chunks/app-NOd1curO.js:36
+#: chunks/app-D3mTc3Gc.js:36
 msgid "Waiting list · %d row"
 msgid_plural "Waiting list · %d rows"
 msgstr[0] "Danh sách chờ · %d dòng"
 
 #. translators: 1: rows to add, 2: rows that update an existing person, 3: invalid rows
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "%1$d new · %2$d updates · %3$d invalid"
 msgstr "%1$d mới · %2$d cập nhật · %3$d lỗi"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Discard all"
 msgstr "Bỏ hết"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "ID numbers were found in the data. Only the last 4 digits are kept."
 msgstr "Có số CCCD/CMND trong nội dung. Máy chỉ giữ 4 số cuối."
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "No row has a full name. Choose the Full name column again in Column mapping."
 msgstr "Chưa có dòng nào có họ tên. Chọn lại cột Họ tên ở phần Ghép cột."
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Source"
 msgstr "Nguồn"
 
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Relationship"
 msgstr "Quan hệ"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Update"
 msgstr "Cập nhật"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Invalid"
 msgstr "Lỗi"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Update people who already exist (same name + year of birth, or same name + last 4 ID digits)"
 msgstr "Tự cập nhật nếu đã có (khớp họ tên + năm sinh, hoặc họ tên + 4 số cuối CCCD)"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Nobody was saved."
 msgstr "Chưa ghi được ai."
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Data saved."
 msgstr "Đã ghi dữ liệu."
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Importing…"
 msgstr "Đang xử lý nhập..."
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Confirm import into the data"
 msgstr "Xác nhận nhập vào dữ liệu"
 
-#: chunks/app-NOd1curO.js:38
+#: chunks/app-D3mTc3Gc.js:38
 msgid "Until you press this, nothing is saved."
 msgstr "Chưa bấm nút này thì dữ liệu chưa vào sổ."
 
 #. translators: 1: current page, 2: total pages
-#: chunks/app-NOd1curO.js:34
+#: chunks/app-D3mTc3Gc.js:34
 msgid "Page %1$d of %2$d"
 msgstr "Trang %1$d / %2$d"
 
-#: chunks/app-NOd1curO.js:34
+#: chunks/app-D3mTc3Gc.js:34
 msgid "Previous page"
 msgstr "Trang trước"
 
-#: chunks/app-NOd1curO.js:34
+#: chunks/app-D3mTc3Gc.js:34
 msgid "Next page"
 msgstr "Trang sau"
 
-#: chunks/app-NOd1curO.js:34
+#: chunks/app-D3mTc3Gc.js:34
 msgid "Go to"
 msgstr "Đến trang"
 
 #. translators: %d: number of residents
-#: chunks/app-NOd1curO.js:40
+#: chunks/app-D3mTc3Gc.js:40
 msgid "Permanently delete %d resident?"
 msgid_plural "Permanently delete %d residents?"
 msgstr[0] "Xoá vĩnh viễn %d cư dân?"
 
 #. translators: %d: number of residents
-#: chunks/app-NOd1curO.js:42
+#: chunks/app-D3mTc3Gc.js:42
 msgid "Move %d resident to the trash?"
 msgid_plural "Move %d residents to the trash?"
 msgstr[0] "Chuyển %d cư dân vào thùng rác?"
 
-#: chunks/app-NOd1curO.js:42
+#: chunks/app-D3mTc3Gc.js:42
 msgid "This cannot be undone. The only way back is a backup file."
 msgstr "Không hoàn tác được. Chỉ còn cách khôi phục từ file sao lưu."
 
-#: chunks/app-NOd1curO.js:42
+#: chunks/app-D3mTc3Gc.js:42
 msgid "You can restore them from the trash."
 msgstr "Bạn có thể khôi phục lại từ thùng rác."
 
-#: chunks/app-NOd1curO.js:42
-#: chunks/app-NOd1curO.js:46
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:42
+#: chunks/app-D3mTc3Gc.js:46
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Cancel"
 msgstr "Hủy"
 
 #. translators: %d: number of residents deleted permanently
-#: chunks/app-NOd1curO.js:44
+#: chunks/app-D3mTc3Gc.js:44
 msgid "Permanently deleted %d resident."
 msgid_plural "Permanently deleted %d residents."
 msgstr[0] "Đã xoá vĩnh viễn %d cư dân."
 
 #. translators: %d: number of residents moved to the trash
-#: chunks/app-NOd1curO.js:46
+#: chunks/app-D3mTc3Gc.js:46
 msgid "Moved %d resident to the trash."
 msgid_plural "Moved %d residents to the trash."
 msgstr[0] "Đã chuyển %d cư dân vào thùng rác."
 
-#: chunks/app-NOd1curO.js:46
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:66
+#: chunks/app-D3mTc3Gc.js:46
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:70
 msgid "Delete permanently"
 msgstr "Xoá vĩnh viễn"
 
-#: chunks/app-NOd1curO.js:46
-#: chunks/app-NOd1curO.js:48
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:46
+#: chunks/app-D3mTc3Gc.js:48
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Move to trash"
 msgstr "Chuyển vào thùng rác"
 
-#: chunks/app-NOd1curO.js:46
+#: chunks/app-D3mTc3Gc.js:46
 msgid "Move this resident to the trash?"
 msgstr "Chuyển cư dân này vào thùng rác?"
 
-#: chunks/app-NOd1curO.js:46
+#: chunks/app-D3mTc3Gc.js:46
 msgid "This person will be removed from the list. You can restore them from the trash."
 msgstr "Người này sẽ bị đưa ra khỏi danh sách. Bạn có thể khôi phục từ thùng rác."
 
 #. translators: %s: resident full name
-#: chunks/app-NOd1curO.js:48
+#: chunks/app-D3mTc3Gc.js:48
 msgid "Moved %s to the trash"
 msgstr "Đã chuyển %s vào thùng rác"
 
 #. translators: %d: number of residents restored from the trash
-#: chunks/app-NOd1curO.js:50
+#: chunks/app-D3mTc3Gc.js:50
 msgid "Restored %d resident."
 msgid_plural "Restored %d residents."
 msgstr[0] "Đã khôi phục %d cư dân."
 
 #. translators: %d: number of residents changed
-#: chunks/app-NOd1curO.js:52
+#: chunks/app-D3mTc3Gc.js:52
 msgid "Updated %d resident."
 msgid_plural "Updated %d residents."
 msgstr[0] "Đã cập nhật %d cư dân."
 
 #. translators: %d: number of selected residents
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "%d selected"
 msgstr "Đã chọn %d"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Bulk Actions"
 msgstr "Thao tác hàng loạt"
 
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:66
-#: chunks/app-NOd1curO.js:76
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:58
+#: chunks/app-D3mTc3Gc.js:70
 msgid "Restore"
 msgstr "Khôi phục"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Change residence status"
 msgstr "Đổi tình trạng cư trú"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Mark as examined"
 msgstr "Đánh dấu đã khám"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Mark as not examined"
 msgstr "Đánh dấu chưa khám"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Document verification"
 msgstr "Xác minh giấy tờ"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Field support flags"
 msgstr "Cờ hỗ trợ thực địa"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Health insurance (BHYT) number"
 msgstr "Số thẻ BHYT"
 
-#: chunks/app-NOd1curO.js:54
+#: chunks/app-D3mTc3Gc.js:54
 msgid "Saved"
 msgstr "Đã lưu"
 
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:60
 msgid "Saving…"
 msgstr "Đang lưu…"
 
-#: chunks/app-NOd1curO.js:54
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:54
+#: chunks/app-D3mTc3Gc.js:60
 msgid "Save"
 msgstr "Lưu"
 
 #. translators: %d: number of people in the household
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:64
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:68
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] "%d người"
 
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:60
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:64
 msgid "Add resident"
 msgstr "Thêm cư dân"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Share"
 msgstr "Chia sẻ"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Saved."
 msgstr "Đã lưu."
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "You have unsaved changes. Close anyway?"
 msgstr "Có thay đổi chưa lưu. Đóng chứ?"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Stay"
 msgstr "Ở lại"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Close"
 msgstr "Đóng"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Search name, address, phone…"
 msgstr "Tìm tên, địa chỉ, số điện thoại…"
 
-#: chunks/app-NOd1curO.js:56
-#: chunks/app-NOd1curO.js:62
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:66
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Residence"
 msgstr "Cư trú"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Has number"
 msgstr "Có số"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Missing number"
 msgstr "Thiếu số"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Clear filters"
 msgstr "Xóa bộ lọc"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Not updated"
 msgstr "Chưa cập nhật"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Share resident information"
 msgstr "Chia sẻ thông tin cư dân"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Only the ticked fields are sent. ID, health and internal notes are never included."
 msgstr "Chỉ gửi đúng ô đã chọn. Không đưa căn cước, sức khỏe hay ghi chú nội bộ."
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Copied. Open your chat app, long-press the message box and choose Paste."
 msgstr "Đã sao chép. Mở Zalo, nhấn giữ ô soạn tin và chọn Dán."
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Could not copy. Select the text above and copy it by hand."
 msgstr "Không sao chép được. Hãy bôi đen đoạn chữ phía trên và chép tay."
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Confirm share"
 msgstr "Xác nhận chia sẻ"
 
-#: chunks/app-NOd1curO.js:56
+#: chunks/app-D3mTc3Gc.js:60
 msgid "Overview"
 msgstr "Tổng quan"
 
 #. translators: %d: number of residents in the trash
-#: chunks/app-NOd1curO.js:58
+#: chunks/app-D3mTc3Gc.js:62
 msgid "%d resident in the trash"
 msgid_plural "%d residents in the trash"
 msgstr[0] "%d cư dân trong thùng rác"
 
 #. translators: 1: number of residents, 2: number of households
-#: chunks/app-NOd1curO.js:60
+#: chunks/app-D3mTc3Gc.js:64
 msgid "%1$s people · %2$s households"
 msgstr "%1$s nhân khẩu · %2$s hộ"
 
-#: chunks/app-NOd1curO.js:60
+#: chunks/app-D3mTc3Gc.js:64
 msgid "Empty trash"
 msgstr "Dọn thùng rác"
 
-#: chunks/app-NOd1curO.js:60
+#: chunks/app-D3mTc3Gc.js:64
 msgid "Import data"
 msgstr "Nhập dữ liệu"
 
 #. translators: %d: number of residents in the trash
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Trash (%d)"
 msgstr "Thùng rác (%d)"
 
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Select all"
 msgstr "Chọn tất cả"
 
-#: chunks/app-NOd1curO.js:62
+#: chunks/app-D3mTc3Gc.js:66
 msgid "Deleted"
 msgstr "Ngày xoá"
 
-#: chunks/app-NOd1curO.js:64
+#: chunks/app-D3mTc3Gc.js:68
 msgid "No number"
 msgstr "Chưa có số"
 
 #. translators: %s: resident full name
-#: chunks/app-NOd1curO.js:66
+#: chunks/app-D3mTc3Gc.js:70
 msgid "Restored %s"
 msgstr "Đã khôi phục %s"
 
-#: chunks/app-NOd1curO.js:66
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:70
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Loading…"
 msgstr "Đang tải…"
 
-#: chunks/app-NOd1curO.js:66
+#: chunks/app-D3mTc3Gc.js:70
 msgid "The trash is empty."
 msgstr "Thùng rác trống."
 
-#: chunks/app-NOd1curO.js:66
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:70
+#: chunks/app-D3mTc3Gc.js:78
 msgid "No matching residents."
 msgstr "Không có cư dân khớp."
 
 #. translators: 1: first row number, 2: last row number, 3: total people
-#: chunks/app-NOd1curO.js:68
+#: chunks/app-D3mTc3Gc.js:72
 msgid "Showing %1$d–%2$d of %3$d people"
 msgstr "Hiển thị %1$d–%2$d trên %3$d người"
 
-#: chunks/app-NOd1curO.js:68
+#: chunks/app-D3mTc3Gc.js:72
 msgid "Rows per page"
 msgstr "Số dòng mỗi trang"
 
 #. translators: %d: rows per page
-#: chunks/app-NOd1curO.js:70
+#: chunks/app-D3mTc3Gc.js:74
 msgid "%d rows"
 msgstr "%d dòng"
 
-#: chunks/app-NOd1curO.js:70
+#: chunks/app-D3mTc3Gc.js:74
 msgid "Import"
 msgstr "Nhập"
 
-#: chunks/app-NOd1curO.js:70
+#: chunks/app-D3mTc3Gc.js:74
 msgid "Add people from an Excel file, a pasted message or a paper form. Review the list, then confirm."
 msgstr "Thêm người từ file Excel, tin nhắn đã dán hoặc phiếu giấy. Xem lại danh sách rồi xác nhận."
 
-#: chunks/app-NOd1curO.js:70
+#: chunks/app-D3mTc3Gc.js:74
 msgid "Download Excel template"
 msgstr "Tải file Excel mẫu"
 
 #. translators: 1: people added, 2: households added, 3: people updated, 4: rows skipped
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Data saved. Added %1$d people in %2$d households · Updated %3$d · Skipped %4$d"
 msgstr "Đã ghi dữ liệu. Thêm mới %1$d nhân khẩu, %2$d hộ · Cập nhật %3$d · Bỏ qua %4$d"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "View residents now"
 msgstr "Xem danh sách cư dân ngay"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Excel / CSV file"
 msgstr "File Excel / CSV"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Paste raw data"
 msgstr "Dán dữ liệu thô"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Export"
 msgstr "Xuất"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Choose who is in the file and which columns it has, then download or print."
 msgstr "Chọn ai sẽ có trong file và các cột cần có, rồi tải về hoặc in."
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Who is in the file"
 msgstr "Chọn ai sẽ có trong file"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Keyword"
 msgstr "Từ khóa"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Health exam"
 msgstr "Khám sức khỏe"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Policy"
 msgstr "Chính sách"
 
-#: chunks/app-NOd1curO.js:72
+#: chunks/app-D3mTc3Gc.js:76
 msgid "Columns"
 msgstr "Chọn cột"
 
 #. translators: 1: number of people in the file, 2: rows shown on screen
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Preview · %1$d people · the screen shows %2$d rows, the file has all of them"
 msgstr "Xem trước · %1$d người · màn hình hiện %2$d dòng, file tải về có đủ"
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Internal data. Do not share without permission."
 msgstr "Dữ liệu nội bộ, không tự ý chia sẻ."
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "The print window was blocked. Allow pop-ups for this site and try again."
 msgstr "Cửa sổ in bị chặn. Hãy cho phép cửa sổ bật lên của trang này rồi thử lại."
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Print list (PDF)"
 msgstr "In danh sách (PDF)"
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Resident-list"
 msgstr "Danh-sach-dan-cu"
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Download Excel"
 msgstr "Tải file Excel"
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Choose at least one column."
 msgstr "Hãy chọn ít nhất một cột."
 
-#: chunks/app-NOd1curO.js:74
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Backup"
 msgstr "Sao lưu"
 
-#: chunks/app-NOd1curO.js:74
-msgid "Keep a copy of your data, or go back to an earlier copy."
-msgstr "Giữ một bản dữ liệu, hoặc quay về một bản đã giữ trước đó."
-
-#: chunks/app-NOd1curO.js:74
-msgid "Create a backup"
-msgstr "Tạo bản sao lưu"
-
-#: chunks/app-NOd1curO.js:74
-msgid "backup"
-msgstr "sao-luu"
-
-#: chunks/app-NOd1curO.js:74
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:56
+#: chunks/app-D3mTc3Gc.js:58
 msgid "Working…"
 msgstr "Đang xử lý…"
 
-#: chunks/app-NOd1curO.js:74
-msgid "Back up data"
-msgstr "Sao lưu dữ liệu"
-
-#. translators: 1: number of households, 2: number of people
-#: chunks/app-NOd1curO.js:76
-msgid "Backup done: %1$d households, %2$d people."
-msgstr "Sao lưu thành công: %1$d hộ, %2$d nhân khẩu."
-
-#: chunks/app-NOd1curO.js:76
-msgid "A .kpb file only opens on the WordPress site that made it. To move to another site, use a database export tool."
-msgstr "File .kpb chỉ mở được trên đúng website WordPress đã tạo ra nó. Muốn chuyển sang website khác, hãy dùng công cụ xuất cơ sở dữ liệu."
-
-#: chunks/app-NOd1curO.js:76
-msgid "Choose a .kpb file"
-msgstr "Chọn file .kpb"
-
-#: chunks/app-NOd1curO.js:76
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Backup date"
 msgstr "Ngày sao lưu"
 
-#: chunks/app-NOd1curO.js:76
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Households"
 msgstr "Số hộ"
 
-#: chunks/app-NOd1curO.js:76
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Restore this backup"
 msgstr "Khôi phục bản này"
 
 #. translators: 1: backup date, 2: households, 3: people
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:58
 msgid "Restored the backup from %1$s: %2$d households, %3$d people. The data that was in use before was saved first."
 msgstr "Đã khôi phục bản ngày %1$s: %2$d hộ, %3$d nhân khẩu. Bản đang dùng trước đó đã được chụp lại."
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Restore this backup?"
 msgstr "Khôi phục bản sao lưu này?"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:56
 msgid "All current residents are replaced by the backup. A copy of the current data is saved first."
 msgstr "Toàn bộ cư dân hiện tại sẽ được thay bằng bản sao lưu. Dữ liệu hiện tại được chụp lại trước."
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:56
 msgid "Backup restored."
 msgstr "Đã khôi phục bản sao lưu."
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Toggle theme"
 msgstr "Đổi giao diện sáng/tối"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Light"
 msgstr "Sáng"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Dark"
 msgstr "Tối"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "System"
 msgstr "Theo hệ thống"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:60
 msgid "Ward name"
 msgstr "Tên khu phố"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:60
 msgid "Ward name saved"
 msgstr "Đã lưu tên khu phố"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:60
 msgid "Ward code"
 msgstr "Mã khu phố"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:60
 msgid "2–12 characters: letters without accents, digits and hyphens."
 msgstr "2–12 ký tự, chữ không dấu, số, dấu gạch ngang."
 
-#: chunks/app-NOd1curO.js:78
-msgid "Ward settings"
-msgstr "Cài đặt khu phố"
-
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Page not found"
 msgstr "Không tìm thấy trang"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Something went wrong"
 msgstr "Đã có lỗi xảy ra"
 
-#: chunks/app-NOd1curO.js:78
+#: chunks/app-D3mTc3Gc.js:78
 msgid "Back to overview"
 msgstr "Về trang tổng quan"
 
-#: chunks/app-NOd1curO.js:78
-msgid "Chrome may clear this data when the disk is full. Make backups often."
-msgstr "Chrome có thể xoá dữ liệu này khi ổ đĩa đầy. Hãy sao lưu thường xuyên."
+#: chunks/app-D3mTc3Gc.js:1
+msgid "This is not a backup file, or it is damaged."
+msgstr "Đây không phải tệp sao lưu, hoặc tệp bị hỏng."
+
+#: chunks/app-D3mTc3Gc.js:1
+msgid "Enter a whole number of days from 1 to 30."
+msgstr "Nhập số ngày nguyên từ 1 đến 30."
+
+#: chunks/app-D3mTc3Gc.js:1
+#: chunks/app-D3mTc3Gc.js:56
+msgid "The backup could not be saved."
+msgstr "Không thể lưu bản sao lưu."
+
+#: chunks/app-D3mTc3Gc.js:1
+msgid "Automatic backup needs permission to use the backup folder."
+msgstr "Sao lưu tự động cần quyền dùng thư mục sao lưu."
+
+#: chunks/app-D3mTc3Gc.js:1
+msgid "Continue automatic backup"
+msgstr "Tiếp tục sao lưu tự động"
+
+#: chunks/app-D3mTc3Gc.js:1
+#: chunks/app-D3mTc3Gc.js:56
+msgid "The backup folder is gone. Choose it again in Settings."
+msgstr "Thư mục sao lưu không còn. Hãy chọn lại trong Cài đặt."
+
+#: chunks/app-D3mTc3Gc.js:1
+msgid "It has been a while since the last backup."
+msgstr "Đã lâu rồi chưa sao lưu."
+
+#: chunks/app-D3mTc3Gc.js:1
+msgid "Open backup settings"
+msgstr "Mở cài đặt sao lưu"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Backup saved to the folder."
+msgstr "Đã lưu bản sao lưu vào thư mục."
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Backup downloaded."
+msgstr "Đã tải bản sao lưu xuống."
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Allow access to the backup folder to save a backup."
+msgstr "Hãy cho phép truy cập thư mục sao lưu để lưu bản sao lưu."
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Folder:"
+msgstr "Thư mục:"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "No folder chosen"
+msgstr "Chưa chọn thư mục"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Change folder"
+msgstr "Đổi thư mục"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Choose folder"
+msgstr "Chọn thư mục"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Last backup:"
+msgstr "Lần sao lưu gần nhất:"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "never"
+msgstr "chưa có"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Back up automatically"
+msgstr "Tự động sao lưu"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Every (days)"
+msgstr "Mỗi (ngày)"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Back up now"
+msgstr "Sao lưu ngay"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Allow access"
+msgstr "Cho phép truy cập"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Choose another file…"
+msgstr "Chọn tệp khác…"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Undo the last restore"
+msgstr "Hoàn tác lần khôi phục gần nhất"
+
+#: chunks/app-D3mTc3Gc.js:56
+msgid "Undo the last restore?"
+msgstr "Hoàn tác lần khôi phục gần nhất?"
+
+#: chunks/app-D3mTc3Gc.js:58
+msgid "Damaged file"
+msgstr "Tệp bị hỏng"
+
+#. translators: 1: number of households, 2: number of people
+#: chunks/app-D3mTc3Gc.js:60
+msgid "%1$d households, %2$d people"
+msgstr "%1$d hộ, %2$d người"
+
+#: chunks/app-D3mTc3Gc.js:60
+msgid "Choose"
+msgstr "Chọn"
+
+#: chunks/app-D3mTc3Gc.js:78
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: chunks/app-D3mTc3Gc.js:78
+msgid "General"
+msgstr "Chung"
+
+#: chunks/app-D3mTc3Gc.js:78
+msgid "Backup & restore"
+msgstr "Sao lưu và khôi phục"

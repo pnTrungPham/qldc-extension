@@ -4,7 +4,21 @@ The Quản lí dân cư admin app, running in its own Chrome tab with no server 
 Residents, trash, overview, import and export are stored in the browser (IndexedDB).
 
 > **Data lives only in this Chrome profile on this computer.** Uninstalling the extension, removing the
-> profile or clearing site data deletes it. Encrypted backups arrive in Plan 2; until then, export often.
+> profile or clearing site data deletes it. Choose a backup folder in Settings (ideally one synced by iCloud
+> or Google Drive) so copies exist outside the browser.
+
+## Backup and restore
+
+Gear button → **Settings** → **Backup & restore**.
+
+- Pick a folder once. The app writes `sao-luu-YYYY-MM-DD-HHmmss.qldc.json` there every N days (1–30) while the
+  app is open, and after each import. It keeps the 30 newest.
+- **Back up now** writes a file at once (a download when no folder is chosen).
+- After a browser restart the folder permission is dropped: a toast asks you to click to continue.
+- **Restore** from a file in the folder or any `.json` backup. Everything is replaced; the data before is kept
+  (`truoc-khoi-phuc-…` file and **Undo the last restore**).
+- Backup files are plain JSON, **not encrypted**: they hold names, phones and addresses. Keep the folder private.
+- Needs Chrome or Edge (File System Access API). Without it, only download and restore from a file work.
 
 ## Develop
 

@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { db } from '@/backend/db';
 import { route } from '@/backend/router';
+import { i18n } from '@/lib/i18n';
 import { backUpNow, backupAfterImport, restoreBackup, runDueBackup } from '@/lib/auto-backup';
 import { downloadBackup, folderAccess, getFolder, writeBackup } from '@/lib/backup-folder';
 
@@ -109,7 +110,7 @@ describe('startAutoBackup', () => {
     await start();
     expect(toast.error).toHaveBeenCalledTimes(1);
     expect(console.error).toHaveBeenCalled();
-    expect(toast.warning).toHaveBeenCalledWith('It has been a while since the last backup.', expect.anything());
+    expect(toast.warning).toHaveBeenCalledWith(i18n.__('It has been a while since the last backup.', 'quan-li-dan-cu'), expect.anything());
   });
 
   test('permission toast is persistent and its action asks then backs up', async () => {

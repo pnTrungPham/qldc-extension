@@ -70,12 +70,8 @@ export default function BackupTab() {
   }
 
   async function allow() {
-    if (folder && (await folderAccess(folder, true)) === 'granted') {
-      await refresh();
-      report(await backUpNow());
-      await refresh();
-      void status.refetch();
-    }
+    if (folder && (await folderAccess(folder, true)) === 'granted') await backUp();
+    else setMessage(runMessage('needs-access'));
   }
 
   async function backUp() {

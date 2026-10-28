@@ -44,7 +44,11 @@ export async function backupAfterImport(): Promise<RunResult> {
 }
 
 export async function restoreBackup(file: unknown): Promise<BackupSummary> {
-  await backUpNow('truoc-khoi-phuc');
+  try {
+    await backUpNow('truoc-khoi-phuc');
+  } catch (e) {
+    console.error(e); // the in-database before-restore copy still protects the data
+  }
   return api<BackupSummary>('/restore/commit', 'POST', { file });
 }
 

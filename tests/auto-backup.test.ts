@@ -77,6 +77,16 @@ test('restore writes a safety copy first', async () => {
   expect(await db.residents.count()).toBe(0);
 });
 
+test('restore still goes ahead when the safety copy cannot be written', async () => {
+  const file = await route<{ residents: unknown[] }>('/backup', 'POST');
+  await route('/residents', 'POST', { full_name: 'Lê Văn Cường' });
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  vi.mocked(writeBackup).mockRejectedValue(new DOMException('', 'QuotaExceededError'));
+  await restoreBackup(file);
+  expect(await db.residents.count()).toBe(0);
+  expect((await route<{ can_undo: boolean }>('/backup/status', 'GET')).can_undo).toBe(true);
+});
+
 // --- startAutoBackup ---
 import { toast } from 'sonner';
 

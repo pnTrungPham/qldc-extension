@@ -3,7 +3,7 @@ import type { ResidentInput } from '@/lib/api/residents.api';
 import { i18n } from '@/lib/i18n';
 
 import { recent } from './audit';
-import { inspect, restore, snapshot, undoRestore } from './backup';
+import { getBackupStatus, inspect, markBackedUp, markWarned, restore, saveBackupOptions, snapshot, undoRestore } from './backup';
 import { transaction } from './db';
 import { commit, MAX_ROWS, preview } from './import';
 import { EXPORT_COLUMNS, isInvalid, POLICY_TAGS, RESIDENCE_STATUSES, sanitize, type Invalid } from './resident';
@@ -67,6 +67,10 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
   ['POST', /^\/import\/preview$/, async (_, __, body) => preview(...importArgs(body))],
   ['POST', /^\/import\/commit$/, async (_, __, body) => commit(...importArgs(body))],
   ['POST', /^\/backup$/, async () => snapshot()],
+  ['GET', /^\/backup\/status$/, async () => getBackupStatus()],
+  ['POST', /^\/backup\/options$/, async (_, __, body) => valid(await saveBackupOptions(body))],
+  ['POST', /^\/backup\/done$/, async () => markBackedUp()],
+  ['POST', /^\/backup\/warned$/, async () => markWarned()],
   ['POST', /^\/restore\/inspect$/, async (_, __, { file }) => valid(inspect(file))],
   ['POST', /^\/restore\/commit$/, async (_, __, { file }) => restore(file)],
   ['POST', /^\/restore\/undo$/, async () => undoRestore()],

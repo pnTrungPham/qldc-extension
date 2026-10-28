@@ -1,5 +1,5 @@
 import type { ApiError } from '@/lib/api/client';
-import type { BackupFile, BackupSummary } from '@/lib/api/backup.api';
+import type { BackupFile, BackupOptions, BackupStatus, BackupSummary } from '@/lib/api/backup.api';
 import { fold } from '@/lib/fold';
 import { i18n } from '@/lib/i18n';
 
@@ -91,3 +91,47 @@ export async function undoRestore(): Promise<BackupSummary> {
   if (!kept || isInvalid(checked)) throw { code: 'not_found', message: 'Not Found.' } satisfies ApiError;
   return replaceAll(checked);
 }
+
+const DAY = 24 * 3600_000;
+const DEFAULT_OPTIONS: BackupOptions = { auto: true, days: 1 };
+
+const age = (last: string, at: Date) => at.getTime() - Date.parse(`${last.replace(' ', 'T')}Z`);
+const localDay = (at: Date) =>
+  `${at.getFullYear()}-${String(at.getMonth() + 1).padStart(2, '0')}-${String(at.getDate()).padStart(2, '0')}`;
+
+export const isDue = ({ auto, days }: BackupOptions, last: string | null, at: Date) =>
+  auto && (last === null || age(last, at) >= days * DAY);
+
+/** Past 2 x days when automatic, past 7 days when not, or never backed up while residents exist. */
+export function isOverdue({ auto, days }: BackupOptions, last: string | null, hasResidents: boolean, at: Date) {
+  if (last === null) return hasResidents;
+  return age(last, at) > (auto ? 2 * days : 7) * DAY;
+}
+
+const meta = async <T>(key: string): Promise<T | undefined> => (await db.meta.get(key))?.value as T | undefined;
+
+export async function getBackupStatus(at = new Date()): Promise<BackupStatus> {
+  const options = (await meta<BackupOptions>('backup-options')) ?? DEFAULT_OPTIONS;
+  const last = (await meta<string>('backup-last')) ?? null;
+  return {
+    ...options,
+    last_backup_at: last,
+    due: isDue(options, last, at),
+    overdue: isOverdue(options, last, (await db.residents.count()) > 0, at),
+    warned_today: (await meta<string>('backup-warned')) === localDay(at),
+    can_undo: (await db.meta.get(BEFORE_RESTORE)) !== undefined,
+  };
+}
+
+export async function saveBackupOptions(input: unknown): Promise<BackupOptions | Invalid> {
+  const { auto, days } = isObject(input) ? input : {};
+  if (typeof auto !== 'boolean' || !Number.isInteger(days) || (days as number) < 1 || (days as number) > 30) {
+    return { error: i18n.__('Enter a whole number of days from 1 to 30.', 'quan-li-dan-cu') };
+  }
+  const options = { auto, days: days as number };
+  await db.meta.put({ key: 'backup-options', value: options });
+  return options;
+}
+
+export const markBackedUp = async () => void (await db.meta.put({ key: 'backup-last', value: now() }));
+export const markWarned = async () => void (await db.meta.put({ key: 'backup-warned', value: localDay(new Date()) }));

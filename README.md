@@ -49,7 +49,7 @@ always shows Vietnamese. Needs PHP and wp-cli.
 ./scripts/i18n.sh json      # sync the .po with the .pot, compile → locales/vi.json
 ```
 
-Translate new strings in the `.po` between the two commands.
+Translate new strings in the `.po` between the two commands. `locales/vi.json` is bundled into the app at build time, so after `./scripts/i18n.sh json` run `pnpm build` again.
 
 ## Layout
 

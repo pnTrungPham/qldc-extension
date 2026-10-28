@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { Download, FolderOpen, Undo2, Upload } from 'lucide-react';
+import { Download, Folder, FolderOpen, Undo2, Upload } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { i18n } from '@/lib/i18n';
 import { useBackupStatus, useInspectBackup, useRestoreBackup, useSaveBackupOptions, useUndoRestore, type BackupFile, type BackupSummary } from '@/lib/api/backup.api';
 import { backUpNow, type RunResult } from '@/lib/auto-backup';
 import { chooseFolder, folderAccess, getFolder, listBackups } from '@/lib/backup-folder';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -34,6 +35,8 @@ export default function BackupTab() {
   const [days, setDays] = useState<string | null>(null);
   const [running, setRunning] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [result, setResult] = useState<RunResult | null>(null);
+  const [pickedName, setPickedName] = useState<string | null>(null);
   const [picked, setPicked] = useState<Picked | null>(null);
   const [confirming, setConfirming] = useState<'restore' | 'undo' | null>(null);
 
@@ -51,18 +54,30 @@ export default function BackupTab() {
   }, []);
 
   if (!status.data) return null;
-  const { auto, last_backup_at, can_undo } = status.data;
+  const { auto, last_backup_at, can_undo, overdue, days: savedDays } = status.data;
 
-  const report = (result: RunResult) => {
-    setMessage(runMessage(result));
-    return result;
+  const report = (r: RunResult) => {
+    setMessage(runMessage(r));
+    setResult(r);
+    return r;
+  };
+
+  const say = (text: string | null) => {
+    setMessage(text);
+    setResult(null);
+  };
+
+  const ask = (kind: 'restore' | 'undo') => {
+    restore.reset();
+    undo.reset();
+    setConfirming(kind);
   };
 
   async function change() {
     try {
       const dir = await chooseFolder();
       setFolder(dir);
-      setMessage(null);
+      say(null);
       await refresh(dir);
     } catch (e) {
       if (!(e instanceof DOMException && e.name === 'AbortError')) throw e;
@@ -71,7 +86,7 @@ export default function BackupTab() {
 
   async function allow() {
     if (folder && (await folderAccess(folder, true)) === 'granted') await backUp();
-    else setMessage(runMessage('needs-access'));
+    else report('needs-access');
   }
 
   async function backUp() {
@@ -82,25 +97,25 @@ export default function BackupTab() {
       void status.refetch();
     } catch (e) {
       console.error(e);
-      setMessage(i18n.__('The backup could not be saved.', 'quan-li-dan-cu'));
+      say(i18n.__('The backup could not be saved.', 'quan-li-dan-cu'));
     } finally {
       setRunning(false);
     }
   }
 
-  function pick(read: () => Promise<string>) {
-    setMessage(null);
+  function pick(read: () => Promise<string>, name: string | null = null) {
+    say(null);
     read()
       .then((text) => JSON.parse(text) as unknown)
       .catch(() => ({}) as unknown) // not JSON: the server's inspect gives the "not a backup file" message
-      .then((file) => inspect.mutate(file, { onSuccess: (summary) => setPicked({ file, summary }), onError: () => setPicked(null) }));
+      .then((file) => inspect.mutate(file, { onSuccess: (summary) => (setPicked({ file, summary }), setPickedName(name)), onError: () => setPicked(null) }));
   }
 
   function doRestore() {
     const done = () => setConfirming(null);
     const ok = (summary: BackupSummary) => {
       toast.success(i18n.__('Backup restored.', 'quan-li-dan-cu'));
-      setMessage(
+      say(
         i18n.sprintf(
           /* translators: 1: backup date, 2: households, 3: people */
           i18n.__('Restored the backup from %1$s: %2$d households, %3$d people. The data that was in use before was saved first.', 'quan-li-dan-cu'),
@@ -122,79 +137,123 @@ export default function BackupTab() {
     saveOptions.mutate({ auto, days: Number(days) }, { onSuccess: () => setDays(null) });
   }
 
+  function toggleAuto(checked: boolean) {
+    setDays(null); // drop a rejected value: the field shows what the server has
+    saveOptions.mutate({ auto: checked, days: savedDays });
+  }
+
   const busy = restore.isPending || undo.isPending;
   const error = confirming === 'undo' ? undo.error : restore.error;
+  const folderName = folder?.name;
 
   return (
-    <div className="grid gap-6">
-      <section className="grid gap-3">
-        <h2 className="m-0 text-sm font-semibold">{i18n.__('Backup', 'quan-li-dan-cu')}</h2>
-        {canPickFolder && (
-          <div className="flex flex-wrap items-center gap-3 text-sm">
-            <span>
-              {i18n.__('Folder:', 'quan-li-dan-cu')} <strong>{folder?.name ?? i18n.__('No folder chosen', 'quan-li-dan-cu')}</strong>
-            </span>
-            <Button variant="outline" size="sm" onClick={() => void change()}>
-              <FolderOpen /> {folder ? i18n.__('Change folder', 'quan-li-dan-cu') : i18n.__('Choose folder', 'quan-li-dan-cu')}
-            </Button>
-          </div>
-        )}
-        <p className="m-0 text-sm">
-          {i18n.__('Last backup:', 'quan-li-dan-cu')} {last_backup_at ? formatDate(last_backup_at) : i18n.__('never', 'quan-li-dan-cu')}
-        </p>
-        {canPickFolder && (
-          <div className="flex flex-wrap items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Switch
-                id="auto"
-                checked={auto}
-                onCheckedChange={(checked) => saveOptions.mutate({ auto: checked, days: status.data.days })}
-                disabled={saveOptions.isPending}
-              />
-              <Label htmlFor="auto">{i18n.__('Back up automatically', 'quan-li-dan-cu')}</Label>
+    <div className="grid max-w-3xl gap-6">
+      <section className="grid gap-4 rounded-lg border bg-card p-4 sm:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="m-0 text-base font-semibold">{i18n.__('Automatic backup', 'quan-li-dan-cu')}</h2>
+          {last_backup_at === null ? (
+            <Badge variant="dimmed">{i18n.__('No backup yet', 'quan-li-dan-cu')}</Badge>
+          ) : (
+            <Badge variant={overdue ? 'warning-soft' : 'success-soft'}>
+              {i18n.sprintf(
+                /* translators: %s: date and time of the last backup */
+                i18n.__('Last backup: %s', 'quan-li-dan-cu'),
+                formatDate(last_backup_at),
+              )}
+            </Badge>
+          )}
+        </div>
+        <p className="m-0 text-sm text-muted-foreground">{i18n.__('Keeps a copy of all data in a folder you choose.', 'quan-li-dan-cu')}</p>
+
+        {canPickFolder ? (
+          <>
+            <div className="grid gap-1.5">
+              <Label>{i18n.__('Backup folder', 'quan-li-dan-cu')}</Label>
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border p-2 pl-3 text-sm">
+                <span className="flex min-w-0 items-center gap-2">
+                  <Folder className="size-4 shrink-0 text-muted-foreground" />
+                  {folderName ? <strong className="truncate">{folderName}</strong> : <span className="text-muted-foreground">{i18n.__('No folder chosen', 'quan-li-dan-cu')}</span>}
+                </span>
+                <Button variant="outline" size="sm" onClick={() => void change()}>
+                  <FolderOpen /> {folder ? i18n.__('Change folder', 'quan-li-dan-cu') : i18n.__('Choose folder', 'quan-li-dan-cu')}
+                </Button>
+              </div>
+              {!folder && (
+                <p className="m-0 text-xs text-muted-foreground">
+                  {i18n.__('Choose a folder, ideally inside iCloud Drive or Google Drive, so a copy also leaves this computer.', 'quan-li-dan-cu')}
+                </p>
+              )}
             </div>
-            <div className="flex items-center gap-2">
-              <Label htmlFor="days">{i18n.__('Every (days)', 'quan-li-dan-cu')}</Label>
-              <Input
-                id="days"
-                type="number"
-                min={1}
-                max={30}
-                className="w-20"
-                value={days ?? String(status.data.days)}
-                onChange={(e) => setDays(e.target.value)}
-                onBlur={commitDays}
-              />
+
+            <div className="grid gap-1.5">
+              <div className="flex items-start gap-3">
+                <Switch id="auto" className="mt-0.5" checked={auto} onCheckedChange={toggleAuto} disabled={saveOptions.isPending} />
+                <div className="grid gap-1">
+                  <Label htmlFor="auto">{i18n.__('Back up automatically', 'quan-li-dan-cu')}</Label>
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                    <Label htmlFor="days" className="font-normal">
+                      {i18n.__('Every', 'quan-li-dan-cu')}
+                    </Label>
+                    <Input
+                      id="days"
+                      type="number"
+                      min={1}
+                      max={30}
+                      className="w-16"
+                      disabled={!auto}
+                      value={days ?? String(savedDays)}
+                      onChange={(e) => setDays(e.target.value)}
+                      onBlur={commitDays}
+                    />
+                    <span>{i18n.__('days', 'quan-li-dan-cu')}</span>
+                  </div>
+                </div>
+              </div>
+              {saveOptions.isError && <p className="m-0 text-sm text-destructive">{saveOptions.error.message}</p>}
             </div>
-          </div>
+          </>
+        ) : (
+          <p className="m-0 text-xs text-muted-foreground">{i18n.__('This browser cannot save to a folder: backups are downloaded instead.', 'quan-li-dan-cu')}</p>
         )}
-        {saveOptions.isError && <p className="m-0 text-sm text-destructive">{saveOptions.error.message}</p>}
-        <div className="flex flex-wrap items-center gap-3">
+
+        <div className="flex flex-wrap items-center gap-3 border-t pt-4">
           <Button onClick={() => void backUp()} disabled={running}>
             <Download /> {running ? i18n.__('Working…', 'quan-li-dan-cu') : i18n.__('Back up now', 'quan-li-dan-cu')}
           </Button>
           {message && <span className="text-sm">{message}</span>}
-          {message === runMessage('needs-access') && (
+          {result === 'needs-access' && (
             <Button variant="outline" size="sm" onClick={() => void allow()}>
               {i18n.__('Allow access', 'quan-li-dan-cu')}
             </Button>
           )}
         </div>
+        <p className="m-0 text-xs text-muted-foreground">{i18n.__('Backup files are not encrypted: keep the folder somewhere only you can open.', 'quan-li-dan-cu')}</p>
       </section>
 
-      <section className="grid gap-3">
-        <h2 className="m-0 text-sm font-semibold">{i18n.__('Restore', 'quan-li-dan-cu')}</h2>
-        {entries.length > 0 && (
+      <section className="grid gap-4 rounded-lg border bg-card p-4 sm:p-5">
+        <div className="grid gap-1">
+          <h2 className="m-0 text-base font-semibold">{i18n.__('Restore', 'quan-li-dan-cu')}</h2>
+          <p className="m-0 text-sm text-muted-foreground">{i18n.__('Go back to an earlier copy. The current data is saved first.', 'quan-li-dan-cu')}</p>
+        </div>
+
+        {entries.length > 0 ? (
           <ul className="m-0 grid list-none gap-2 p-0">
             {entries.map((entry) => (
               <li key={entry.name}>
-                <Entry entry={entry} onPick={() => pick(() => entry.file.text())} />
+                <Entry entry={entry} selected={picked !== null && pickedName === entry.name} onPick={() => pick(() => entry.file.text(), entry.name)} />
               </li>
             ))}
           </ul>
+        ) : folder ? (
+          <div className="flex items-center justify-center gap-2 rounded-md border border-dashed p-4 text-sm text-muted-foreground">
+            <Folder className="size-4" /> {i18n.__('No backups in this folder yet.', 'quan-li-dan-cu')}
+          </div>
+        ) : (
+          canPickFolder && <p className="m-0 text-sm text-muted-foreground">{i18n.__('Choose a backup folder in the card above to see its copies here.', 'quan-li-dan-cu')}</p>
         )}
-        <div className="flex flex-wrap gap-3">
-          <Button variant="outline" onClick={() => input.current?.click()} disabled={inspect.isPending}>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <Button variant="ghost" size="sm" onClick={() => input.current?.click()} disabled={inspect.isPending}>
             <Upload /> {i18n.__('Choose another file…', 'quan-li-dan-cu')}
           </Button>
           <input
@@ -209,25 +268,25 @@ export default function BackupTab() {
             }}
           />
           {can_undo && (
-            <Button variant="outline" onClick={() => setConfirming('undo')}>
+            <Button variant="ghost" size="sm" className="text-muted-foreground" onClick={() => ask('undo')}>
               <Undo2 /> {i18n.__('Undo the last restore', 'quan-li-dan-cu')}
             </Button>
           )}
         </div>
         {inspect.isError && <p className="m-0 text-sm text-destructive">{inspect.error.message}</p>}
         {picked && (
-          <>
+          <div className="grid gap-3 rounded-md bg-muted/40 p-3">
             <div className="grid gap-3 sm:grid-cols-3">
               <Stat label={i18n.__('Backup date', 'quan-li-dan-cu')} value={formatDate(picked.summary.date)} />
               <Stat label={i18n.__('Households', 'quan-li-dan-cu')} value={String(picked.summary.households)} />
               <Stat label={i18n.__('People', 'quan-li-dan-cu')} value={String(picked.summary.people)} />
             </div>
             <div>
-              <Button variant="destructive" onClick={() => setConfirming('restore')}>
+              <Button variant="destructive" onClick={() => ask('restore')}>
                 {i18n.__('Restore this backup', 'quan-li-dan-cu')}
               </Button>
             </div>
-          </>
+          </div>
         )}
       </section>
 
@@ -237,7 +296,9 @@ export default function BackupTab() {
             <DialogHeader>
               <DialogTitle>{confirming === 'undo' ? i18n.__('Undo the last restore?', 'quan-li-dan-cu') : i18n.__('Restore this backup?', 'quan-li-dan-cu')}</DialogTitle>
               <DialogDescription>
-                {i18n.__('All current residents are replaced by the backup. A copy of the current data is saved first.', 'quan-li-dan-cu')}
+                {confirming === 'undo'
+                  ? i18n.__('The data from before the last restore comes back, and the current data is saved first.', 'quan-li-dan-cu')
+                  : i18n.__('All current residents are replaced by the backup. A copy of the current data is saved first.', 'quan-li-dan-cu')}
               </DialogDescription>
             </DialogHeader>
             {error && <p className="m-0 text-sm text-destructive">{error.message}</p>}
@@ -246,7 +307,7 @@ export default function BackupTab() {
                 {i18n.__('Cancel', 'quan-li-dan-cu')}
               </Button>
               <Button variant="destructive" onClick={doRestore} disabled={busy}>
-                {busy ? i18n.__('Working…', 'quan-li-dan-cu') : i18n.__('Restore', 'quan-li-dan-cu')}
+                {busy ? i18n.__('Working…', 'quan-li-dan-cu') : confirming === 'undo' ? i18n.__('Undo', 'quan-li-dan-cu') : i18n.__('Restore', 'quan-li-dan-cu')}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -257,7 +318,7 @@ export default function BackupTab() {
 }
 
 /** One file in the folder; reads it only to show its counts, and shows "Damaged file" if it does not parse. */
-function Entry({ entry, onPick }: { entry: Entry; onPick: () => void }) {
+function Entry({ entry, selected, onPick }: { entry: Entry; selected: boolean; onPick: () => void }) {
   const [info, setInfo] = useState<BackupFile['counts'] & { created_at: string } | 'damaged' | null>(null);
   useEffect(() => {
     entry.file
@@ -271,27 +332,28 @@ function Entry({ entry, onPick }: { entry: Entry; onPick: () => void }) {
   }, [entry]);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border p-3 text-sm">
-      <span>
+    <div className={`flex flex-wrap items-center justify-between gap-3 rounded-md border p-3 text-sm ${selected ? 'border-primary bg-primary/6' : ''}`}>
+      <div className="grid min-w-0 gap-0.5">
         {info === 'damaged' ? (
           <span className="text-destructive">{i18n.__('Damaged file', 'quan-li-dan-cu')}</span>
         ) : info ? (
           <>
             <strong>{formatDate(info.created_at)}</strong>
-            {' · '}
-            {i18n.sprintf(
-              /* translators: 1: number of households, 2: number of people */
-              i18n.__('%1$d households, %2$d people', 'quan-li-dan-cu'),
-              info.households,
-              info.people,
-            )}
+            <span className="text-muted-foreground">
+              {i18n.sprintf(
+                /* translators: 1: number of households, 2: number of people */
+                i18n.__('%1$d households, %2$d people', 'quan-li-dan-cu'),
+                info.households,
+                info.people,
+              )}
+            </span>
           </>
         ) : (
           '…'
         )}
-        <span className="ml-2 text-xs text-muted-foreground">{entry.name}</span>
-      </span>
-      <Button variant="outline" size="sm" disabled={info === 'damaged' || info === null} onClick={onPick}>
+        <span className="truncate text-xs text-muted-foreground">{entry.name}</span>
+      </div>
+      <Button variant={selected ? 'primary-soft' : 'outline'} size="sm" disabled={info === 'damaged' || info === null} onClick={onPick}>
         {i18n.__('Choose', 'quan-li-dan-cu')}
       </Button>
     </div>
@@ -300,7 +362,7 @@ function Entry({ entry, onPick }: { entry: Entry; onPick: () => void }) {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid gap-1 rounded-lg border p-3">
+    <div className="grid gap-1 rounded-md border bg-card p-3">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className="text-base font-semibold">{value}</span>
     </div>

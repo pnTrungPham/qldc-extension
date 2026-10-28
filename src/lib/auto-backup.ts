@@ -9,11 +9,15 @@ export type RunResult = 'done' | 'downloaded' | 'skipped' | 'needs-access' | 'mi
 
 const HOUR = 60 * 60 * 1000;
 
-export async function backUpNow(kind: BackupKind = 'sao-luu'): Promise<RunResult> {
+export const backUpNow = (kind: BackupKind = 'sao-luu') => backup(kind, false);
+
+/** `onlyIfDue` re-checks inside the lock, so concurrent tabs or runs write once. */
+async function backup(kind: BackupKind, onlyIfDue: boolean): Promise<RunResult> {
   const scheduled = kind === 'sao-luu';
   return await navigator.locks.request('qldc-backup', async (): Promise<RunResult> => {
-    const file = await api<BackupFile>('/backup', 'POST');
     const dir = await getFolder();
+    if (onlyIfDue && (!dir || !(await api<BackupStatus>('/backup/status')).due)) return 'skipped';
+    const file = await api<BackupFile>('/backup', 'POST');
     if (!dir) {
       if (!scheduled) return 'skipped';
       downloadBackup(file);
@@ -32,10 +36,7 @@ export async function backUpNow(kind: BackupKind = 'sao-luu'): Promise<RunResult
   });
 }
 
-export async function runDueBackup(): Promise<RunResult> {
-  const [status, dir] = await Promise.all([api<BackupStatus>('/backup/status'), getFolder()]);
-  return status.due && dir ? backUpNow() : 'skipped';
-}
+export const runDueBackup = () => backup('sao-luu', true);
 
 export async function backupAfterImport(): Promise<RunResult> {
   const [status, dir] = await Promise.all([api<BackupStatus>('/backup/status'), getFolder()]);
@@ -47,22 +48,41 @@ export async function restoreBackup(file: unknown): Promise<BackupSummary> {
   return api<BackupSummary>('/restore/commit', 'POST', { file });
 }
 
+let running: (() => void) | null = null;
+
 export function startAutoBackup(): () => void {
+  if (running) return running; // StrictMode mounts effects twice
   let asked = false;
+  let failed = false;
+  let gone = false;
   const run = async () => {
-    const result = await runDueBackup();
-    if (result === 'needs-access' && !asked) {
+    let result: RunResult = 'skipped';
+    try {
+      result = await runDueBackup();
+    } catch (e) {
+      console.error(e);
+      if (!failed) {
+        failed = true;
+        toast.error(i18n.__('The backup could not be saved.', 'quan-li-dan-cu'));
+      }
+    }
+    const dir = result === 'needs-access' && !asked ? await getFolder() : null;
+    if (dir) {
       asked = true;
       toast.warning(i18n.__('Automatic backup needs permission to use the backup folder.', 'quan-li-dan-cu'), {
+        duration: Infinity,
         action: {
           label: i18n.__('Continue automatic backup', 'quan-li-dan-cu'),
-          onClick: async () => {
-            const dir = await getFolder();
-            if (dir && (await folderAccess(dir, true)) === 'granted') await run();
+          // Uses the handle already in scope: awaiting getFolder() here would lose the click's user activation.
+          onClick: () => {
+            void folderAccess(dir, true)
+              .then(() => runDueBackup())
+              .catch(console.error);
           },
         },
       });
-    } else if (result === 'missing') {
+    } else if (result === 'missing' && !gone) {
+      gone = true;
       toast.error(i18n.__('The backup folder is gone. Choose it again in Settings.', 'quan-li-dan-cu'));
     }
     const status = await api<BackupStatus>('/backup/status');
@@ -78,8 +98,11 @@ export function startAutoBackup(): () => void {
       await api('/backup/warned', 'POST');
     }
   };
-  const tick = () => void run().catch(() => {});
+  const tick = () => void run().catch(console.error);
   tick();
   const id = setInterval(tick, HOUR);
-  return () => clearInterval(id);
+  return (running = () => {
+    clearInterval(id);
+    running = null;
+  });
 }

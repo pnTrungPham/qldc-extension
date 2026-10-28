@@ -1,5 +1,6 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import { backupAfterImport } from '../auto-backup';
 import { api } from './client';
 import { invalidateResidents } from './residents.api';
 
@@ -25,6 +26,9 @@ export function useCommitImport() {
   return useMutation({
     mutationFn: ({ rows, autoUpdate }: { rows: Row[]; autoUpdate: boolean }) =>
       api<ImportResult>('/import/commit', 'POST', { rows, auto_update: autoUpdate }),
-    onSuccess: () => invalidateResidents(queryClient),
+    onSuccess: () => {
+      invalidateResidents(queryClient);
+      void backupAfterImport();
+    },
   });
 }

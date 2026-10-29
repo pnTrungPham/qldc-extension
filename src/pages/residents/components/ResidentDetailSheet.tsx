@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 import { GENDER_LABELS } from '../labels';
-import HouseholdMembers from './HouseholdMembers';
+import { HouseholdActions, HouseholdList } from './HouseholdMembers';
 import MoveHouseholdDialog from './MoveHouseholdDialog';
 import ResidentForm, { type AddDefaults } from './ResidentForm';
 
@@ -103,19 +103,25 @@ export default function ResidentDetailSheet({
         </SheetHeader>
 
         <div className="flex flex-1 flex-col overflow-y-auto px-5 pt-5">
-          {resident && onOpenMember && onAddMember && (
-            <HouseholdMembers
-              resident={resident}
-              onOpen={(member) => leaveFor(() => onOpenMember(member))}
-              onAdd={() => leaveFor(() => onAddMember(resident))}
-              onMove={() => setMoving({ formHasChanges: dirty.current })}
-            />
-          )}
           <ResidentForm
             // updated_at too: after a move the resident is replaced by the saved one and the form must show it.
             key={resident ? `${resident.id}-${resident.updated_at}` : 'new'}
             resident={resident}
             defaults={draft?.values ?? defaults}
+            household={
+              resident && onOpenMember && onAddMember
+                ? {
+                    actions: (
+                      <HouseholdActions
+                        resident={resident}
+                        onAdd={() => leaveFor(() => onAddMember(resident))}
+                        onMove={() => setMoving({ formHasChanges: dirty.current })}
+                      />
+                    ),
+                    list: <HouseholdList resident={resident} onOpen={(member) => leaveFor(() => onOpenMember(member))} />,
+                  }
+                : undefined
+            }
             onDraft={
               draft &&
               ((input) => {

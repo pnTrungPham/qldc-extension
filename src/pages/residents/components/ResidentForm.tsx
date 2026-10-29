@@ -19,7 +19,6 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import EnumSelect from '@/components/shared/EnumSelect';
 
@@ -90,6 +89,7 @@ export default function ResidentForm({
   defaults,
   onOpenExisting,
   onDraft,
+  household,
   footerStart,
   onDirtyChange,
   onSaved,
@@ -101,6 +101,8 @@ export default function ResidentForm({
   defaults?: AddDefaults;
   /** Show a person the add form found to be a duplicate. */
   onOpenExisting?: (match: Resident) => void;
+  /** A saved resident's household: buttons next to the section title, and the list of its members below the fields. */
+  household?: { actions?: ReactNode; list?: ReactNode };
   /** Editing a draft (a waiting-list row): Save hands the values back here and nothing is written. */
   onDraft?: (input: Partial<ResidentInput>) => void;
   /** Rendered at the left of the footer (the drawer's Delete button). */
@@ -174,8 +176,8 @@ export default function ResidentForm({
 
   return (
     // flex-1 + mt-auto on the footer: a short form still puts Save at the bottom of the drawer, not under the last field.
-    <form onSubmit={onSubmit} className="flex flex-1 flex-col gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="flex flex-1 flex-col gap-5">
+      <Section title={i18n.__('Personal information', 'quan-li-dan-cu')}>
         <Field label={i18n.__('Full name', 'quan-li-dan-cu')} htmlFor="full_name" className="sm:col-span-2">
           <Input {...text('full_name')} required minLength={2} maxLength={120} />
         </Field>
@@ -188,41 +190,57 @@ export default function ResidentForm({
         <Field label={i18n.__('Phone', 'quan-li-dan-cu')} htmlFor="phone">
           <Input {...text('phone')} type="tel" inputMode="tel" />
         </Field>
-        <Field label={i18n.__('Household code', 'quan-li-dan-cu')} htmlFor="household_code">
-          <Input {...text('household_code')} maxLength={32} />
-          {onDraft && !readOnly && (
-            <Button type="button" variant="link" size="sm" className="h-auto justify-self-start p-0" onClick={() => setChoosing(true)}>
+        <Field label={i18n.__('Occupation', 'quan-li-dan-cu')} htmlFor="occupation">
+          <Input {...text('occupation')} maxLength={120} />
+        </Field>
+      </Section>
+
+      <Section
+        title={i18n.__('Household', 'quan-li-dan-cu')}
+        actions={
+          household?.actions ??
+          (onDraft && !readOnly && (
+            <Button type="button" variant="outline" size="sm" onClick={() => setChoosing(true)}>
               {i18n.__('Choose an existing household', 'quan-li-dan-cu')}
             </Button>
-          )}
+          ))
+        }
+      >
+        <Field label={i18n.__('Household code', 'quan-li-dan-cu')} htmlFor="household_code">
+          <Input {...text('household_code')} maxLength={32} />
           {newCode && !onDraft && <p className="m-0 text-xs text-muted-foreground">{i18n.__('New household code: no household has it yet.', 'quan-li-dan-cu')}</p>}
-        </Field>
-        <Field label={i18n.__('Address', 'quan-li-dan-cu')} htmlFor="address" className="sm:col-span-2">
-          <Input {...text('address')} maxLength={255} />
         </Field>
         <Field label={i18n.__('Relationship to head', 'quan-li-dan-cu')}>
           <EnumSelect value={values.relation} options={RELATION_LABELS} disabled={readOnly} onChange={(v) => set('relation', v as Relation)} />
         </Field>
+        <Field label={i18n.__('Address', 'quan-li-dan-cu')} htmlFor="address" className="sm:col-span-2">
+          <Input {...text('address')} maxLength={255} />
+        </Field>
+        {household?.list && <div className="sm:col-span-2">{household.list}</div>}
+      </Section>
+
+      <Section title={i18n.__('Residence and documents', 'quan-li-dan-cu')}>
         <Field label={i18n.__('Residence status', 'quan-li-dan-cu')}>
           <EnumSelect value={values.residence_status} options={RESIDENCE_STATUS_LABELS} disabled={readOnly} onChange={(v) => set('residence_status', v as ResidenceStatus)} />
         </Field>
         <Field label={i18n.__('Document verification', 'quan-li-dan-cu')}>
           <EnumSelect value={values.verify_status} options={VERIFY_LABELS} disabled={readOnly} onChange={(v) => set('verify_status', v as VerifyStatus)} />
         </Field>
-        <Field label={i18n.__('Occupation', 'quan-li-dan-cu')} htmlFor="occupation">
-          <Input {...text('occupation')} maxLength={120} />
-        </Field>
-      </div>
+      </Section>
 
-      <ChipGroup label={i18n.__('Policy labels', 'quan-li-dan-cu')} options={POLICY_LABELS} value={values.policy_tags} disabled={readOnly} onChange={(v) => set('policy_tags', v)} />
-      <ChipGroup label={i18n.__('Field support flags', 'quan-li-dan-cu')} options={SUPPORT_LABELS} value={values.support_flags} disabled={readOnly} onChange={(v) => set('support_flags', v)} />
+      <Section title={i18n.__('Policy and support', 'quan-li-dan-cu')} single>
+        <ChipGroup label={i18n.__('Policy labels', 'quan-li-dan-cu')} options={POLICY_LABELS} value={values.policy_tags} disabled={readOnly} onChange={(v) => set('policy_tags', v)} />
+        <ChipGroup label={i18n.__('Field support flags', 'quan-li-dan-cu')} options={SUPPORT_LABELS} value={values.support_flags} disabled={readOnly} onChange={(v) => set('support_flags', v)} />
+      </Section>
 
-      <Separator />
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label={i18n.__('Health insurance (BHYT) number', 'quan-li-dan-cu')} htmlFor="bhyt_number">
+      <Section title={i18n.__('Health', 'quan-li-dan-cu')}>
+        <Field label={i18n.__('Health insurance (BHYT) number', 'quan-li-dan-cu')} htmlFor="bhyt_number" className="sm:col-span-2">
           <Input {...text('bhyt_number')} maxLength={20} />
         </Field>
+        <label className="flex items-center gap-2 text-sm sm:col-span-2">
+          <Checkbox checked={values.health_exam} disabled={readOnly || !!values.exam_date} onCheckedChange={(checked) => set('health_exam', !!checked)} />
+          {i18n.__('Health exam 2026 done', 'quan-li-dan-cu')}
+        </label>
         <Field label={i18n.__('Examination date', 'quan-li-dan-cu')} htmlFor="exam_date">
           <Input
             {...text('exam_date')}
@@ -231,17 +249,14 @@ export default function ResidentForm({
             onChange={(e) => setValues((prev) => ({ ...prev, exam_date: e.target.value, health_exam: prev.health_exam || !!e.target.value }))}
           />
         </Field>
-        <label className="flex items-center gap-2 text-sm sm:col-span-2">
-          <Checkbox checked={values.health_exam} disabled={readOnly || !!values.exam_date} onCheckedChange={(checked) => set('health_exam', !!checked)} />
-          {i18n.__('Health exam 2026 done', 'quan-li-dan-cu')}
-        </label>
-        <Field label={i18n.__('Examination place', 'quan-li-dan-cu')} htmlFor="exam_place" className="sm:col-span-2">
+        <Field label={i18n.__('Examination place', 'quan-li-dan-cu')} htmlFor="exam_place">
           <Input {...text('exam_place')} maxLength={255} />
         </Field>
-        <Field label={i18n.__('Situation notes', 'quan-li-dan-cu')} htmlFor="note" className="sm:col-span-2">
-          <Textarea {...text('note')} rows={3} />
-        </Field>
-      </div>
+      </Section>
+
+      <Section title={i18n.__('Situation notes', 'quan-li-dan-cu')} single>
+        <Textarea {...text('note')} rows={3} aria-label={i18n.__('Situation notes', 'quan-li-dan-cu')} />
+      </Section>
 
       {save.isError && <p className="text-sm text-destructive">{save.error.message}</p>}
       {choosing && (
@@ -368,6 +383,19 @@ function DuplicateWarning({
         )}
       </div>
     </div>
+  );
+}
+
+/** A titled group of fields: two columns, or one block when `single`. Groups are told apart by a rule above them. */
+function Section({ title, actions, single, children }: { title: string; actions?: ReactNode; single?: boolean; children: ReactNode }) {
+  return (
+    <section className="grid gap-3 border-t pt-5 first:border-t-0 first:pt-0">
+      <div className="flex min-h-8 items-center justify-between gap-3">
+        <h3 className="m-0 text-sm font-semibold">{title}</h3>
+        {actions}
+      </div>
+      <div className={single ? 'grid gap-4' : 'grid gap-4 sm:grid-cols-2'}>{children}</div>
+    </section>
   );
 }
 

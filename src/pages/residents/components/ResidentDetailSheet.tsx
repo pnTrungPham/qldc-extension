@@ -94,21 +94,21 @@ export default function ResidentDetailSheet({
     <Sheet open onOpenChange={(open) => !open && requestClose()}>
       <SheetContent className="sm:max-w-[36rem] md:min-w-[36rem]" onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader className="gap-0 pr-16">
+          {resident && origin && origin.id !== resident.id && onOpenMember && (
+            // The way back to who was opened from the list: big and in the theme colour, so it is not missed while browsing a household.
+            <Button
+              type="button"
+              variant="primary-soft"
+              className="mb-3 h-10 self-start px-4 text-sm font-medium"
+              onClick={() => leaveFor(() => onOpenMember(origin))}
+            >
+              <ArrowLeft /> {i18n.sprintf(/* translators: %s: name of the resident opened from the list */ i18n.__('Back to %s', 'quan-li-dan-cu'), origin.full_name)}
+            </Button>
+          )}
           <div className="flex min-h-9 items-center gap-3">
             <div className="grid min-w-0 flex-1 gap-0.5">
               <SheetTitle className="truncate leading-6">{resident ? resident.full_name : draft ? draft.values.full_name || i18n.__('Edit this row', 'quan-li-dan-cu') : i18n.__('Add resident', 'quan-li-dan-cu')}</SheetTitle>
               {subtitle && <SheetDescription className="m-0 leading-5">{subtitle}</SheetDescription>}
-              {resident && origin && origin.id !== resident.id && onOpenMember && (
-                <Button
-                  type="button"
-                  variant="link"
-                  size="sm"
-                  className="h-auto justify-self-start p-0 text-xs"
-                  onClick={() => leaveFor(() => onOpenMember(origin))}
-                >
-                  <ArrowLeft /> {i18n.sprintf(/* translators: %s: name of the resident opened from the list */ i18n.__('Back to %s', 'quan-li-dan-cu'), origin.full_name)}
-                </Button>
-              )}
             </div>
             {resident && (
               <Button variant="outline" size="sm" onClick={onShare}>

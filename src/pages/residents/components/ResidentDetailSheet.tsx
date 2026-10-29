@@ -102,7 +102,7 @@ export default function ResidentDetailSheet({
           </div>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto px-5 pt-5">
+        <div className="flex flex-1 flex-col overflow-y-auto px-5 pt-5">
           {resident && onOpenMember && onAddMember && (
             <HouseholdMembers
               resident={resident}

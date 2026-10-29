@@ -171,7 +171,8 @@ export default function ResidentForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4">
+    // flex-1 + mt-auto on the footer: a short form still puts Save at the bottom of the drawer, not under the last field.
+    <form onSubmit={onSubmit} className="flex flex-1 flex-col gap-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label={i18n.__('Full name', 'quan-li-dan-cu')} htmlFor="full_name" className="sm:col-span-2">
           <Input {...text('full_name')} required minLength={2} maxLength={120} />
@@ -250,7 +251,7 @@ export default function ResidentForm({
       {warning}
 
       {!readOnly && (
-        <div className="sticky bottom-0 flex items-center gap-2 border-t bg-background py-3">
+        <div className="sticky bottom-0 mt-auto flex items-center gap-2 border-t bg-background py-3">
           {footerStart}
           <div className="ms-auto flex items-center gap-2">
             {save.isSuccess && !dirty && <span className="text-sm text-success">✓ {i18n.__('Saved', 'quan-li-dan-cu')}</span>}

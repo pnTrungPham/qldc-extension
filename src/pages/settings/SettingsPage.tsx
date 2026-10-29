@@ -36,8 +36,11 @@ export default function SettingsPage({ title }: { title: string }) {
                     aria-current={active ? 'page' : undefined}
                     onClick={() => setParams({ tab: id }, { replace: true })}
                     className={cn(
-                      'flex h-11 w-full cursor-pointer items-center gap-3 rounded-md border-0 border-l-2 border-solid px-3 text-left text-sm whitespace-nowrap transition-colors',
-                      active ? 'border-l-foreground bg-background font-medium text-foreground' : 'border-l-transparent bg-transparent text-muted-foreground hover:bg-background/60 hover:text-foreground',
+                      // Theme colour like the header menu: primary when active or hovered. The focus ring replaces the browser's black outline.
+                      'flex h-11 w-full cursor-pointer items-center gap-3 rounded-md border-0 border-l-2 border-solid px-3 text-left text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-[1.5px] focus-visible:ring-primary',
+                      active
+                        ? 'border-l-primary bg-background font-medium text-primary'
+                        : 'border-l-transparent bg-transparent text-foreground hover:bg-background/60 hover:text-primary',
                     )}
                   >
                     <Icon className="size-4 shrink-0" />

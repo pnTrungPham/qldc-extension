@@ -1,9 +1,9 @@
-import { ArrowRightLeft, Plus } from 'lucide-react';
+import { ArrowRightLeft, ChevronRight, Plus } from 'lucide-react';
 
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
 import { useHousehold, type Resident } from '@/lib/api/residents.api';
-import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 import { RELATION_LABELS } from '../labels';
@@ -38,23 +38,36 @@ export function HouseholdList({ resident, onOpen }: { resident: Resident; onOpen
       <div className="text-sm font-medium">{i18n.__('Household members', 'quan-li-dan-cu')}</div>
       <ul className="m-0 grid list-none gap-1 p-0">
         {members.map((member) => {
-          const current = member.id === resident.id;
+          const row = (
+            <>
+              <span className="min-w-0 flex-1 truncate font-medium">{member.full_name}</span>
+              <span className="text-muted-foreground">{RELATION_LABELS[member.relation]}</span>
+              <span className="w-10 text-right text-muted-foreground">{member.birth_year ?? ''}</span>
+            </>
+          );
+          // The row being viewed is a label, not a control: tinted, tagged "Viewing". The others are white buttons with an arrow.
           return (
             <li key={member.id}>
-              <button
-                type="button"
-                disabled={current}
-                aria-current={current ? 'true' : undefined}
-                onClick={() => onOpen(member)}
-                className={cn(
-                  'flex w-full items-center gap-3 rounded-md border px-3 py-2 text-left text-sm',
-                  current ? 'border-primary bg-primary/6' : 'cursor-pointer hover:bg-muted',
-                )}
-              >
-                <span className="min-w-0 flex-1 truncate font-medium">{member.full_name}</span>
-                <span className="text-muted-foreground">{RELATION_LABELS[member.relation]}</span>
-                <span className="w-10 text-right text-muted-foreground">{member.birth_year ?? ''}</span>
-              </button>
+              {member.id === resident.id ? (
+                <div aria-current="true" className="flex items-center gap-3 rounded-md border border-primary bg-primary/6 px-3 py-2 text-sm">
+                  {row}
+                  <span className="flex w-20 justify-end">
+                    <Badge variant="primary-soft">{i18n.__('Viewing', 'quan-li-dan-cu')}</Badge>
+                  </span>
+                </div>
+              ) : (
+                // No CSS reset in this app: without bg-background a button is the browser's grey.
+                <button
+                  type="button"
+                  onClick={() => onOpen(member)}
+                  className="flex w-full cursor-pointer items-center gap-3 rounded-md border bg-background px-3 py-2 text-left text-sm transition-colors hover:border-primary hover:bg-muted"
+                >
+                  {row}
+                  <span className="flex w-20 justify-end text-muted-foreground">
+                    <ChevronRight className="size-4" />
+                  </span>
+                </button>
+              )}
             </li>
           );
         })}

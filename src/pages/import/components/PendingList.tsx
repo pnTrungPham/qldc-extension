@@ -9,8 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Pagination } from '@/components/ui/pagination';
+import EnumSelect from '@/components/shared/EnumSelect';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
+import { gender as normalizeGender, relation as normalizeRelation } from '@/backend/import';
+
+import { GENDER_LABELS, RELATION_LABELS } from '../../residents/labels';
 import { TARGET_LABELS, type PendingRow, type Source, type Target } from '../lib/targets';
 
 const PAGE_SIZE = 25;
@@ -119,15 +123,27 @@ export default function PendingList({
                   <TableCell className="px-2 text-muted-foreground">{SOURCE_LABELS[row.source]}</TableCell>
                   {COLUMNS.map(({ target, width }) => (
                     <TableCell key={target} className={width}>
-                      <Input
-                        // Remount when the value changes from outside (mapping changed, list rebuilt).
-                        key={row[target]}
-                        defaultValue={row[target]}
-                        aria-label={TARGET_LABELS[target]}
-                        className={cn('h-8 border-transparent bg-transparent shadow-none hover:border-input', target === 'household_code' && 'font-mono text-xs')}
-                        onBlur={(e) => e.target.value !== row[target] && onEdit(row.key, target, e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-                      />
+                      {target === 'gender' || target === 'relation' ? (
+                        // The cell may hold "Nam", "Vợ", "male"…: show the value the server will make of it, in Vietnamese.
+                        <EnumSelect
+                          value={target === 'gender' ? normalizeGender(row.gender) : normalizeRelation(row.relation)}
+                          options={target === 'gender' ? GENDER_LABELS : RELATION_LABELS}
+                          allowEmpty={target === 'gender'}
+                          label={TARGET_LABELS[target]}
+                          className="h-8 border-transparent bg-transparent shadow-none hover:border-input"
+                          onChange={(value) => onEdit(row.key, target, value)}
+                        />
+                      ) : (
+                        <Input
+                          // Remount when the value changes from outside (mapping changed, list rebuilt).
+                          key={row[target]}
+                          defaultValue={row[target]}
+                          aria-label={TARGET_LABELS[target]}
+                          className={cn('h-8 border-transparent bg-transparent shadow-none hover:border-input', target === 'household_code' && 'font-mono text-xs')}
+                          onBlur={(e) => e.target.value !== row[target] && onEdit(row.key, target, e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+                        />
+                      )}
                     </TableCell>
                   ))}
                   <TableCell className="min-w-28 px-2">

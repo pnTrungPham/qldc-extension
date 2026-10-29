@@ -122,8 +122,8 @@ function prepare(raw: unknown): Prepared {
   return isInvalid(data) ? { error: data.error, missingName: false } : data;
 }
 
-/** "Nam" / "Nữ" / "male" … → stored code ('' when blank). */
-function gender(text: string): string {
+/** "Nam" / "Nữ" / "male" … → stored code ('' when blank). The waiting list shows rows through the same rule. */
+export function gender(text: string): string {
   const key = fold(text);
   if (key === '') return '';
   if (['nam', 'male', 'm'].includes(key)) return 'male';
@@ -131,7 +131,7 @@ function gender(text: string): string {
 }
 
 /** "Chủ hộ" / "Vợ" / "Con" … → stored code. */
-function relation(text: string): string {
+export function relation(text: string): string {
   const key = fold(text);
   if ((RELATIONS as string[]).includes(key)) return key;
   const words: Array<[string, RegExp]> = [

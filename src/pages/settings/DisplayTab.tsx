@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 
 import { COLUMN_VIEW } from '../residents/columns';
+import { SettingRow, SettingsCard, SettingsSection } from './layout';
 
 /** What the residents table and the resident drawer show. Each box is saved in this browser as soon as it is ticked. */
 export default function DisplayTab() {
@@ -12,7 +13,11 @@ export default function DisplayTab() {
   const [fields, setFields] = useDetailFields();
 
   return (
-    <div className="grid gap-6">
+    <SettingsSection
+      title={i18n.__('Display', 'quan-li-dan-cu')}
+      description={i18n.__('Choose what the residents table and the resident detail show. Saved in this browser.', 'quan-li-dan-cu')}
+    >
+      <SettingsCard>
       <Choice
         title={i18n.__('Columns of the residents table', 'quan-li-dan-cu')}
         description={i18n.__('Tick what you want to see. The full name is always shown.', 'quan-li-dan-cu')}
@@ -32,7 +37,8 @@ export default function DisplayTab() {
         defaults={DEFAULT_DETAIL_FIELDS}
         onChange={setFields}
       />
-    </div>
+      </SettingsCard>
+    </SettingsSection>
   );
 }
 
@@ -75,27 +81,22 @@ function Choice<T extends string>({
   const toggle = (id: T, on: boolean) => onChange(ids.filter((other) => (other === id ? on : value.includes(other))));
 
   return (
-    <section className="grid gap-3 rounded-lg border p-4">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="grid gap-1">
-          <h2 className="m-0 text-sm font-semibold">{title}</h2>
-          <p className="m-0 text-sm text-muted-foreground">{description}</p>
-        </div>
-        <Button type="button" variant="outline" size="sm" disabled={isDefault} onClick={() => onChange(null)}>
-          {i18n.__('Reset to default', 'quan-li-dan-cu')}
-        </Button>
-      </div>
+    <SettingRow title={title} description={description} note={note}>
       <ul className="m-0 grid list-none gap-2 p-0 sm:grid-cols-2">
         {ids.map((id) => (
           <li key={id}>
-            <label className="flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-sm hover:bg-muted">
+            <label className="flex cursor-pointer items-center gap-2 rounded-md border bg-background px-3 py-2 text-sm hover:bg-muted">
               <Checkbox checked={value.includes(id)} onCheckedChange={(checked) => toggle(id, !!checked)} />
               {labels[id]}
             </label>
           </li>
         ))}
       </ul>
-      {note && <p className="m-0 text-xs text-muted-foreground">{note}</p>}
-    </section>
+      <div>
+        <Button type="button" variant="outline" size="sm" disabled={isDefault} onClick={() => onChange(null)}>
+          {i18n.__('Reset to default', 'quan-li-dan-cu')}
+        </Button>
+      </div>
+    </SettingRow>
   );
 }

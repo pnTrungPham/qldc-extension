@@ -318,7 +318,6 @@ export default function ResidentsPage({ title }: { title: string }) {
 
       {open && (
         <ResidentDetailSheet
-          key={open.id}
           resident={open}
           onClose={() => setOpen(null)}
           onShare={() => setSharing(open)}

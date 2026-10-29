@@ -14,7 +14,7 @@ import ResidentForm from './ResidentForm';
 
 /**
  * Detail/edit drawer on the right; with `resident` null it is the add form. Closing with unsaved changes
- * (Cancel, ✕, Esc or a click outside) asks first. Mounted per resident (key it), so the form resets per row.
+ * (Cancel, ✕, Esc or a click outside) asks first. Stays mounted while the resident changes (switching household member); only the form restarts, keyed by resident.
  */
 export default function ResidentDetailSheet({
   resident,
@@ -39,9 +39,15 @@ export default function ResidentDetailSheet({
     else onClose();
   }
 
+  function switchTo(member: Resident) {
+    dirty.current = false; // the form below restarts for the new resident
+    setConfirming(null);
+    onOpenMember?.(member);
+  }
+
   function openMember(member: Resident) {
     if (dirty.current) setConfirming({ to: member });
-    else onOpenMember?.(member);
+    else switchTo(member);
   }
 
   const subtitle = resident
@@ -80,6 +86,7 @@ export default function ResidentDetailSheet({
         <div className="flex-1 overflow-y-auto px-5 pt-5">
           {resident && onOpenMember && <HouseholdMembers resident={resident} onOpen={openMember} />}
           <ResidentForm
+            key={resident?.id ?? 'new'}
             resident={resident}
             onDirtyChange={(value) => (dirty.current = value)}
             onSaved={() => {
@@ -103,7 +110,7 @@ export default function ResidentDetailSheet({
                   <Button type="button" size="sm" variant="outline" onClick={() => setConfirming(null)}>
                     {i18n.__('Stay', 'quan-li-dan-cu')}
                   </Button>
-                  <Button type="button" size="sm" onClick={() => (confirming.to ? onOpenMember?.(confirming.to) : onClose())}>
+                  <Button type="button" size="sm" onClick={() => (confirming.to ? switchTo(confirming.to) : onClose())}>
                     {confirming.to ? i18n.__('Switch', 'quan-li-dan-cu') : i18n.__('Close', 'quan-li-dan-cu')}
                   </Button>
                 </div>

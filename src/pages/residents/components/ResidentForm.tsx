@@ -4,6 +4,7 @@ import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
 import { cn } from '@/lib/utils';
 import {
+  useFindMatch,
   useSaveResident,
   type Gender,
   type Relation,
@@ -43,14 +44,17 @@ type Values = {
   note: string;
 };
 
-function initialValues(r: Resident | null): Values {
+/** Pre-filled when adding a member to an existing household. */
+export type AddDefaults = Pick<ResidentInput, 'household_code' | 'address'>;
+
+function initialValues(r: Resident | null, defaults?: AddDefaults): Values {
   return {
-    household_code: r?.household_code ?? '',
+    household_code: r?.household_code ?? defaults?.household_code ?? '',
     full_name: r?.full_name ?? '',
     birth_year: r?.birth_year ? String(r.birth_year) : '',
     gender: r?.gender ?? '',
     phone: r?.phone ?? '',
-    address: r?.address ?? '',
+    address: r?.address ?? defaults?.address ?? '',
     relation: r?.relation ?? 'other',
     residence_status: r?.residence_status ?? 'unknown',
     verify_status: r?.verify_status ?? 'unverified',
@@ -79,6 +83,8 @@ function toInput(v: Values): Partial<ResidentInput> {
  */
 export default function ResidentForm({
   resident,
+  defaults,
+  onOpenExisting,
   footerStart,
   onDirtyChange,
   onSaved,
@@ -86,6 +92,10 @@ export default function ResidentForm({
   warning,
 }: {
   resident: Resident | null;
+  /** Starting values for a new resident (the household being added to). */
+  defaults?: AddDefaults;
+  /** Show a person the add form found to be a duplicate. */
+  onOpenExisting?: (match: Resident) => void;
   /** Rendered at the left of the footer (the drawer's Delete button). */
   footerStart?: ReactNode;
   onDirtyChange?: (dirty: boolean) => void;
@@ -95,7 +105,10 @@ export default function ResidentForm({
   warning?: ReactNode;
 }) {
   const save = useSaveResident();
-  const [initial, setInitial] = useState(() => initialValues(resident));
+  const find = useFindMatch();
+  // The person the last save attempt found already recorded, for the name and year it was asked about.
+  const [duplicate, setDuplicate] = useState<{ key: string; match: Resident } | null>(null);
+  const [initial, setInitial] = useState(() => initialValues(resident, defaults));
   const [values, setValues] = useState(initial);
   const readOnly = !caps.edit;
   const dirty = JSON.stringify(values) !== JSON.stringify(initial);
@@ -112,8 +125,9 @@ export default function ResidentForm({
     onChange: (e: { target: { value: string } }) => set(key, e.target.value as never),
   });
 
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  const personKey = `${values.full_name.trim()}|${values.birth_year}`;
+
+  function write() {
     save.mutate(
       { id: resident?.id, data: toInput(values) },
       {
@@ -125,6 +139,13 @@ export default function ResidentForm({
         },
       },
     );
+  }
+
+  /** Adding someone: first ask whether they are already recorded, and let the user decide. */
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (resident) return write();
+    find.mutate(toInput(values), { onSuccess: (match) => (match ? setDuplicate({ key: personKey, match }) : write()) });
   }
 
   return (
@@ -192,6 +213,14 @@ export default function ResidentForm({
       </div>
 
       {save.isError && <p className="text-sm text-destructive">{save.error.message}</p>}
+      {duplicate?.key === personKey && (
+        <DuplicateWarning
+          match={duplicate.match}
+          sameHousehold={duplicate.match.household_code !== '' && duplicate.match.household_code === values.household_code}
+          onView={() => onOpenExisting?.(duplicate.match)}
+          onAddAnyway={write}
+        />
+      )}
       {warning}
 
       {!readOnly && (
@@ -202,13 +231,55 @@ export default function ResidentForm({
             <Button type="button" variant="outline" onClick={onCancel}>
               {i18n.__('Cancel', 'quan-li-dan-cu')}
             </Button>
-            <Button type="submit" disabled={save.isPending}>
-              {save.isPending ? i18n.__('Saving…', 'quan-li-dan-cu') : i18n.__('Save', 'quan-li-dan-cu')}
+            <Button type="submit" disabled={save.isPending || find.isPending}>
+              {save.isPending || find.isPending ? i18n.__('Saving…', 'quan-li-dan-cu') : i18n.__('Save', 'quan-li-dan-cu')}
             </Button>
           </div>
         </div>
       )}
     </form>
+  );
+}
+
+/** The add form found someone with the same name and birth year: show who, and where they live. */
+function DuplicateWarning({
+  match,
+  sameHousehold,
+  onView,
+  onAddAnyway,
+}: {
+  match: Resident;
+  sameHousehold: boolean;
+  onView: () => void;
+  onAddAnyway: () => void;
+}) {
+  const who = [match.birth_year ? `${match.full_name} (${match.birth_year})` : match.full_name, match.address].filter(Boolean).join(' · ');
+  return (
+    <div className="grid gap-2 rounded-md border border-warning bg-warning/6 px-3 py-2 text-sm">
+      <div className="font-medium">{i18n.__('This person may already be recorded', 'quan-li-dan-cu')}</div>
+      <div>
+        {sameHousehold
+          ? i18n.sprintf(
+              /* translators: %s: the person's name, year of birth and address */
+              i18n.__('Already in this household: %s.', 'quan-li-dan-cu'),
+              who,
+            )
+          : i18n.sprintf(
+              /* translators: 1: household code, 2: the person's name, year of birth and address */
+              i18n.__('Already in household %1$s: %2$s.', 'quan-li-dan-cu'),
+              match.household_code || '—',
+              who,
+            )}
+      </div>
+      <div className="flex gap-2">
+        <Button type="button" size="sm" variant="outline" onClick={onView}>
+          {i18n.__('View', 'quan-li-dan-cu')}
+        </Button>
+        <Button type="button" size="sm" onClick={onAddAnyway}>
+          {i18n.__('Add anyway', 'quan-li-dan-cu')}
+        </Button>
+      </div>
+    </div>
   );
 }
 

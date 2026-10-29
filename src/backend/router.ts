@@ -53,6 +53,11 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
   ['POST', /^\/residents$/, async (_, __, body) => residents.create(valid(sanitize(body)))],
   ['DELETE', /^\/residents\/trash$/, async () => ({ affected: await transaction(() => residents.purgeAll()) })],
   ['POST', /^\/residents\/bulk$/, async (_, __, body) => ({ affected: await bulk(body) })],
+  // Is this person already recorded? The add form asks before saving; bad input is the save's job to report.
+  ['POST', /^\/residents\/match$/, async (_, __, body) => {
+    const data = sanitize(body);
+    return isInvalid(data) ? null : residents.findMatch(data.full_name, data.birth_year, data.id_last4);
+  }],
   ['GET', /^\/residents\/(\d+)$/, async ([id]) => (await residents.find(Number(id))) ?? notFound()],
   ['PATCH', /^\/residents\/(\d+)$/, async ([id], _, body) => {
     const existing = (await residents.find(Number(id))) ?? notFound();

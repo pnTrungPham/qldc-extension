@@ -21,6 +21,7 @@ import DeleteResidentDialog from './components/DeleteResidentDialog';
 import ResidenceStatusBadge, { RESIDENCE_STATUS_LABELS } from './components/ResidenceStatusBadge';
 import ResidentBulkBar from './components/ResidentBulkBar';
 import ResidentDetailSheet from './components/ResidentDetailSheet';
+import type { AddDefaults } from './components/ResidentForm';
 import ResidentFilters, { NO_FILTERS, type Filters } from './components/ResidentFilters';
 import ShareDialog from './components/ShareDialog';
 
@@ -44,6 +45,8 @@ export default function ResidentsPage({ title }: { title: string }) {
     };
   });
   const [adding, setAdding] = useState(false);
+  // Adding a member to a household: its code and address, and who to go back to afterwards.
+  const [addTo, setAddTo] = useState<{ defaults: AddDefaults; returnTo: Resident } | null>(null);
   const [open, setOpen] = useState<Resident | null>(null);
   const [sharing, setSharing] = useState<Resident | null>(null);
   const [deleting, setDeleting] = useState<Resident | null>(null);
@@ -323,6 +326,11 @@ export default function ResidentsPage({ title }: { title: string }) {
           onShare={() => setSharing(open)}
           onDelete={() => setDeleting(open)}
           onOpenMember={setOpen}
+          onAddMember={(resident) => {
+            setAddTo({ defaults: { household_code: resident.household_code, address: resident.address }, returnTo: resident });
+            setOpen(null);
+            setAdding(true);
+          }}
         />
       )}
       {bulkDialog && (
@@ -339,7 +347,22 @@ export default function ResidentsPage({ title }: { title: string }) {
           }}
         />
       )}
-      {adding && <ResidentDetailSheet resident={null} onClose={() => setAdding(false)} />}
+      {adding && (
+        <ResidentDetailSheet
+          resident={null}
+          defaults={addTo?.defaults}
+          onClose={() => {
+            setAdding(false);
+            setAddTo(null);
+            if (addTo) setOpen(addTo.returnTo); // back to the household it was added to
+          }}
+          onOpenExisting={(match) => {
+            setAdding(false);
+            setAddTo(null);
+            setOpen(match);
+          }}
+        />
+      )}
       {sharing && <ShareDialog resident={sharing} onClose={() => setSharing(null)} />}
       {deleting && (
         <DeleteResidentDialog

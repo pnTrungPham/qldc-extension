@@ -69,6 +69,9 @@ export function useResidents(params: { page: number; per_page: number; search: s
   });
 }
 
+/** The live resident this input refers to (same name and birth year), or null. Asked before adding someone. */
+export const useFindMatch = () => useMutation({ mutationFn: (data: Partial<ResidentInput>) => api<Resident | null>('/residents/match', 'POST', data) });
+
 /** The live residents of one household (a household has far fewer than 200 people). */
 export function useHousehold(code: string) {
   return useQuery({

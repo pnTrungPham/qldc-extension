@@ -103,3 +103,14 @@ test('GET /residents?household= lists the members of one household', async () =>
 test('choosing "head" as the relation makes the resident the head, with no separate flag sent', async () => {
   expect(await route(`/residents/${binh.id}`, 'PATCH', { relation: 'head' })).toMatchObject({ relation: 'head', is_head: true });
 });
+
+test('POST /residents/match finds an existing person by name and birth year, ignoring accents and the trash', async () => {
+  const match = (body: Record<string, unknown>) => route<Resident | null>('/residents/match', 'POST', body);
+  const cuong = await route<Resident>('/residents', 'POST', { full_name: 'Lê Văn Cường', birth_year: 1990, household_code: 'KP21-002' });
+  expect(await match({ full_name: 'le van cuong', birth_year: 1990 })).toMatchObject({ id: cuong.id, household_code: 'KP21-002' });
+  expect(await match({ full_name: 'Lê Văn Cường', birth_year: 1991 })).toBeNull();
+  expect(await match({ full_name: 'Lê Văn Cường' })).toBeNull(); // a name alone matches many people
+  expect(await match({ full_name: 'X' })).toBeNull(); // invalid input is the save's job to report
+  await route(`/residents/${cuong.id}`, 'DELETE');
+  expect(await match({ full_name: 'Lê Văn Cường', birth_year: 1990 })).toBeNull();
+});

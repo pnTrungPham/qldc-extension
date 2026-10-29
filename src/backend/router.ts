@@ -64,7 +64,7 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
     const input = { ...body };
     // is_head follows relation: a stored head flag must not undo an explicit relation change.
     if ('relation' in input && !('is_head' in input)) input.is_head = input.relation === 'head';
-    return residents.update(Number(id), valid(sanitize({ ...existing, ...input })));
+    return residents.update(Number(id), valid(sanitize({ ...existing, ...input }, existing.phone)));
   }],
   ['DELETE', /^\/residents\/(\d+)$/, async ([id]) => (await residents.trash(Number(id))) || notFound()],
   ['GET', /^\/households$/, async (_, query) => residents.households(query.get('search') ?? '', query.get('exclude') ?? '')],
@@ -138,7 +138,7 @@ async function bulk(body: Json): Promise<number> {
         if (action === 'delete') await residents.trash(id);
         else if (action === 'restore') await residents.restore(id);
         else if (action === 'purge') await residents.purge(id);
-        else await residents.update(id, valid(sanitize({ ...existing, ...patch })));
+        else await residents.update(id, valid(sanitize({ ...existing, ...patch }, existing.phone)));
         count++;
       }
       return count;

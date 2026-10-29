@@ -20,8 +20,18 @@ export type Invalid = { error: string };
 
 export const isInvalid = (x: unknown): x is Invalid => typeof x === 'object' && x !== null && 'error' in x;
 
-/** Cleans user input into column values, or returns the first validation error. */
-export function sanitize(input: Record<string, unknown>): ResidentInput | Invalid {
+/** A Vietnamese number: a 10-digit mobile (03, 05, 07, 08, 09) or an 11-digit landline (02 + area code). */
+const isPhone = (phone: string) => /^0[35789]\d{8}$/.test(phone) || /^02\d{9}$/.test(phone);
+
+/** The rule before mobile prefixes and landlines were told apart. Stored numbers and backups may still follow it. */
+export const isOldPhone = (phone: string) => /^0\d{9}$/.test(phone);
+
+/**
+ * Cleans user input into column values, or returns the first validation error.
+ * `keepPhone` is a number already stored for this person: it passes unchanged, so an old number never blocks
+ * moving, bulk-changing or updating them. Only a number that is new or different is checked.
+ */
+export function sanitize(input: Record<string, unknown>, keepPhone?: string): ResidentInput | Invalid {
   const full_name = textField(String(input.full_name ?? ''));
   const length = [...full_name].length;
   if (length < 2 || length > 120) {
@@ -29,8 +39,8 @@ export function sanitize(input: Record<string, unknown>): ResidentInput | Invali
   }
 
   const phone = normalizePhone(String(input.phone ?? ''));
-  if (phone !== '' && !/^0\d{9}$/.test(phone)) {
-    return { error: i18n.__('Invalid phone number.', 'quan-li-dan-cu') };
+  if (phone !== '' && phone !== keepPhone && !isPhone(phone)) {
+    return { error: i18n.__('Invalid phone number. Use a 10-digit mobile number (03, 05, 07, 08, 09) or an 11-digit landline starting with 02.', 'quan-li-dan-cu') };
   }
 
   const birth_year = parseYear(input.birth_year ?? '');
@@ -105,7 +115,7 @@ function intersect(allowed: string[], value: unknown): string[] {
 /** Strips separators and turns a leading +84 / 84 into 0. */
 function normalizePhone(phone: string): string {
   phone = phone.replace(/[\s.-]/g, '');
-  const m = phone.match(/^\+?84(\d{9})$/);
+  const m = phone.match(/^\+?84(\d{9,10})$/);
   return m ? '0' + m[1] : phone;
 }
 

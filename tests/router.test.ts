@@ -2,8 +2,9 @@ import { beforeEach, expect, test, vi } from 'vitest';
 
 import { db } from '@/backend/db';
 import { route } from '@/backend/router';
+import { sanitize } from '@/backend/resident';
 import * as residents from '@/backend/residents';
-import type { Resident } from '@/lib/api/residents.api';
+import type { Resident, ResidentInput } from '@/lib/api/residents.api';
 
 let an: Resident;
 let binh: Resident;
@@ -126,4 +127,11 @@ test('GET /households lists households to move into, minus the excluded one', as
   await route('/residents', 'POST', { full_name: 'Lê Văn Cường', household_code: 'KP21-002' });
   await route('/residents', 'POST', { full_name: 'Phạm Thị Dung', household_code: 'KP21-003' });
   expect((await route<Array<{ code: string }>>('/households?search=&exclude=KP21-003')).map((h) => h.code)).toEqual(['KP21-002']);
+});
+
+test('a resident whose phone was valid under the old rule can still be moved or bulk-updated, but a new bad phone is refused', async () => {
+  const old = await residents.create({ ...(sanitize({ full_name: 'Lê Văn Cường', birth_year: 1990 }) as ResidentInput), phone: '0123456789' });
+  expect(await route(`/residents/${old.id}`, 'PATCH', { household_code: 'KP21-009' })).toMatchObject({ household_code: 'KP21-009', phone: '0123456789' });
+  expect(await route('/residents/bulk', 'POST', { ids: [old.id], action: 'set_health_exam', value: 'yes' })).toEqual({ affected: 1 });
+  await expect(route(`/residents/${old.id}`, 'PATCH', { phone: '0123456780' })).rejects.toMatchObject({ code: 'invalid_arguments' });
 });

@@ -134,3 +134,10 @@ test('restore writes audit rows with the four fields only', async () => {
   for (const row of rows) expect(Object.keys(row).sort()).toEqual(['action', 'changed_fields', 'created_at', 'id', 'resident_id']);
   expect(rows.map((r) => r.action)).toEqual(['create', 'update', 'delete']);
 });
+
+test('a backup made under the old phone rule still restores, but a garbage phone does not', async () => {
+  const file = await snapshot();
+  const withPhone = (phone: string) => ({ ...file, residents: file.residents.map((r, i) => (i === 0 ? { ...r, phone } : r)) });
+  await expect(restore(withPhone('0123456789'))).resolves.toBeDefined();
+  await expect(restore(withPhone('0903abc885'))).rejects.toMatchObject({ code: 'invalid_arguments' });
+});

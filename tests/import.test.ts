@@ -68,3 +68,9 @@ test('for a person who already exists only the phone and address are updated, wh
   expect(await commit([row], true)).toMatchObject({ added_people: 0, updated: 1 });
   expect((await residents.all({ search: 'nguyen van an' }))[0]).toMatchObject({ phone: '0911222333', occupation: '', policy_tags: [], residence_status: 'unknown' });
 });
+
+test('updating a person whose phone was valid under the old rule keeps that phone and still updates the address', async () => {
+  const old = await residents.create({ ...(sanitize({ full_name: 'Lê Văn Cường', birth_year: 1990 }) as ResidentInput), phone: '0123456789' });
+  expect(await commit([{ full_name: 'Lê Văn Cường', birth_year: '1990', address: '9 Lê Lợi' }], true)).toMatchObject({ updated: 1 });
+  expect(await residents.find(old.id)).toMatchObject({ phone: '0123456789', address: '9 Lê Lợi' });
+});

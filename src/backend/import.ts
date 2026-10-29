@@ -75,7 +75,7 @@ async function write(rows: unknown[], autoUpdate: boolean): Promise<ImportResult
         (['phone', 'address'] as const).filter((key) => data[key] !== '' && data[key] !== match[key]).map((key) => [key, data[key]]),
       );
       if (Object.keys(patch).length) {
-        await residents.update(match.id, { ...(sanitize(match) as ResidentInput), ...patch });
+        await residents.update(match.id, { ...(sanitize(match, match.phone) as ResidentInput), ...patch });
         counts.updated++;
       } else {
         counts.skipped++;

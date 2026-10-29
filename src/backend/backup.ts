@@ -4,7 +4,7 @@ import { fold } from '@/lib/fold';
 import { i18n } from '@/lib/i18n';
 
 import { db, now, transaction, type AuditRow, type ResidentRow } from './db';
-import { isInvalid, sanitize, type Invalid } from './resident';
+import { isInvalid, isOldPhone, sanitize, type Invalid } from './resident';
 import { getSettings } from './settings';
 
 /** Backup content: a snapshot of every table, validated on the way back in. */
@@ -45,7 +45,8 @@ function check(input: unknown): Checked | Invalid {
     const { id, created_at, updated_at, deleted_at } = item;
     if (!Number.isInteger(id) || (id as number) < 1 || ids.has(id as number)) return bad();
     if (!isString(created_at) || !isString(updated_at) || !(deleted_at === null || isString(deleted_at))) return bad();
-    const clean = sanitize(item);
+    // A backup made before the phone rule got stricter still restores: its numbers are the app's own data.
+    const clean = sanitize(item, typeof item.phone === 'string' && isOldPhone(item.phone) ? item.phone : undefined);
     if (isInvalid(clean)) return clean;
     ids.add(id as number);
     rows.push({

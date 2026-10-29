@@ -15,7 +15,11 @@ import { getSettings } from './settings';
 export const MAX_ROWS = 5000;
 
 /** Keys the browser may send; anything else is dropped. */
-const FIELDS = ['full_name', 'birth_year', 'gender', 'phone', 'address', 'household_code', 'relation', 'id_last4', 'note', 'health_exam'];
+const FIELDS = [
+  'full_name', 'birth_year', 'gender', 'phone', 'address', 'household_code', 'relation', 'id_last4', 'note', 'health_exam',
+  // From the waiting-list drawer. They only matter for a person who is new: an existing one is updated by phone and address.
+  'residence_status', 'verify_status', 'occupation', 'bhyt_number', 'exam_date', 'exam_place', 'policy_tags', 'support_flags',
+];
 
 /** Placeholder household codes the browser invents (VB = file/paste, PB = paper form). */
 const TEMP_CODE = /^(VB|PB)-\d+$/i;
@@ -107,17 +111,19 @@ async function write(rows: unknown[], autoUpdate: boolean): Promise<ImportResult
 function prepare(raw: unknown): Prepared {
   const source = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
   // PHP casts scalars to trimmed strings: true → '1', false → ''.
-  const input: Record<string, string> = Object.fromEntries(
+  const input: Record<string, unknown> = Object.fromEntries(
     FIELDS.filter((key) => key in source).map((key) => {
       const value = source[key];
+      // The two tag lists stay lists; sanitize keeps only the tags it knows.
+      if (Array.isArray(value)) return [key, value.filter((item) => typeof item === 'string')];
       return [key, typeof value === 'boolean' ? (value ? '1' : '') : ['string', 'number'].includes(typeof value) ? String(value).trim() : ''];
     }),
   );
-  if ((input.full_name ?? '') === '') {
+  if (((input.full_name as string) ?? '') === '') {
     return { error: i18n.__('Full name is missing.', 'quan-li-dan-cu'), missingName: true };
   }
-  input.gender = gender(input.gender ?? '');
-  input.relation = relation(input.relation ?? '');
+  input.gender = gender((input.gender as string) ?? '');
+  input.relation = relation((input.relation as string) ?? '');
   const data = sanitize(input);
   return isInvalid(data) ? { error: data.error, missingName: false } : data;
 }

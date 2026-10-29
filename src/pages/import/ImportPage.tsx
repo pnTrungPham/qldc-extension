@@ -103,6 +103,7 @@ export default function ImportPage({ title }: { title: string }) {
           autoUpdate={autoUpdate}
           onAutoUpdate={setAutoUpdate}
           onEdit={(key, target, value) => setEdits({ ...edits, [key]: { ...edits[key], [target]: value } })}
+          onEditRow={(key, patch) => setEdits({ ...edits, [key]: { ...edits[key], ...patch } })}
           onClear={reset}
           onDone={(done) => {
             setResult(done);

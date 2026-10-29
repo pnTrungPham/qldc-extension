@@ -49,3 +49,22 @@ test('an import that fails halfway writes nothing', async () => {
   expect((await residents.paginate(1, 200, {})).total).toBe(2);
 });
 
+
+test('a new person keeps the extra details given in the waiting-list drawer', async () => {
+  const row = {
+    full_name: 'Phạm Ngọc Trung', birth_year: '1996', household_code: 'PB-001', relation: 'head',
+    residence_status: 'temporary', verify_status: 'verified', occupation: 'Thợ điện', bhyt_number: 'DN123',
+    policy_tags: ['elderly', 'not-a-tag'], support_flags: ['mobility'], exam_date: '2026-03-05', exam_place: 'Trạm y tế',
+  };
+  expect(await commit([row], true)).toMatchObject({ added_people: 1 });
+  expect((await residents.all({ search: 'pham ngoc trung' }))[0]).toMatchObject({
+    residence_status: 'temporary', verify_status: 'verified', occupation: 'Thợ điện', bhyt_number: 'DN123',
+    policy_tags: ['elderly'], support_flags: ['mobility'], exam_date: '2026-03-05', exam_place: 'Trạm y tế', health_exam: true,
+  });
+});
+
+test('for a person who already exists only the phone and address are updated, whatever extras the row carries', async () => {
+  const row = { full_name: 'Nguyễn Văn An', birth_year: '1978', phone: '0911222333', occupation: 'Thợ điện', policy_tags: ['elderly'], residence_status: 'moved' };
+  expect(await commit([row], true)).toMatchObject({ added_people: 0, updated: 1 });
+  expect((await residents.all({ search: 'nguyen van an' }))[0]).toMatchObject({ phone: '0911222333', occupation: '', policy_tags: [], residence_status: 'unknown' });
+});

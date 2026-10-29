@@ -1,3 +1,4 @@
+import type { ResidentInput } from '@/lib/api/residents.api';
 import { i18n } from '@/lib/i18n';
 
 /** Fields an import row can fill. Mirrors Services\ImportService::FIELDS (minus health_exam). */
@@ -22,10 +23,15 @@ export type Source = 'file' | 'paste' | 'paper';
  * One waiting-list row, ready to send. `group` ties rows of one household together before codes exist;
  * `key` stays the same while mappings change, so manual edits stick to the right row.
  */
-export type PendingRow = Record<Target, string> & { health_exam: boolean; source: Source; group: string; key: string };
+export type PendingRow = Record<Target, string> & { health_exam: boolean; source: Source; group: string; key: string } & Extras;
+
+/** Details beyond the table's columns, added in the row's drawer. Only a person who is new gets them. */
+export type Extras = Partial<
+  Pick<ResidentInput, 'residence_status' | 'verify_status' | 'occupation' | 'policy_tags' | 'support_flags' | 'bhyt_number' | 'exam_date' | 'exam_place'>
+>;
 
 /** Manual fixes typed in the waiting list, by row key. They win over whatever the source said. */
-export type RowEdits = Record<string, Partial<Record<Target, string>>>;
+export type RowEdits = Record<string, Partial<Record<Target, string>> & Extras & { health_exam?: boolean }>;
 
 export const emptyRow = (source: Source, group: string): PendingRow => ({
   full_name: '',

@@ -14,7 +14,8 @@ export type PreviewRow = { index: number; missing_name: boolean; error: string |
 export type ImportPreview = { rows: PreviewRow[]; will_add: number; will_update: number; invalid: number };
 export type ImportResult = { added_people: number; added_households: number; updated: number; skipped: number };
 
-type Row = Record<string, string | boolean>;
+// The waiting-list drawer adds tag lists and optional details to the plain text fields.
+type Row = Record<string, string | boolean | string[] | null | undefined>;
 
 /** What each row would become, without writing. Refetches when the rows or the option change. */
 export function useImportPreview(rows: Row[], autoUpdate: boolean) {

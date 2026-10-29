@@ -46,28 +46,29 @@ type Values = {
   note: string;
 };
 
-/** Pre-filled when adding a member to an existing household. */
-export type AddDefaults = Pick<ResidentInput, 'household_code' | 'address'>;
+/** Starting values of a new person: the household being added to, or a whole waiting-list row being edited. */
+export type AddDefaults = Partial<ResidentInput>;
 
 function initialValues(r: Resident | null, defaults?: AddDefaults): Values {
+  const src: Partial<ResidentInput> = r ?? defaults ?? {};
   return {
-    household_code: r?.household_code ?? defaults?.household_code ?? '',
-    full_name: r?.full_name ?? '',
-    birth_year: r?.birth_year ? String(r.birth_year) : '',
-    gender: r?.gender ?? '',
-    phone: r?.phone ?? '',
-    address: r?.address ?? defaults?.address ?? '',
-    relation: r?.relation ?? 'other',
-    residence_status: r?.residence_status ?? 'unknown',
-    verify_status: r?.verify_status ?? 'unverified',
-    occupation: r?.occupation ?? '',
-    policy_tags: r?.policy_tags ?? [],
-    support_flags: r?.support_flags ?? [],
-    bhyt_number: r?.bhyt_number ?? '',
-    health_exam: r?.health_exam ?? false,
-    exam_date: toDisplayDate(r?.exam_date ?? null),
-    exam_place: r?.exam_place ?? '',
-    note: r?.note ?? '',
+    household_code: src.household_code ?? '',
+    full_name: src.full_name ?? '',
+    birth_year: src.birth_year ? String(src.birth_year) : '',
+    gender: src.gender ?? '',
+    phone: src.phone ?? '',
+    address: src.address ?? '',
+    relation: src.relation ?? 'other',
+    residence_status: src.residence_status ?? 'unknown',
+    verify_status: src.verify_status ?? 'unverified',
+    occupation: src.occupation ?? '',
+    policy_tags: src.policy_tags ?? [],
+    support_flags: src.support_flags ?? [],
+    bhyt_number: src.bhyt_number ?? '',
+    health_exam: src.health_exam ?? false,
+    exam_date: toDisplayDate(src.exam_date ?? null),
+    exam_place: src.exam_place ?? '',
+    note: src.note ?? '',
   };
 }
 
@@ -87,6 +88,7 @@ export default function ResidentForm({
   resident,
   defaults,
   onOpenExisting,
+  onDraft,
   footerStart,
   onDirtyChange,
   onSaved,
@@ -98,6 +100,8 @@ export default function ResidentForm({
   defaults?: AddDefaults;
   /** Show a person the add form found to be a duplicate. */
   onOpenExisting?: (match: Resident) => void;
+  /** Editing a draft (a waiting-list row): Save hands the values back here and nothing is written. */
+  onDraft?: (input: Partial<ResidentInput>) => void;
   /** Rendered at the left of the footer (the drawer's Delete button). */
   footerStart?: ReactNode;
   onDirtyChange?: (dirty: boolean) => void;
@@ -161,6 +165,7 @@ export default function ResidentForm({
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (onDraft) return onDraft(toInput(values));
     if (resident) return write();
     find.mutate(toInput(values), { onSuccess: (match) => (match ? setDuplicate({ key: personKey, match }) : write()) });
   }
@@ -182,7 +187,7 @@ export default function ResidentForm({
         </Field>
         <Field label={i18n.__('Household code', 'quan-li-dan-cu')} htmlFor="household_code">
           <Input {...text('household_code')} maxLength={32} />
-          {newCode && <p className="m-0 text-xs text-muted-foreground">{i18n.__('New household code: no household has it yet.', 'quan-li-dan-cu')}</p>}
+          {newCode && !onDraft && <p className="m-0 text-xs text-muted-foreground">{i18n.__('New household code: no household has it yet.', 'quan-li-dan-cu')}</p>}
         </Field>
         <Field label={i18n.__('Address', 'quan-li-dan-cu')} htmlFor="address" className="sm:col-span-2">
           <Input {...text('address')} maxLength={255} />
@@ -253,7 +258,7 @@ export default function ResidentForm({
               {i18n.__('Cancel', 'quan-li-dan-cu')}
             </Button>
             <Button type="submit" disabled={save.isPending || find.isPending}>
-              {save.isPending || find.isPending ? i18n.__('Saving…', 'quan-li-dan-cu') : i18n.__('Save', 'quan-li-dan-cu')}
+              {save.isPending || find.isPending ? i18n.__('Saving…', 'quan-li-dan-cu') : onDraft ? i18n.__('Update this row', 'quan-li-dan-cu') : i18n.__('Save', 'quan-li-dan-cu')}
             </Button>
           </div>
         </div>

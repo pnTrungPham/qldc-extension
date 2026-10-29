@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
-import { useHousehold, type Resident } from '@/lib/api/residents.api';
+import { useHousehold, type Resident, type ResidentInput } from '@/lib/api/residents.api';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
@@ -20,6 +20,7 @@ import ResidentForm, { type AddDefaults } from './ResidentForm';
 export default function ResidentDetailSheet({
   resident,
   defaults,
+  draft,
   onClose,
   onShare,
   onDelete,
@@ -30,6 +31,8 @@ export default function ResidentDetailSheet({
   resident: Resident | null;
   /** With `resident` null: the household the new person is added to. */
   defaults?: AddDefaults;
+  /** Editing a waiting-list row instead of a resident: nothing is saved, the values go to `onApply`. */
+  draft?: { values: Partial<ResidentInput>; notice?: string; onApply: (input: Partial<ResidentInput>) => void };
   onClose: () => void;
   onShare?: () => void;
   onDelete?: () => void;
@@ -80,7 +83,7 @@ export default function ResidentDetailSheet({
       ]
         .filter(Boolean)
         .join(' · ')
-    : (defaults?.household_code ?? '');
+    : (draft?.notice ?? defaults?.household_code ?? '');
 
   return (
     <Sheet open onOpenChange={(open) => !open && requestClose()}>
@@ -88,7 +91,7 @@ export default function ResidentDetailSheet({
         <SheetHeader className="gap-0 pr-16">
           <div className="flex min-h-9 items-center gap-3">
             <div className="grid min-w-0 flex-1 gap-0.5">
-              <SheetTitle className="truncate leading-6">{resident ? resident.full_name : i18n.__('Add resident', 'quan-li-dan-cu')}</SheetTitle>
+              <SheetTitle className="truncate leading-6">{resident ? resident.full_name : draft ? draft.values.full_name || i18n.__('Edit this row', 'quan-li-dan-cu') : i18n.__('Add resident', 'quan-li-dan-cu')}</SheetTitle>
               {subtitle && <SheetDescription className="m-0 leading-5">{subtitle}</SheetDescription>}
             </div>
             {resident && (
@@ -112,7 +115,15 @@ export default function ResidentDetailSheet({
             // updated_at too: after a move the resident is replaced by the saved one and the form must show it.
             key={resident ? `${resident.id}-${resident.updated_at}` : 'new'}
             resident={resident}
-            defaults={defaults}
+            defaults={draft?.values ?? defaults}
+            onDraft={
+              draft &&
+              ((input) => {
+                draft.onApply(input);
+                dirty.current = false;
+                onClose();
+              })
+            }
             onOpenExisting={onOpenExisting}
             onDirtyChange={(value) => (dirty.current = value)}
             onSaved={() => {

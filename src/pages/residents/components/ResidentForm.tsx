@@ -3,6 +3,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
 import { cn } from '@/lib/utils';
+import { useDetailFields, type DetailFieldId } from '@/lib/detail-fields';
 import {
   useFindMatch,
   useHousehold,
@@ -113,6 +114,9 @@ export default function ResidentForm({
   const save = useSaveResident();
   const find = useFindMatch();
   const [choosing, setChoosing] = useState(false);
+  // Fields the user hid in Settings: not drawn, but they keep whatever value they have.
+  const [shownFields] = useDetailFields();
+  const shown = (...ids: DetailFieldId[]) => ids.some((id) => shownFields.includes(id));
   // The person the last save attempt found already recorded, for the name and year it was asked about.
   const [duplicate, setDuplicate] = useState<{ key: string; match: Resident } | null>(null);
   const [initial, setInitial] = useState(() => initialValues(resident, defaults));
@@ -181,15 +185,21 @@ export default function ResidentForm({
         <Field label={i18n.__('Year of birth', 'quan-li-dan-cu')} htmlFor="birth_year">
           <Input {...text('birth_year')} type="number" min={1900} max={new Date().getFullYear()} />
         </Field>
-        <Field label={i18n.__('Gender', 'quan-li-dan-cu')}>
-          <EnumSelect value={values.gender} options={GENDER_LABELS} disabled={readOnly} onChange={(v) => set('gender', v as Gender)} allowEmpty />
-        </Field>
-        <Field label={i18n.__('Phone', 'quan-li-dan-cu')} htmlFor="phone">
-          <Input {...text('phone')} type="tel" inputMode="tel" />
-        </Field>
-        <Field label={i18n.__('Occupation', 'quan-li-dan-cu')} htmlFor="occupation">
-          <Input {...text('occupation')} maxLength={120} />
-        </Field>
+        {shown('gender') && (
+          <Field label={i18n.__('Gender', 'quan-li-dan-cu')}>
+            <EnumSelect value={values.gender} options={GENDER_LABELS} disabled={readOnly} onChange={(v) => set('gender', v as Gender)} allowEmpty />
+          </Field>
+        )}
+        {shown('phone') && (
+          <Field label={i18n.__('Phone', 'quan-li-dan-cu')} htmlFor="phone">
+            <Input {...text('phone')} type="tel" inputMode="tel" />
+          </Field>
+        )}
+        {shown('occupation') && (
+          <Field label={i18n.__('Occupation', 'quan-li-dan-cu')} htmlFor="occupation">
+            <Input {...text('occupation')} maxLength={120} />
+          </Field>
+        )}
       </Section>
 
       <Section
@@ -216,42 +226,58 @@ export default function ResidentForm({
         {household?.list && <div className="sm:col-span-2">{household.list}</div>}
       </Section>
 
-      <Section title={i18n.__('Residence and documents', 'quan-li-dan-cu')}>
-        <Field label={i18n.__('Residence status', 'quan-li-dan-cu')}>
-          <EnumSelect value={values.residence_status} options={RESIDENCE_STATUS_LABELS} disabled={readOnly} onChange={(v) => set('residence_status', v as ResidenceStatus)} />
-        </Field>
-        <Field label={i18n.__('Document verification', 'quan-li-dan-cu')}>
-          <EnumSelect value={values.verify_status} options={VERIFY_LABELS} disabled={readOnly} onChange={(v) => set('verify_status', v as VerifyStatus)} />
-        </Field>
+      <Section title={i18n.__('Residence and documents', 'quan-li-dan-cu')} hidden={!shown('residence_status', 'verify_status')}>
+        {shown('residence_status') && (
+          <Field label={i18n.__('Residence status', 'quan-li-dan-cu')}>
+            <EnumSelect value={values.residence_status} options={RESIDENCE_STATUS_LABELS} disabled={readOnly} onChange={(v) => set('residence_status', v as ResidenceStatus)} />
+          </Field>
+        )}
+        {shown('verify_status') && (
+          <Field label={i18n.__('Document verification', 'quan-li-dan-cu')}>
+            <EnumSelect value={values.verify_status} options={VERIFY_LABELS} disabled={readOnly} onChange={(v) => set('verify_status', v as VerifyStatus)} />
+          </Field>
+        )}
       </Section>
 
-      <Section title={i18n.__('Policy and support', 'quan-li-dan-cu')} single>
-        <ChipGroup label={i18n.__('Policy labels', 'quan-li-dan-cu')} options={POLICY_LABELS} value={values.policy_tags} disabled={readOnly} onChange={(v) => set('policy_tags', v)} />
-        <ChipGroup label={i18n.__('Field support flags', 'quan-li-dan-cu')} options={SUPPORT_LABELS} value={values.support_flags} disabled={readOnly} onChange={(v) => set('support_flags', v)} />
+      <Section title={i18n.__('Policy and support', 'quan-li-dan-cu')} single hidden={!shown('policy_tags', 'support_flags')}>
+        {shown('policy_tags') && (
+          <ChipGroup label={i18n.__('Policy labels', 'quan-li-dan-cu')} options={POLICY_LABELS} value={values.policy_tags} disabled={readOnly} onChange={(v) => set('policy_tags', v)} />
+        )}
+        {shown('support_flags') && (
+          <ChipGroup label={i18n.__('Field support flags', 'quan-li-dan-cu')} options={SUPPORT_LABELS} value={values.support_flags} disabled={readOnly} onChange={(v) => set('support_flags', v)} />
+        )}
       </Section>
 
-      <Section title={i18n.__('Health', 'quan-li-dan-cu')}>
-        <Field label={i18n.__('Health insurance (BHYT) number', 'quan-li-dan-cu')} htmlFor="bhyt_number" className="sm:col-span-2">
-          <Input {...text('bhyt_number')} maxLength={20} />
-        </Field>
-        <label className="flex items-center gap-2 text-sm sm:col-span-2">
-          <Checkbox checked={values.health_exam} disabled={readOnly || !!values.exam_date} onCheckedChange={(checked) => set('health_exam', !!checked)} />
-          {i18n.__('Health exam 2026 done', 'quan-li-dan-cu')}
-        </label>
-        <Field label={i18n.__('Examination date', 'quan-li-dan-cu')} htmlFor="exam_date">
-          <Input
-            {...text('exam_date')}
-            placeholder="dd/mm/yyyy"
-            pattern="\d{2}/\d{2}/\d{4}"
-            onChange={(e) => setValues((prev) => ({ ...prev, exam_date: e.target.value, health_exam: prev.health_exam || !!e.target.value }))}
-          />
-        </Field>
-        <Field label={i18n.__('Examination place', 'quan-li-dan-cu')} htmlFor="exam_place">
-          <Input {...text('exam_place')} maxLength={255} />
-        </Field>
+      <Section title={i18n.__('Health', 'quan-li-dan-cu')} hidden={!shown('bhyt_number', 'health_exam', 'exam_date', 'exam_place')}>
+        {shown('bhyt_number') && (
+          <Field label={i18n.__('Health insurance (BHYT) number', 'quan-li-dan-cu')} htmlFor="bhyt_number" className="sm:col-span-2">
+            <Input {...text('bhyt_number')} maxLength={20} />
+          </Field>
+        )}
+        {shown('health_exam') && (
+          <label className="flex items-center gap-2 text-sm sm:col-span-2">
+            <Checkbox checked={values.health_exam} disabled={readOnly || !!values.exam_date} onCheckedChange={(checked) => set('health_exam', !!checked)} />
+            {i18n.__('Health exam 2026 done', 'quan-li-dan-cu')}
+          </label>
+        )}
+        {shown('exam_date') && (
+          <Field label={i18n.__('Examination date', 'quan-li-dan-cu')} htmlFor="exam_date">
+            <Input
+              {...text('exam_date')}
+              placeholder="dd/mm/yyyy"
+              pattern="\d{2}/\d{2}/\d{4}"
+              onChange={(e) => setValues((prev) => ({ ...prev, exam_date: e.target.value, health_exam: prev.health_exam || !!e.target.value }))}
+            />
+          </Field>
+        )}
+        {shown('exam_place') && (
+          <Field label={i18n.__('Examination place', 'quan-li-dan-cu')} htmlFor="exam_place">
+            <Input {...text('exam_place')} maxLength={255} />
+          </Field>
+        )}
       </Section>
 
-      <Section title={i18n.__('Situation notes', 'quan-li-dan-cu')} single>
+      <Section title={i18n.__('Situation notes', 'quan-li-dan-cu')} single hidden={!shown('note')}>
         <Textarea {...text('note')} rows={3} aria-label={i18n.__('Situation notes', 'quan-li-dan-cu')} />
       </Section>
 
@@ -382,8 +408,9 @@ function DuplicateWarning({
   );
 }
 
-/** A titled group of fields: two columns, or one block when `single`. Groups are told apart by a rule above them. */
-function Section({ title, actions, single, children }: { title: string; actions?: ReactNode; single?: boolean; children: ReactNode }) {
+/** A titled group of fields: two columns, or one block when `single`. Groups are told apart by a rule above them. `hidden`: every field in it is switched off. */
+function Section({ title, actions, single, hidden, children }: { title: string; actions?: ReactNode; single?: boolean; hidden?: boolean; children: ReactNode }) {
+  if (hidden) return null;
   return (
     <section className="grid gap-3 border-t pt-5 first:border-t-0 first:pt-0">
       <div className="flex min-h-8 items-center justify-between gap-3">

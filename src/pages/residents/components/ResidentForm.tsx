@@ -5,6 +5,7 @@ import { caps } from '@/lib/caps';
 import { cn } from '@/lib/utils';
 import {
   useFindMatch,
+  useHousehold,
   useSaveResident,
   type Gender,
   type Relation,
@@ -142,6 +143,14 @@ export default function ResidentForm({
   }
 
   /** Adding someone: first ask whether they are already recorded, and let the user decide. */
+  /** The person is already recorded elsewhere: bring them into this household instead of adding a copy. */
+  function move(match: Resident) {
+    save.mutate(
+      { id: match.id, data: { household_code: values.household_code, address: values.address, relation: values.relation } },
+      { onSuccess: onSaved },
+    );
+  }
+
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (resident) return write();
@@ -217,8 +226,11 @@ export default function ResidentForm({
         <DuplicateWarning
           match={duplicate.match}
           sameHousehold={duplicate.match.household_code !== '' && duplicate.match.household_code === values.household_code}
+          canMove={values.household_code !== ''}
+          busy={save.isPending}
           onView={() => onOpenExisting?.(duplicate.match)}
           onAddAnyway={write}
+          onMove={() => move(duplicate.match)}
         />
       )}
       {warning}
@@ -245,14 +257,25 @@ export default function ResidentForm({
 function DuplicateWarning({
   match,
   sameHousehold,
+  canMove,
+  busy,
   onView,
   onAddAnyway,
+  onMove,
 }: {
   match: Resident;
   sameHousehold: boolean;
+  /** The form has a household to move the person into. */
+  canMove: boolean;
+  busy: boolean;
   onView: () => void;
   onAddAnyway: () => void;
+  onMove: () => void;
 }) {
+  const [confirmingMove, setConfirmingMove] = useState(false);
+  const oldHousehold = useHousehold(sameHousehold ? '' : match.household_code).data;
+  // Moving the head out of a household that still has other people leaves it without a head.
+  const leavesNoHead = match.is_head && (oldHousehold?.total ?? 0) > 1;
   const who = [match.birth_year ? `${match.full_name} (${match.birth_year})` : match.full_name, match.address].filter(Boolean).join(' · ');
   return (
     <div className="grid gap-2 rounded-md border border-warning bg-warning/6 px-3 py-2 text-sm">
@@ -271,13 +294,46 @@ function DuplicateWarning({
               who,
             )}
       </div>
-      <div className="flex gap-2">
-        <Button type="button" size="sm" variant="outline" onClick={onView}>
-          {i18n.__('View', 'quan-li-dan-cu')}
-        </Button>
-        <Button type="button" size="sm" onClick={onAddAnyway}>
-          {i18n.__('Add anyway', 'quan-li-dan-cu')}
-        </Button>
+      {confirmingMove && (
+        <div>
+          {i18n.sprintf(
+            /* translators: %s: household code */
+            i18n.__('Household %s will be left without a head of household.', 'quan-li-dan-cu'),
+            match.household_code,
+          )}
+        </div>
+      )}
+      <div className="flex flex-wrap gap-2">
+        {confirmingMove ? (
+          <>
+            <Button type="button" size="sm" variant="outline" disabled={busy} onClick={() => setConfirmingMove(false)}>
+              {i18n.__('Cancel', 'quan-li-dan-cu')}
+            </Button>
+            <Button type="button" size="sm" disabled={busy} onClick={onMove}>
+              {i18n.__('Move', 'quan-li-dan-cu')}
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button type="button" size="sm" variant="outline" disabled={busy} onClick={onView}>
+              {i18n.__('View', 'quan-li-dan-cu')}
+            </Button>
+            {canMove && !sameHousehold && (
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                disabled={busy || (match.is_head && !oldHousehold)} // a head's old household must be known first
+                onClick={() => (leavesNoHead ? setConfirmingMove(true) : onMove())}
+              >
+                {i18n.__('Move to this household', 'quan-li-dan-cu')}
+              </Button>
+            )}
+            <Button type="button" size="sm" disabled={busy} onClick={onAddAnyway}>
+              {i18n.__('Add anyway', 'quan-li-dan-cu')}
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

@@ -114,3 +114,10 @@ test('POST /residents/match finds an existing person by name and birth year, ign
   await route(`/residents/${cuong.id}`, 'DELETE');
   expect(await match({ full_name: 'Lê Văn Cường', birth_year: 1990 })).toBeNull();
 });
+
+test('moving a person to another household keeps their details and follows the new relation', async () => {
+  const head = await route<Resident>('/residents', 'POST', { full_name: 'Lê Văn Cường', birth_year: 1990, phone: '0903412885', relation: 'head', household_code: 'KP21-002', address: '1 Đường A' });
+  expect(head.is_head).toBe(true);
+  const moved = await route<Resident>(`/residents/${head.id}`, 'PATCH', { household_code: 'KP21-001', address: '12 Đường Trần Hưng', relation: 'child' });
+  expect(moved).toMatchObject({ household_code: 'KP21-001', address: '12 Đường Trần Hưng', relation: 'child', is_head: false, phone: '0903412885', birth_year: 1990 });
+});

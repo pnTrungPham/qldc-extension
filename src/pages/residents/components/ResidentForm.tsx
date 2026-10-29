@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import {
   useFindMatch,
   useHousehold,
+  useHouseholds,
   useSaveResident,
   type Gender,
   type Relation,
@@ -126,6 +127,13 @@ export default function ResidentForm({
     onChange: (e: { target: { value: string } }) => set(key, e.target.value as never),
   });
 
+  // A code typed here that no household has yet would start a new household: say so, so a typo is noticed.
+  const typedCode = values.household_code.trim().toUpperCase();
+  const lookup = useHouseholds(typedCode, '');
+  // While the answer for the code just typed is loading, the previous one is on screen: do not judge by it.
+  const known = lookup.isPlaceholderData ? undefined : lookup.data;
+  const newCode = typedCode !== '' && typedCode !== initial.household_code.toUpperCase() && known !== undefined && !known.some((h) => h.code === typedCode);
+
   const personKey = `${values.full_name.trim()}|${values.birth_year}`;
 
   function write() {
@@ -174,6 +182,7 @@ export default function ResidentForm({
         </Field>
         <Field label={i18n.__('Household code', 'quan-li-dan-cu')} htmlFor="household_code">
           <Input {...text('household_code')} maxLength={32} />
+          {newCode && <p className="m-0 text-xs text-muted-foreground">{i18n.__('New household code: no household has it yet.', 'quan-li-dan-cu')}</p>}
         </Field>
         <Field label={i18n.__('Address', 'quan-li-dan-cu')} htmlFor="address" className="sm:col-span-2">
           <Input {...text('address')} maxLength={255} />

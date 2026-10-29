@@ -121,3 +121,9 @@ test('moving a person to another household keeps their details and follows the n
   const moved = await route<Resident>(`/residents/${head.id}`, 'PATCH', { household_code: 'KP21-001', address: '12 Đường Trần Hưng', relation: 'child' });
   expect(moved).toMatchObject({ household_code: 'KP21-001', address: '12 Đường Trần Hưng', relation: 'child', is_head: false, phone: '0903412885', birth_year: 1990 });
 });
+
+test('GET /households lists households to move into, minus the excluded one', async () => {
+  await route('/residents', 'POST', { full_name: 'Lê Văn Cường', household_code: 'KP21-002' });
+  await route('/residents', 'POST', { full_name: 'Phạm Thị Dung', household_code: 'KP21-003' });
+  expect((await route<Array<{ code: string }>>('/households?search=&exclude=KP21-003')).map((h) => h.code)).toEqual(['KP21-002']);
+});

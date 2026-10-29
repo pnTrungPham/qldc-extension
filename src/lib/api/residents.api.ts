@@ -72,6 +72,19 @@ export function useResidents(params: { page: number; per_page: number; search: s
 /** The live resident this input refers to (same name and birth year), or null. Asked before adding someone. */
 export const useFindMatch = () => useMutation({ mutationFn: (data: Partial<ResidentInput>) => api<Resident | null>('/residents/match', 'POST', data) });
 
+export type HouseholdSummary = { code: string; head_name: string; address: string; size: number };
+
+/** Households matching `search` (code, a member's name or an address), for moving a person into one. */
+export function useHouseholds(search: string, exclude: string) {
+  const query = new URLSearchParams({ search, exclude });
+  return useQuery({
+    // Starts with 'residents' so every change to residents refreshes it.
+    queryKey: ['residents', 'households', search, exclude],
+    queryFn: () => api<HouseholdSummary[]>(`/households?${query}`),
+    placeholderData: keepPreviousData,
+  });
+}
+
 /** The live residents of one household (a household has far fewer than 200 people). */
 export function useHousehold(code: string) {
   return useQuery({

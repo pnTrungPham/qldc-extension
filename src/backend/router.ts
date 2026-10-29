@@ -67,6 +67,7 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
     return residents.update(Number(id), valid(sanitize({ ...existing, ...input })));
   }],
   ['DELETE', /^\/residents\/(\d+)$/, async ([id]) => (await residents.trash(Number(id))) || notFound()],
+  ['GET', /^\/households$/, async (_, query) => residents.households(query.get('search') ?? '', query.get('exclude') ?? '')],
   ['GET', /^\/settings$/, async () => getSettings()],
   ['POST', /^\/settings$/, async (_, __, body) => valid(await saveSettings(body))],
   ['GET', /^\/stats$/, async () => ({ ...(await residents.stats()), recent: await recent(RECENT) })],

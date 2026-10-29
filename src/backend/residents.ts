@@ -64,6 +64,28 @@ export async function all(filters: Filters): Promise<Resident[]> {
   return found.map(toResident);
 }
 
+export type HouseholdSummary = { code: string; head_name: string; address: string; size: number };
+
+/**
+ * Households with someone alive in them, for picking one to move a person into. `search` matches the code,
+ * a member's name or an address (accents ignored); an exact code comes first, then by code.
+ */
+export async function households(search: string, exclude = '', limit = 20): Promise<HouseholdSummary[]> {
+  const groups = new Map<string, ResidentRow[]>();
+  for (const row of await live().toArray()) {
+    if (row.household_code !== '' && row.household_code !== exclude) groups.set(row.household_code, [...(groups.get(row.household_code) ?? []), row]);
+  }
+  const term = fold(search);
+  return [...groups]
+    .filter(([code, rows]) => term === '' || fold(code).includes(term) || rows.some((row) => row.full_name_search.includes(term) || fold(row.address).includes(term)))
+    .map(([code, rows]) => {
+      const head = rows.find((row) => row.is_head) ?? rows[0];
+      return { code, head_name: head.full_name, address: head.address, size: rows.length };
+    })
+    .sort((a, b) => Number(fold(b.code) === term) - Number(fold(a.code) === term) || a.code.localeCompare(b.code))
+    .slice(0, limit);
+}
+
 /** Counts for the overview page, over residents that are not in the trash. */
 export async function stats(): Promise<Omit<Stats, 'recent'>> {
   const rows = await live().toArray();

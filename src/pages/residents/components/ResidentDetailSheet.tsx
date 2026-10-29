@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '
 
 import { GENDER_LABELS } from '../labels';
 import HouseholdMembers from './HouseholdMembers';
+import MoveHouseholdDialog from './MoveHouseholdDialog';
 import ResidentForm, { type AddDefaults } from './ResidentForm';
 
 /**
@@ -40,6 +41,8 @@ export default function ResidentDetailSheet({
   onOpenExisting?: (match: Resident) => void;
 }) {
   const dirty = useRef(false);
+  // Open while choosing another household for this resident; remembers whether the form had unsaved edits.
+  const [moving, setMoving] = useState<{ formHasChanges: boolean } | null>(null);
   // Set while asking about unsaved changes: what to do if the user goes ahead, and whether that is a close or a switch.
   const [confirming, setConfirming] = useState<{ run: () => void; switching: boolean } | null>(null);
   // Shared with HouseholdMembers (same query), so the count follows members being added.
@@ -102,10 +105,12 @@ export default function ResidentDetailSheet({
               resident={resident}
               onOpen={(member) => leaveFor(() => onOpenMember(member))}
               onAdd={() => leaveFor(() => onAddMember(resident))}
+              onMove={() => setMoving({ formHasChanges: dirty.current })}
             />
           )}
           <ResidentForm
-            key={resident?.id ?? 'new'}
+            // updated_at too: after a move the resident is replaced by the saved one and the form must show it.
+            key={resident ? `${resident.id}-${resident.updated_at}` : 'new'}
             resident={resident}
             defaults={defaults}
             onOpenExisting={onOpenExisting}
@@ -140,6 +145,17 @@ export default function ResidentDetailSheet({
           />
         </div>
       </SheetContent>
+      {resident && moving && (
+        <MoveHouseholdDialog
+          resident={resident}
+          formHasChanges={moving.formHasChanges}
+          onClose={() => setMoving(null)}
+          onMoved={(moved) => {
+            setMoving(null);
+            onOpenMember?.(moved);
+          }}
+        />
+      )}
     </Sheet>
   );
 }

@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react';
+import { ArrowRightLeft, Plus } from 'lucide-react';
 
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
@@ -9,33 +9,42 @@ import { Button } from '@/components/ui/button';
 import { RELATION_LABELS } from '../labels';
 
 /**
- * Everyone living in the same household as `resident`, head first, and a button to add one more.
- * Hidden when there is nobody to list and nothing to add (a household of one that cannot be edited).
+ * Everyone living in the same household as `resident`, head first, with buttons to add one more or to move
+ * this person elsewhere. Hidden when there is nobody to list and nothing to do (a read-only household of one).
  */
 export default function HouseholdMembers({
   resident,
   onOpen,
   onAdd,
+  onMove,
 }: {
   resident: Resident;
   onOpen: (member: Resident) => void;
   onAdd: () => void;
+  onMove: () => void;
 }) {
   const members = [...(useHousehold(resident.household_code).data?.items ?? [])].sort(
     (a, b) => Number(b.is_head) - Number(a.is_head) || (a.birth_year ?? 9999) - (b.birth_year ?? 9999) || a.id - b.id,
   );
   // Without a household code there is no household to add to.
   const canAdd = caps.edit && resident.household_code !== '';
-  if (members.length < 2 && !canAdd) return null;
+  if (members.length < 2 && !caps.edit) return null;
 
   return (
     <section className="mb-5 grid gap-2">
       <div className="flex min-h-8 items-center justify-between gap-3">
         <h3 className="m-0 text-sm font-semibold">{i18n.__('Household members', 'quan-li-dan-cu')}</h3>
-        {canAdd && (
-          <Button type="button" size="sm" variant="outline" onClick={onAdd}>
-            <Plus /> {i18n.__('Add member', 'quan-li-dan-cu')}
-          </Button>
+        {caps.edit && (
+          <div className="flex flex-wrap justify-end gap-2">
+            {canAdd && (
+              <Button type="button" size="sm" variant="outline" onClick={onAdd}>
+                <Plus /> {i18n.__('Add member', 'quan-li-dan-cu')}
+              </Button>
+            )}
+            <Button type="button" size="sm" variant="outline" onClick={onMove}>
+              <ArrowRightLeft /> {i18n.__('Move to another household', 'quan-li-dan-cu')}
+            </Button>
+          </div>
         )}
       </div>
       {members.length >= 2 && (

@@ -94,7 +94,6 @@ export default function ResidentForm({
   onDirtyChange,
   onSaved,
   onCancel,
-  warning,
 }: {
   resident: Resident | null;
   /** Starting values for a new resident (the household being added to). */
@@ -110,8 +109,6 @@ export default function ResidentForm({
   onDirtyChange?: (dirty: boolean) => void;
   onSaved: (saved: Resident) => void;
   onCancel: () => void;
-  /** Banner above the footer, e.g. the unsaved-changes confirmation. */
-  warning?: ReactNode;
 }) {
   const save = useSaveResident();
   const find = useFindMatch();
@@ -280,7 +277,6 @@ export default function ResidentForm({
           onMove={() => move(duplicate.match)}
         />
       )}
-      {warning}
 
       {!readOnly && (
         <div className="sticky bottom-0 mt-auto flex items-center gap-2 border-t bg-background py-3">

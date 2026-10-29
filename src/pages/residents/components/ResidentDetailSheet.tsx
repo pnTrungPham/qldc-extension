@@ -6,6 +6,7 @@ import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
 import { useHousehold, type Resident, type ResidentInput } from '@/lib/api/residents.api';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 import { GENDER_LABELS } from '../labels';
@@ -49,13 +50,13 @@ export default function ResidentDetailSheet({
   const dirty = useRef(false);
   // Open while choosing another household for this resident; remembers whether the form had unsaved edits.
   const [moving, setMoving] = useState<{ formHasChanges: boolean } | null>(null);
-  // Set while asking about unsaved changes: what to do if the user goes ahead, and whether that is a close or a switch.
-  const [confirming, setConfirming] = useState<{ run: () => void; switching: boolean } | null>(null);
+  // Set while asking about unsaved changes: what to do if the user goes ahead and discards them.
+  const [confirming, setConfirming] = useState<{ run: () => void } | null>(null);
   // Shared with HouseholdMembers (same query), so the count follows members being added.
   const householdSize = useHousehold(resident?.household_code ?? '').data?.total ?? resident?.household_size;
 
   function requestClose() {
-    if (dirty.current) setConfirming({ run: onClose, switching: false });
+    if (dirty.current) setConfirming({ run: onClose });
     else onClose();
   }
 
@@ -63,7 +64,6 @@ export default function ResidentDetailSheet({
   function leaveFor(run: () => void) {
     if (!dirty.current) return run();
     setConfirming({
-      switching: true,
       run: () => {
         dirty.current = false;
         setConfirming(null);
@@ -160,22 +160,27 @@ export default function ResidentDetailSheet({
                 </Button>
               )
             }
-            warning={
-              confirming && (
-                <div className="flex items-center gap-3 rounded-md border border-warning bg-warning/6 px-3 py-2 text-sm">
-                  <span className="flex-1">{confirming.switching ? i18n.__('You have unsaved changes. Switch anyway?', 'quan-li-dan-cu') : i18n.__('You have unsaved changes. Close anyway?', 'quan-li-dan-cu')}</span>
-                  <Button type="button" size="sm" variant="outline" onClick={() => setConfirming(null)}>
-                    {i18n.__('Stay', 'quan-li-dan-cu')}
-                  </Button>
-                  <Button type="button" size="sm" onClick={confirming.run}>
-                    {confirming.switching ? i18n.__('Switch', 'quan-li-dan-cu') : i18n.__('Close', 'quan-li-dan-cu')}
-                  </Button>
-                </div>
-              )
-            }
           />
         </div>
       </SheetContent>
+      {confirming && (
+        <Dialog open onOpenChange={(open) => !open && setConfirming(null)}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>{i18n.__('Unsaved changes', 'quan-li-dan-cu')}</DialogTitle>
+              <DialogDescription>{i18n.__('Your changes have not been saved and will be lost.', 'quan-li-dan-cu')}</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setConfirming(null)}>
+                {i18n.__('Keep editing', 'quan-li-dan-cu')}
+              </Button>
+              <Button type="button" variant="destructive" onClick={confirming.run}>
+                {i18n.__('Discard changes', 'quan-li-dan-cu')}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      )}
       {resident && moving && (
         <MoveHouseholdDialog
           resident={resident}

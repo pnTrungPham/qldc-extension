@@ -135,3 +135,22 @@ test('a resident whose phone was valid under the old rule can still be moved or 
   expect(await route('/residents/bulk', 'POST', { ids: [old.id], action: 'set_health_exam', value: 'yes' })).toEqual({ affected: 1 });
   await expect(route(`/residents/${old.id}`, 'PATCH', { phone: '0123456780' })).rejects.toMatchObject({ code: 'invalid_arguments' });
 });
+
+test('splitting a person off makes them the head of a new household with the next code, and leaves the others', async () => {
+  const head = await route<Resident>('/residents', 'POST', { full_name: 'Lê Văn Cường', household_code: 'KP21-001', relation: 'head', address: '5 Lê Lợi' });
+  const child = await route<Resident>('/residents', 'POST', { full_name: 'Lê Thị Dung', household_code: 'KP21-001', relation: 'child', address: '5 Lê Lợi', phone: '0903412885' });
+  // A code that is taken, even by someone in the trash, is never handed out again.
+  const gone = await route<Resident>('/residents', 'POST', { full_name: 'Phạm Văn Em', household_code: 'KP21-002' });
+  await route(`/residents/${gone.id}`, 'DELETE');
+
+  const split = await route<Resident>(`/residents/${child.id}/split`, 'POST');
+  expect(split).toMatchObject({ household_code: 'KP21-003', relation: 'head', is_head: true, address: '5 Lê Lợi', phone: '0903412885' });
+  expect(await route(`/residents/${head.id}`)).toMatchObject({ household_code: 'KP21-001', is_head: true });
+});
+
+test('there is nothing to split for someone alone in their household or in none', async () => {
+  const alone = await route<Resident>('/residents', 'POST', { full_name: 'Lê Văn Cường', household_code: 'KP21-001' });
+  await expect(route(`/residents/${alone.id}/split`, 'POST')).rejects.toMatchObject({ code: 'invalid_arguments' });
+  await expect(route(`/residents/${an.id}/split`, 'POST')).rejects.toMatchObject({ code: 'invalid_arguments' }); // no household code
+  await expect(route('/residents/9999/split', 'POST')).rejects.toMatchObject({ code: 'not_found' });
+});

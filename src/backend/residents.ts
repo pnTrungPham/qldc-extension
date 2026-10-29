@@ -206,6 +206,21 @@ export async function maxHouseholdNumber(prefix: string): Promise<number> {
   return max;
 }
 
+/** How many people are alive in a household. */
+export async function householdSize(code: string): Promise<number> {
+  return code === '' ? 0 : live().filter((row) => row.household_code === code).count();
+}
+
+/** The next free "{ward}-NNN": above every code ever used under the ward (the trash counts), and not taken. */
+export async function nextHouseholdCode(ward: string): Promise<string> {
+  let n = await maxHouseholdNumber(ward);
+  let code: string;
+  do {
+    code = `${ward}-${String(++n).padStart(3, '0')}`;
+  } while (await householdExists(code));
+  return code;
+}
+
 export async function householdExists(code: string): Promise<boolean> {
   return (await live().filter((row) => row.household_code === code).count()) > 0;
 }

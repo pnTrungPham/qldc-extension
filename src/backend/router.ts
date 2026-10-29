@@ -67,6 +67,16 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
     return residents.update(Number(id), valid(sanitize({ ...existing, ...input }, existing.phone)));
   }],
   ['DELETE', /^\/residents\/(\d+)$/, async ([id]) => (await residents.trash(Number(id))) || notFound()],
+  // One person leaves their household to head a new one. The others stay as they are.
+  ['POST', /^\/residents\/(\d+)\/split$/, async ([id]) =>
+    transaction(async () => {
+      const existing = (await residents.find(Number(id))) ?? notFound();
+      if ((await residents.householdSize(existing.household_code)) < 2) {
+        invalid(i18n.__('This person is not in a household with other people, so there is nothing to split.', 'quan-li-dan-cu'));
+      }
+      const code = await residents.nextHouseholdCode((await getSettings()).ward_code);
+      return (await residents.update(existing.id, valid(sanitize({ ...existing, household_code: code, relation: 'head' }, existing.phone)))) ?? notFound();
+    })],
   ['GET', /^\/households$/, async (_, query) => residents.households(query.get('search') ?? '', query.get('exclude') ?? '')],
   ['GET', /^\/settings$/, async () => getSettings()],
   ['POST', /^\/settings$/, async (_, __, body) => valid(await saveSettings(body))],

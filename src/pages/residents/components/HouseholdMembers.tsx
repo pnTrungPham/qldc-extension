@@ -1,28 +1,43 @@
-import { ArrowRightLeft, ChevronRight, Plus } from 'lucide-react';
+import { ArrowRightLeft, ChevronDown, ChevronRight, Plus, Split } from 'lucide-react';
 
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
 import { useHousehold, type Resident } from '@/lib/api/residents.api';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 import { RELATION_LABELS } from '../labels';
 
-/** Buttons for the Household section of a saved resident: add a member to the household, or move this person out of it. */
-export function HouseholdActions({ resident, onAdd, onMove }: { resident: Resident; onAdd: () => void; onMove: () => void }) {
+/** One menu for what can be done with a saved resident's household: add a member, move them elsewhere, or split them off. */
+export function HouseholdActions({ resident, onAdd, onMove, onSplit }: { resident: Resident; onAdd: () => void; onMove: () => void; onSplit: () => void }) {
+  const size = useHousehold(resident.household_code).data?.total ?? 0;
   if (!caps.edit) return null;
+
   return (
-    <div className="flex flex-wrap justify-end gap-2">
-      {/* Without a household code there is no household to add to. */}
-      {resident.household_code !== '' && (
-        <Button type="button" size="sm" variant="outline" onClick={onAdd}>
-          <Plus /> {i18n.__('Add member', 'quan-li-dan-cu')}
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button type="button" size="sm" variant="outline">
+          {i18n.__('Manage household', 'quan-li-dan-cu')} <ChevronDown />
         </Button>
-      )}
-      <Button type="button" size="sm" variant="outline" onClick={onMove}>
-        <ArrowRightLeft /> {i18n.__('Move to another household', 'quan-li-dan-cu')}
-      </Button>
-    </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {/* Without a household code there is no household to add to or to leave. */}
+        {resident.household_code !== '' && (
+          <DropdownMenuItem onSelect={onAdd}>
+            <Plus /> {i18n.__('Add member', 'quan-li-dan-cu')}
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem onSelect={onMove}>
+          <ArrowRightLeft /> {i18n.__('Move to another household', 'quan-li-dan-cu')}
+        </DropdownMenuItem>
+        {size >= 2 && (
+          <DropdownMenuItem onSelect={onSplit}>
+            <Split /> {i18n.__('Split into a new household', 'quan-li-dan-cu')}
+          </DropdownMenuItem>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 

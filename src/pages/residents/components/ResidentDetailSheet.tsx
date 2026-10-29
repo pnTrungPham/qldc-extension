@@ -12,6 +12,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '
 import { GENDER_LABELS } from '../labels';
 import { HouseholdActions, HouseholdList } from './HouseholdMembers';
 import MoveHouseholdDialog from './MoveHouseholdDialog';
+import SplitHouseholdDialog from './SplitHouseholdDialog';
 import ResidentForm, { type AddDefaults } from './ResidentForm';
 
 /**
@@ -50,6 +51,7 @@ export default function ResidentDetailSheet({
   const dirty = useRef(false);
   // Open while choosing another household for this resident; remembers whether the form had unsaved edits.
   const [moving, setMoving] = useState<{ formHasChanges: boolean } | null>(null);
+  const [splitting, setSplitting] = useState<{ formHasChanges: boolean } | null>(null);
   // Set while asking about unsaved changes: what to do if the user goes ahead and discards them.
   const [confirming, setConfirming] = useState<{ run: () => void } | null>(null);
   // Shared with HouseholdMembers (same query), so the count follows members being added.
@@ -130,6 +132,7 @@ export default function ResidentDetailSheet({
                         resident={resident}
                         onAdd={() => leaveFor(() => onAddMember(resident))}
                         onMove={() => setMoving({ formHasChanges: dirty.current })}
+                        onSplit={() => setSplitting({ formHasChanges: dirty.current })}
                       />
                     ),
                     list: <HouseholdList resident={resident} originId={origin?.id} onOpen={(member) => leaveFor(() => onOpenMember(member))} />,
@@ -180,6 +183,17 @@ export default function ResidentDetailSheet({
             </DialogFooter>
           </DialogContent>
         </Dialog>
+      )}
+      {resident && splitting && (
+        <SplitHouseholdDialog
+          resident={resident}
+          formHasChanges={splitting.formHasChanges}
+          onClose={() => setSplitting(null)}
+          onSplit={(split) => {
+            setSplitting(null);
+            onOpenMember?.(split);
+          }}
+        />
       )}
       {resident && moving && (
         <MoveHouseholdDialog

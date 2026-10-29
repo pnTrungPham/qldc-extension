@@ -85,6 +85,15 @@ export function useHouseholds(search: string, exclude: string) {
   });
 }
 
+/** One person leaves their household and heads a new one with the next free code. */
+export function useSplitHousehold() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api<Resident>(`/residents/${id}/split`, 'POST'),
+    onSuccess: () => invalidateResidents(queryClient),
+  });
+}
+
 /** The live residents of one household (a household has far fewer than 200 people). */
 export function useHousehold(code: string) {
   return useQuery({

@@ -323,6 +323,7 @@ export default function ResidentsPage({ title }: { title: string }) {
           onClose={() => setOpen(null)}
           onShare={() => setSharing(open)}
           onDelete={() => setDeleting(open)}
+          onOpenMember={setOpen}
         />
       )}
       {bulkDialog && (

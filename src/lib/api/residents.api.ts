@@ -69,6 +69,15 @@ export function useResidents(params: { page: number; per_page: number; search: s
   });
 }
 
+/** The live residents of one household (a household has far fewer than 200 people). */
+export function useHousehold(code: string) {
+  return useQuery({
+    queryKey: ['residents', 'household', code],
+    queryFn: () => api<ResidentPage>(`/residents?household=${encodeURIComponent(code)}&per_page=200`),
+    enabled: code !== '',
+  });
+}
+
 /** Create when id is absent, else patch only the given fields. */
 export function useSaveResident() {
   const queryClient = useQueryClient();

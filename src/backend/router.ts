@@ -48,6 +48,7 @@ const routes: Array<[method: string, path: RegExp, handler: Handler]> = [
       status: oneOf(query, 'status', RESIDENCE_STATUSES),
       exam: oneOf(query, 'exam', YES_NO),
       phone: oneOf(query, 'phone', YES_NO),
+      household: query.get('household') ?? undefined,
     })],
   ['POST', /^\/residents$/, async (_, __, body) => residents.create(valid(sanitize(body)))],
   ['DELETE', /^\/residents\/trash$/, async () => ({ affected: await transaction(() => residents.purgeAll()) })],

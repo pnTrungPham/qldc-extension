@@ -11,7 +11,7 @@ import { POLICY_TAGS, RESIDENCE_STATUSES, SUPPORT_FLAGS } from './resident';
  * except through the trash filter, findTrashed, restore and purge.
  */
 
-export type Filters = { trash?: boolean; search?: string; status?: string; exam?: string; phone?: string; policy?: string };
+export type Filters = { trash?: boolean; search?: string; status?: string; exam?: string; phone?: string; policy?: string; household?: string };
 
 const toResident = ({ full_name_search: _, ...row }: ResidentRow): Resident => row;
 
@@ -28,6 +28,7 @@ function matches(filters: Filters): (row: ResidentRow) => boolean {
     if (search && !(row.full_name_search.includes(term) || fold(row.address).includes(term) || (phone !== '' && row.phone.includes(phone)))) return false;
     if (filters.status && row.residence_status !== filters.status) return false;
     if (filters.exam && row.health_exam !== (filters.exam === 'yes')) return false;
+    if (filters.household && row.household_code !== filters.household) return false;
     if (filters.policy && !row.policy_tags.includes(filters.policy)) return false;
     if (filters.phone && (row.phone !== '') !== (filters.phone === 'yes')) return false;
     return true;

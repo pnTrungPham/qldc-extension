@@ -93,3 +93,9 @@ test('import routes', async () => {
 test('an unknown route rejects with rest_no_route', async () => {
   await expect(route('/nope')).rejects.toMatchObject({ code: 'rest_no_route' });
 });
+
+test('GET /residents?household= lists the members of one household', async () => {
+  await route('/residents', 'POST', { full_name: 'Lê Văn Cường', household_code: 'KP21-002' });
+  const page = await route<{ items: Resident[] }>('/residents?household=KP21-002&per_page=200');
+  expect(page.items.map((r) => r.full_name)).toEqual(['Lê Văn Cường']);
+});

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 import { GENDER_LABELS } from '../labels';
+import HouseholdMembers from './HouseholdMembers';
 import ResidentForm from './ResidentForm';
 
 /**
@@ -20,18 +21,27 @@ export default function ResidentDetailSheet({
   onClose,
   onShare,
   onDelete,
+  onOpenMember,
 }: {
   resident: Resident | null;
   onClose: () => void;
   onShare?: () => void;
   onDelete?: () => void;
+  /** Show another resident of the same household in place of this one. */
+  onOpenMember?: (member: Resident) => void;
 }) {
   const dirty = useRef(false);
-  const [confirmClose, setConfirmClose] = useState(false);
+  // Set while asking about unsaved changes: the member to switch to, or null when closing.
+  const [confirming, setConfirming] = useState<{ to: Resident | null } | null>(null);
 
   function requestClose() {
-    if (dirty.current) setConfirmClose(true);
+    if (dirty.current) setConfirming({ to: null });
     else onClose();
+  }
+
+  function openMember(member: Resident) {
+    if (dirty.current) setConfirming({ to: member });
+    else onOpenMember?.(member);
   }
 
   const subtitle = resident
@@ -68,11 +78,12 @@ export default function ResidentDetailSheet({
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto px-5 pt-5">
+          {resident && onOpenMember && <HouseholdMembers resident={resident} onOpen={openMember} />}
           <ResidentForm
             resident={resident}
             onDirtyChange={(value) => (dirty.current = value)}
             onSaved={() => {
-              if (resident) return setConfirmClose(false);
+              if (resident) return setConfirming(null);
               toast.success(i18n.__('Saved.', 'quan-li-dan-cu'));
               onClose();
             }}
@@ -86,14 +97,14 @@ export default function ResidentDetailSheet({
               )
             }
             warning={
-              confirmClose && (
+              confirming && (
                 <div className="flex items-center gap-3 rounded-md border border-warning bg-warning/6 px-3 py-2 text-sm">
-                  <span className="flex-1">{i18n.__('You have unsaved changes. Close anyway?', 'quan-li-dan-cu')}</span>
-                  <Button type="button" size="sm" variant="outline" onClick={() => setConfirmClose(false)}>
+                  <span className="flex-1">{confirming.to ? i18n.__('You have unsaved changes. Switch anyway?', 'quan-li-dan-cu') : i18n.__('You have unsaved changes. Close anyway?', 'quan-li-dan-cu')}</span>
+                  <Button type="button" size="sm" variant="outline" onClick={() => setConfirming(null)}>
                     {i18n.__('Stay', 'quan-li-dan-cu')}
                   </Button>
-                  <Button type="button" size="sm" onClick={onClose}>
-                    {i18n.__('Close', 'quan-li-dan-cu')}
+                  <Button type="button" size="sm" onClick={() => (confirming.to ? onOpenMember?.(confirming.to) : onClose())}>
+                    {confirming.to ? i18n.__('Switch', 'quan-li-dan-cu') : i18n.__('Close', 'quan-li-dan-cu')}
                   </Button>
                 </div>
               )

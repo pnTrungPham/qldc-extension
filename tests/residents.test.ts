@@ -110,3 +110,12 @@ test('transaction() rolls back nested repository writes, even from a plain arrow
   expect(await residents.find(an.id)).toMatchObject({ phone: '0903412885' });
   expect(await residents.find(binh.id)).not.toBeNull();
 });
+
+test('household filter returns only that household, trash excluded', async () => {
+  const other = await residents.create(input({ full_name: 'Lê Văn Cường', household_code: 'KP21-002' }));
+  const old = await residents.create(input({ full_name: 'Phạm Thị Dung', household_code: 'KP21-001' }));
+  await residents.trash(old.id);
+  expect(names((await residents.paginate(1, 20, { household: 'KP21-001' })).items)).toEqual(['Nguyễn Văn An', 'Trần Thị Bình']);
+  expect(names((await residents.paginate(1, 20, { household: 'KP21-002' })).items)).toEqual([other.full_name]);
+  expect((await residents.paginate(1, 20, { household: 'NOPE' })).items).toEqual([]);
+});

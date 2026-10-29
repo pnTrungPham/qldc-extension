@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router';
 
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
+import { useColumns } from '@/lib/columns';
 import { useBulkResidents, useResidents, type Resident } from '@/lib/api/residents.api';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,10 +16,10 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import PageLayout from '@/components/layout/PageLayout';
 
-import { RELATION_LABELS, formatPhone } from './labels';
+import { COLUMN_VIEW } from './columns';
 import BulkDeleteDialog from './components/BulkDeleteDialog';
 import DeleteResidentDialog from './components/DeleteResidentDialog';
-import ResidenceStatusBadge, { RESIDENCE_STATUS_LABELS } from './components/ResidenceStatusBadge';
+import { RESIDENCE_STATUS_LABELS } from './components/ResidenceStatusBadge';
 import ResidentBulkBar from './components/ResidentBulkBar';
 import ResidentDetailSheet from './components/ResidentDetailSheet';
 import type { AddDefaults } from './components/ResidentForm';
@@ -26,8 +27,6 @@ import ResidentFilters, { NO_FILTERS, type Filters } from './components/Resident
 import ShareDialog from './components/ShareDialog';
 
 const PAGE_SIZES = [5, 10, 20];
-
-const MUTED = (text: string) => <span className="text-muted-foreground">{text}</span>;
 
 export default function ResidentsPage({ title }: { title: string }) {
   const navigate = useNavigate();
@@ -57,6 +56,10 @@ export default function ResidentsPage({ title }: { title: string }) {
   const [bulkDialog, setBulkDialog] = useState<{ mode: 'trash' | 'purge' | 'empty'; ids: number[] } | null>(null);
   const restoring = useBulkResidents();
   const [trash, setTrash] = useState(false);
+
+  const [columns] = useColumns();
+  // The trash shows when each person was deleted where the health exam would be.
+  const shown = trash ? columns.filter((id) => id !== 'exam') : columns;
 
   const residents = useResidents({ page, per_page: perPage, ...filters, trash });
   const items = residents.data?.items ?? [];
@@ -167,12 +170,10 @@ export default function ResidentsPage({ title }: { title: string }) {
                   </TableHead>
                 )}
                 <TableHead>{i18n.__('Full name', 'quan-li-dan-cu')}</TableHead>
-                <TableHead>{i18n.__('Year of birth', 'quan-li-dan-cu')}</TableHead>
-                <TableHead>{i18n.__('Relationship', 'quan-li-dan-cu')}</TableHead>
-                <TableHead>{i18n.__('Address', 'quan-li-dan-cu')}</TableHead>
-                <TableHead>{i18n.__('Phone', 'quan-li-dan-cu')}</TableHead>
-                <TableHead>{i18n.__('Residence', 'quan-li-dan-cu')}</TableHead>
-                <TableHead>{trash ? i18n.__('Deleted', 'quan-li-dan-cu') : i18n.__('Health exam 2026', 'quan-li-dan-cu')}</TableHead>
+                {shown.map((id) => (
+                  <TableHead key={id}>{COLUMN_VIEW[id].label}</TableHead>
+                ))}
+                {trash && <TableHead>{i18n.__('Deleted', 'quan-li-dan-cu')}</TableHead>}
                 {trash && caps.edit && <TableHead />}
               </TableRow>
             </TableHeader>
@@ -217,26 +218,16 @@ export default function ResidentsPage({ title }: { title: string }) {
                       </div>
                     )}
                   </TableCell>
-                  <TableCell>{resident.birth_year || MUTED('—')}</TableCell>
-                  <TableCell>{RELATION_LABELS[resident.relation]}</TableCell>
-                  <TableCell>{resident.address || MUTED('—')}</TableCell>
-                  <TableCell className="whitespace-nowrap">
-                    {resident.phone ? formatPhone(resident.phone) : MUTED(i18n.__('No number', 'quan-li-dan-cu'))}
-                  </TableCell>
-                  <TableCell>
-                    <ResidenceStatusBadge status={resident.residence_status} />
-                  </TableCell>
-                  <TableCell>
-                    {trash ? (
-                      <span className="text-muted-foreground">
-                        {resident.deleted_at ? new Date(resident.deleted_at.replace(' ', 'T') + 'Z').toLocaleDateString() : ''}
-                      </span>
-                    ) : resident.health_exam ? (
-                      <Badge variant="success-soft">{i18n.__('Examined', 'quan-li-dan-cu')}</Badge>
-                    ) : (
-                      <Badge variant="destructive-soft">{i18n.__('Not examined', 'quan-li-dan-cu')}</Badge>
-                    )}
-                  </TableCell>
+                  {shown.map((id) => (
+                    <TableCell key={id} className={COLUMN_VIEW[id].className}>
+                      {COLUMN_VIEW[id].cell(resident)}
+                    </TableCell>
+                  ))}
+                  {trash && (
+                    <TableCell className="text-muted-foreground">
+                      {resident.deleted_at ? new Date(resident.deleted_at.replace(' ', 'T') + 'Z').toLocaleDateString() : ''}
+                    </TableCell>
+                  )}
                   {trash && caps.edit && (
                     <TableCell className="text-right whitespace-nowrap">
                       <Button

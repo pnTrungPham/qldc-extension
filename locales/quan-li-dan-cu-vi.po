@@ -14,1422 +14,1447 @@ msgstr ""
 "X-Domain: quan-li-dan-cu\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Nothing was changed. Please try again."
 msgstr "Chưa thay đổi gì. Vui lòng thử lại."
 
-#: chunks/app-D3lLeHjp.js:76
-#: chunks/app-D3lLeHjp.js:80
+#: chunks/app--FRKlHf7.js:76
+#: chunks/app--FRKlHf7.js:80
 msgid "Residents"
 msgstr "Cư dân"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Full name must be 2–120 characters."
 msgstr "Họ tên cần từ 2 đến 120 ký tự."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Invalid year of birth."
 msgstr "Năm sinh không hợp lệ."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Invalid examination date."
 msgstr "Ngày khám không hợp lệ."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "ID number must be 4, 9 or 12 digits; only the last 4 are kept."
 msgstr "Số CCCD/CMND cần 4, 9 hoặc 12 chữ số; máy chỉ giữ 4 số cuối."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "The code can only use letters without accents, digits and hyphens, with no spaces, 2–12 characters."
 msgstr "Mã không lưu được: chỉ dùng chữ không dấu, số, dấu gạch ngang, viết liền, 2–12 ký tự."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "The ward name needs 2 to 80 characters."
 msgstr "Tên khu phố cần từ 2 đến 80 ký tự."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Nothing was written. Please try again."
 msgstr "Chưa ghi được gì. Vui lòng thử lại."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Full name is missing."
 msgstr "Thiếu họ tên."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Something went wrong."
 msgstr "Đã có lỗi xảy ra."
 
-#: chunks/app-D3lLeHjp.js:1
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:1
+#: chunks/app--FRKlHf7.js:7
 msgid "Male"
 msgstr "Nam"
 
-#: chunks/app-D3lLeHjp.js:1
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:1
+#: chunks/app--FRKlHf7.js:7
 msgid "Female"
 msgstr "Nữ"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Other"
 msgstr "Khác"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Head of household"
 msgstr "Chủ hộ"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Spouse"
 msgstr "Vợ/Chồng"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Child"
 msgstr "Con"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Parent"
 msgstr "Cha/Mẹ"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Grandparent"
 msgstr "Ông/Bà"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Grandchild"
 msgstr "Cháu"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Sibling"
 msgstr "Anh/Chị/Em"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Unverified"
 msgstr "Chưa xác minh"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Verified"
 msgstr "Đã xác minh"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Expired"
 msgstr "Hết hạn"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Not required"
 msgstr "Không yêu cầu"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Poor household"
 msgstr "Hộ nghèo"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Near-poor household"
 msgstr "Hộ cận nghèo"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Elderly"
 msgstr "Người cao tuổi"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Person with disability"
 msgstr "Người khuyết tật"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Policy family"
 msgstr "Gia đình chính sách"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Limited mobility"
 msgstr "Khó khăn vận động"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Needs evacuation support"
 msgstr "Cần hỗ trợ khi sơ tán"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Needs basic medical support"
 msgstr "Cần hỗ trợ y tế cơ bản"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Permanent"
 msgstr "Thường trú"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Temporary resident"
 msgstr "Tạm trú"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Temporarily absent"
 msgstr "Tạm vắng"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Moved away"
 msgstr "Đã chuyển đi"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Unknown"
 msgstr "Chưa xác định"
 
-#: chunks/app-D3lLeHjp.js:1
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:1
+#: chunks/app--FRKlHf7.js:72
 msgid "People"
 msgstr "Số nhân khẩu"
 
 #. translators: %s: number of households
-#: chunks/app-D3lLeHjp.js:3
+#: chunks/app--FRKlHf7.js:3
 msgid "in %s households"
 msgstr "trong %s hộ"
 
-#: chunks/app-D3lLeHjp.js:3
+#: chunks/app--FRKlHf7.js:3
 msgid "Average household"
 msgstr "Bình quân mỗi hộ"
 
-#: chunks/app-D3lLeHjp.js:3
+#: chunks/app--FRKlHf7.js:3
 msgid "people per household"
 msgstr "nhân khẩu mỗi hộ"
 
-#: chunks/app-D3lLeHjp.js:3
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:3
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
 msgid "Health exam 2026"
 msgstr "Khám SK 2026"
 
 #. translators: 1: people examined, 2: total people
-#: chunks/app-D3lLeHjp.js:5
+#: chunks/app--FRKlHf7.js:5
 msgid "%1$s of %2$s examined"
 msgstr "%1$s trên %2$s người đã khám"
 
-#: chunks/app-D3lLeHjp.js:5
+#: chunks/app--FRKlHf7.js:5
 msgid "Missing phone number"
 msgstr "Thiếu số điện thoại"
 
-#: chunks/app-D3lLeHjp.js:5
+#: chunks/app--FRKlHf7.js:5
 msgid "people to call back for a number"
 msgstr "người cần hỏi lại số điện thoại"
 
-#: chunks/app-D3lLeHjp.js:5
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:5
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
 msgid "Residence status"
 msgstr "Tình trạng cư trú"
 
-#: chunks/app-D3lLeHjp.js:5
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:5
+#: chunks/app--FRKlHf7.js:94
 msgid "Population"
 msgstr "Dân cư"
 
-#: chunks/app-D3lLeHjp.js:5
+#: chunks/app--FRKlHf7.js:5
 msgid "Children (under 16)"
 msgstr "Trẻ em (dưới 16 tuổi)"
 
-#: chunks/app-D3lLeHjp.js:5
+#: chunks/app--FRKlHf7.js:5
 msgid "Working age (16–59)"
 msgstr "Trong độ tuổi lao động (16–59)"
 
-#: chunks/app-D3lLeHjp.js:5
+#: chunks/app--FRKlHf7.js:5
 msgid "Elderly (60 and over)"
 msgstr "Người cao tuổi (từ 60 tuổi)"
 
 #. translators: %d: people without a year of birth
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "%d person has no year of birth and is not counted above."
 msgid_plural "%d people have no year of birth and are not counted above."
 msgstr[0] "%d người chưa có năm sinh nên không tính ở trên."
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Not recorded"
 msgstr "Chưa ghi nhận"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Policy & support"
 msgstr "Chính sách & hỗ trợ"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Data to complete"
 msgstr "Dữ liệu cần bổ sung"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "No phone number"
 msgstr "Chưa có số điện thoại"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "No year of birth"
 msgstr "Chưa có năm sinh"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Documents not verified"
 msgstr "Giấy tờ chưa xác minh"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Documents expired"
 msgstr "Giấy tờ hết hạn"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Recent activity"
 msgstr "Hoạt động gần đây"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "All good"
 msgstr "Đã đủ"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "Someone"
 msgstr "Có người"
 
-#: chunks/app-D3lLeHjp.js:7
+#: chunks/app--FRKlHf7.js:7
 msgid "a resident"
 msgstr "một cư dân"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-D3lLeHjp.js:8
+#: chunks/app--FRKlHf7.js:8
 msgid "%1$s added %2$s"
 msgstr "%1$s đã thêm %2$s"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-D3lLeHjp.js:9
+#: chunks/app--FRKlHf7.js:9
 msgid "%1$s updated %2$s"
 msgstr "%1$s đã cập nhật %2$s"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-D3lLeHjp.js:10
+#: chunks/app--FRKlHf7.js:10
 msgid "%1$s moved %2$s to the trash"
 msgstr "%1$s đã chuyển %2$s vào thùng rác"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-D3lLeHjp.js:11
+#: chunks/app--FRKlHf7.js:11
 msgid "%1$s restored %2$s from the trash"
 msgstr "%1$s đã khôi phục %2$s từ thùng rác"
 
 #. translators: 1: user, 2: resident name
-#: chunks/app-D3lLeHjp.js:12
+#: chunks/app--FRKlHf7.js:12
 msgid "%1$s permanently deleted %2$s"
 msgstr "%1$s đã xoá vĩnh viễn %2$s"
 
 #. translators: 1: user
-#: chunks/app-D3lLeHjp.js:13
+#: chunks/app--FRKlHf7.js:13
 msgid "%1$s imported residents"
 msgstr "%1$s đã nhập danh sách cư dân"
 
 #. translators: 1: user
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "%1$s restored a backup"
 msgstr "%1$s đã khôi phục một bản sao lưu"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:76
+#: chunks/app--FRKlHf7.js:82
 msgid "Full name"
 msgstr "Họ và tên"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
 msgid "Year of birth"
 msgstr "Năm sinh"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
 msgid "Phone"
 msgstr "Số điện thoại"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Health insurance number"
 msgstr "Số thẻ BHYT"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:84
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:92
 msgid "Examined"
 msgstr "Đã khám"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:84
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:92
 msgid "Not examined"
 msgstr "Chưa khám"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Examination date"
 msgstr "Ngày khám"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Examination place"
 msgstr "Đơn vị khám"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Household role"
 msgstr "Vai trò hộ"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:82
 msgid "Head"
 msgstr "Chủ hộ"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Member"
 msgstr "Thành viên"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:36
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:36
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:70
 msgid "Relationship to head"
 msgstr "Quan hệ với chủ hộ"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:70
 msgid "Household code"
 msgstr "Mã hộ"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
 msgid "Address"
 msgstr "Địa chỉ"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Occupation"
 msgstr "Nghề nghiệp"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Policy labels"
 msgstr "Nhãn chính sách"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Situation notes"
 msgstr "Ghi chú hoàn cảnh"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Health & insurance template"
 msgstr "Mẫu Y tế & BHYT"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Phone book template"
 msgstr "Mẫu Danh bạ SĐT"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "All columns"
 msgstr "Tất cả cột"
 
-#: chunks/app-D3lLeHjp.js:14
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:14
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Gender"
 msgstr "Giới tính"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "ID number (last 4 digits)"
 msgstr "4 số cuối CCCD"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Notes"
 msgstr "Ghi chú"
 
-#: chunks/app-D3lLeHjp.js:14
+#: chunks/app--FRKlHf7.js:14
 msgid "Column mapping (fix it if a guess is wrong)"
 msgstr "Ghép cột (sửa nếu đoán sai)"
 
 #. translators: %d: number of rows
-#: chunks/app-D3lLeHjp.js:16
+#: chunks/app--FRKlHf7.js:16
 msgid "%d row"
 msgid_plural "%d rows"
 msgstr[0] "%d dòng"
 
-#: chunks/app-D3lLeHjp.js:16
+#: chunks/app--FRKlHf7.js:16
 msgid "Remove"
 msgstr "Bỏ"
 
 #. translators: %d: column number
-#: chunks/app-D3lLeHjp.js:18
+#: chunks/app--FRKlHf7.js:18
 msgid "Column %d"
 msgstr "Cột %d"
 
-#: chunks/app-D3lLeHjp.js:18
+#: chunks/app--FRKlHf7.js:18
 msgid "— Skip —"
 msgstr "— Bỏ qua —"
 
 #. translators: %s: file name
-#: chunks/app-D3lLeHjp.js:22
+#: chunks/app--FRKlHf7.js:22
 msgid "No data rows found in %s."
 msgstr "Không thấy dòng dữ liệu nào trong %s."
 
 #. translators: %s: file name
-#: chunks/app-D3lLeHjp.js:24
+#: chunks/app--FRKlHf7.js:24
 msgid "Could not read %s."
 msgstr "Không đọc được %s."
 
 #. translators: 1: file name, 2: number of sheets
-#: chunks/app-D3lLeHjp.js:20
+#: chunks/app--FRKlHf7.js:20
 msgid "%1$s has %2$d sheets. Only the first one was read."
 msgstr "%1$s có %2$d sheet. Chỉ sheet đầu tiên được đọc."
 
 #. translators: 1: number of rows, 2: number of files, 3: file names
-#: chunks/app-D3lLeHjp.js:26
+#: chunks/app--FRKlHf7.js:26
 msgid "Read %1$d rows from %2$d files: %3$s"
 msgstr "Đã đọc %1$d dòng từ %2$d file: %3$s"
 
-#: chunks/app-D3lLeHjp.js:26
+#: chunks/app--FRKlHf7.js:26
 msgid "Drop Excel or CSV files here, or choose them."
 msgstr "Thả file Excel hoặc CSV vào đây, hoặc bấm chọn file."
 
-#: chunks/app-D3lLeHjp.js:26
+#: chunks/app--FRKlHf7.js:26
 msgid "Reading…"
 msgstr "Đang đọc…"
 
-#: chunks/app-D3lLeHjp.js:26
+#: chunks/app--FRKlHf7.js:26
 msgid "Choose files"
 msgstr "Chọn file"
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "Address of the house"
 msgstr "Địa chỉ của nhà"
 
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:40
 msgid "Health exam 2026 done"
 msgstr "Đã khám sức khỏe 2026"
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "Remove this person"
 msgstr "Xóa người này"
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "Add a household member"
 msgstr "Thêm người trong hộ"
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "Enter at least one full name before adding the household."
 msgstr "Nhập ít nhất một họ tên trước khi thêm hộ."
 
 #. translators: %d: number of people
-#: chunks/app-D3lLeHjp.js:30
+#: chunks/app--FRKlHf7.js:30
 msgid "Added %d person to the waiting list. You can type the next household."
 msgid_plural "Added %d people to the waiting list. You can type the next household."
 msgstr[0] "Đã thêm %d người vào danh sách chờ. Có thể gõ hộ tiếp theo."
 
-#: chunks/app-D3lLeHjp.js:30
+#: chunks/app--FRKlHf7.js:30
 msgid "Put this household on the waiting list"
 msgstr "Đưa hộ này vào danh sách chờ"
 
-#: chunks/app-D3lLeHjp.js:30
+#: chunks/app--FRKlHf7.js:30
 msgid "Paste the message here. Leave one blank line between households."
 msgstr "Dán tin nhắn vào đây. Mỗi hộ cách nhau một dòng trống."
 
-#: chunks/app-D3lLeHjp.js:30
+#: chunks/app--FRKlHf7.js:30
 msgid "Fill in a sample chat message"
 msgstr "Điền ví dụ tin Zalo"
 
-#: chunks/app-D3lLeHjp.js:30
+#: chunks/app--FRKlHf7.js:30
 msgid "Pasted table"
 msgstr "Bảng đã dán"
 
 #. translators: %d: number of rows
-#: chunks/app-D3lLeHjp.js:32
+#: chunks/app--FRKlHf7.js:32
 msgid "Read %d rows."
 msgstr "Đã đọc %d dòng."
 
-#: chunks/app-D3lLeHjp.js:32
+#: chunks/app--FRKlHf7.js:32
 msgid "No data rows found."
 msgstr "Không thấy dòng dữ liệu nào."
 
 #. translators: %d: number of people
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:34
 msgid "Read %d people."
 msgstr "Đã đọc %d người."
 
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:34
 msgid "Nothing readable found. Each person needs a name and a 4-digit year of birth."
 msgstr "Không đọc được gì. Mỗi người cần có họ tên và năm sinh 4 chữ số."
 
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:34
 msgid "Read pasted data"
 msgstr "Đọc dữ liệu đã dán"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "File"
 msgstr "File"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Pasted"
 msgstr "Dán"
 
-#: chunks/app-D3lLeHjp.js:50
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:50
+#: chunks/app--FRKlHf7.js:92
 msgid "Paper form"
 msgstr "Phiếu giấy"
 
 #. translators: %d: number of rows
-#: chunks/app-D3lLeHjp.js:52
+#: chunks/app--FRKlHf7.js:52
 msgid "Waiting list · %d row"
 msgid_plural "Waiting list · %d rows"
 msgstr[0] "Danh sách chờ · %d dòng"
 
 #. translators: 1: rows to add, 2: rows that update an existing person, 3: invalid rows
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "%1$d new · %2$d updates · %3$d invalid"
 msgstr "%1$d mới · %2$d cập nhật · %3$d lỗi"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Discard all"
 msgstr "Bỏ hết"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "ID numbers were found in the data. Only the last 4 digits are kept."
 msgstr "Có số CCCD/CMND trong nội dung. Máy chỉ giữ 4 số cuối."
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "No row has a full name. Choose the Full name column again in Column mapping."
 msgstr "Chưa có dòng nào có họ tên. Chọn lại cột Họ tên ở phần Ghép cột."
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Source"
 msgstr "Nguồn"
 
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:54
 msgid "Relationship"
 msgstr "Quan hệ"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Update"
 msgstr "Cập nhật"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Invalid"
 msgstr "Lỗi"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Update people who already exist (same name + year of birth, or same name + last 4 ID digits)"
 msgstr "Tự cập nhật nếu đã có (khớp họ tên + năm sinh, hoặc họ tên + 4 số cuối CCCD)"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Nobody was saved."
 msgstr "Chưa ghi được ai."
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Data saved."
 msgstr "Đã ghi dữ liệu."
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Importing…"
 msgstr "Đang xử lý nhập..."
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Confirm import into the data"
 msgstr "Xác nhận nhập vào dữ liệu"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Until you press this, nothing is saved."
 msgstr "Chưa bấm nút này thì dữ liệu chưa vào sổ."
 
 #. translators: 1: current page, 2: total pages
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Page %1$d of %2$d"
 msgstr "Trang %1$d / %2$d"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Previous page"
 msgstr "Trang trước"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Next page"
 msgstr "Trang sau"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Go to"
 msgstr "Đến trang"
 
 #. translators: %d: number of residents
-#: chunks/app-D3lLeHjp.js:56
+#: chunks/app--FRKlHf7.js:56
 msgid "Permanently delete %d resident?"
 msgid_plural "Permanently delete %d residents?"
 msgstr[0] "Xoá vĩnh viễn %d cư dân?"
 
 #. translators: %d: number of residents
-#: chunks/app-D3lLeHjp.js:58
+#: chunks/app--FRKlHf7.js:58
 msgid "Move %d resident to the trash?"
 msgid_plural "Move %d residents to the trash?"
 msgstr[0] "Chuyển %d cư dân vào thùng rác?"
 
-#: chunks/app-D3lLeHjp.js:58
+#: chunks/app--FRKlHf7.js:58
 msgid "This cannot be undone. The only way back is a backup file."
 msgstr "Không hoàn tác được. Chỉ còn cách khôi phục từ file sao lưu."
 
-#: chunks/app-D3lLeHjp.js:58
+#: chunks/app--FRKlHf7.js:58
 msgid "You can restore them from the trash."
 msgstr "Bạn có thể khôi phục lại từ thùng rác."
 
-#: chunks/app-D3lLeHjp.js:38
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:46
-#: chunks/app-D3lLeHjp.js:58
-#: chunks/app-D3lLeHjp.js:62
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:38
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:46
+#: chunks/app--FRKlHf7.js:58
+#: chunks/app--FRKlHf7.js:62
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:72
 msgid "Cancel"
 msgstr "Hủy"
 
 #. translators: %d: number of residents deleted permanently
-#: chunks/app-D3lLeHjp.js:60
+#: chunks/app--FRKlHf7.js:60
 msgid "Permanently deleted %d resident."
 msgid_plural "Permanently deleted %d residents."
 msgstr[0] "Đã xoá vĩnh viễn %d cư dân."
 
 #. translators: %d: number of residents moved to the trash
-#: chunks/app-D3lLeHjp.js:62
+#: chunks/app--FRKlHf7.js:62
 msgid "Moved %d resident to the trash."
 msgid_plural "Moved %d residents to the trash."
 msgstr[0] "Đã chuyển %d cư dân vào thùng rác."
 
-#: chunks/app-D3lLeHjp.js:62
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:86
+#: chunks/app--FRKlHf7.js:62
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:86
 msgid "Delete permanently"
 msgstr "Xoá vĩnh viễn"
 
-#: chunks/app-D3lLeHjp.js:50
-#: chunks/app-D3lLeHjp.js:62
-#: chunks/app-D3lLeHjp.js:64
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:50
+#: chunks/app--FRKlHf7.js:62
+#: chunks/app--FRKlHf7.js:64
+#: chunks/app--FRKlHf7.js:70
 msgid "Move to trash"
 msgstr "Chuyển vào thùng rác"
 
-#: chunks/app-D3lLeHjp.js:62
+#: chunks/app--FRKlHf7.js:62
 msgid "Move this resident to the trash?"
 msgstr "Chuyển cư dân này vào thùng rác?"
 
-#: chunks/app-D3lLeHjp.js:62
+#: chunks/app--FRKlHf7.js:62
 msgid "This person will be removed from the list. You can restore them from the trash."
 msgstr "Người này sẽ bị đưa ra khỏi danh sách. Bạn có thể khôi phục từ thùng rác."
 
 #. translators: %s: resident full name
-#: chunks/app-D3lLeHjp.js:64
+#: chunks/app--FRKlHf7.js:64
 msgid "Moved %s to the trash"
 msgstr "Đã chuyển %s vào thùng rác"
 
 #. translators: %d: number of residents restored from the trash
-#: chunks/app-D3lLeHjp.js:66
+#: chunks/app--FRKlHf7.js:66
 msgid "Restored %d resident."
 msgid_plural "Restored %d residents."
 msgstr[0] "Đã khôi phục %d cư dân."
 
 #. translators: %d: number of residents changed
-#: chunks/app-D3lLeHjp.js:68
+#: chunks/app--FRKlHf7.js:68
 msgid "Updated %d resident."
 msgid_plural "Updated %d residents."
 msgstr[0] "Đã cập nhật %d cư dân."
 
 #. translators: %d: number of selected residents
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "%d selected"
 msgstr "Đã chọn %d"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Bulk Actions"
 msgstr "Thao tác hàng loạt"
 
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:72
-#: chunks/app-D3lLeHjp.js:74
-#: chunks/app-D3lLeHjp.js:86
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:72
+#: chunks/app--FRKlHf7.js:74
+#: chunks/app--FRKlHf7.js:86
 msgid "Restore"
 msgstr "Khôi phục"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Change residence status"
 msgstr "Đổi tình trạng cư trú"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Mark as examined"
 msgstr "Đánh dấu đã khám"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Mark as not examined"
 msgstr "Đánh dấu chưa khám"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Document verification"
 msgstr "Xác minh giấy tờ"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Field support flags"
 msgstr "Cờ hỗ trợ thực địa"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:54
 msgid "Health insurance (BHYT) number"
 msgstr "Số thẻ BHYT"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Saved"
 msgstr "Đã lưu"
 
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:76
 msgid "Saving…"
 msgstr "Đang lưu…"
 
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:76
 msgid "Save"
 msgstr "Lưu"
 
 #. translators: %d: number of people in the household
-#: chunks/app-D3lLeHjp.js:28
-#: chunks/app-D3lLeHjp.js:48
-#: chunks/app-D3lLeHjp.js:84
+#: chunks/app--FRKlHf7.js:28
+#: chunks/app--FRKlHf7.js:48
+#: chunks/app--FRKlHf7.js:84
 msgid "%d person"
 msgid_plural "%d people"
 msgstr[0] "%d người"
 
-#: chunks/app-D3lLeHjp.js:48
-#: chunks/app-D3lLeHjp.js:80
+#: chunks/app--FRKlHf7.js:48
+#: chunks/app--FRKlHf7.js:80
 msgid "Add resident"
 msgstr "Thêm cư dân"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Share"
 msgstr "Chia sẻ"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Saved."
 msgstr "Đã lưu."
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Search name, address, phone…"
 msgstr "Tìm tên, địa chỉ, số điện thoại…"
 
-#: chunks/app-D3lLeHjp.js:70
-#: chunks/app-D3lLeHjp.js:82
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:54
+#: chunks/app--FRKlHf7.js:70
+#: chunks/app--FRKlHf7.js:92
 msgid "Residence"
 msgstr "Cư trú"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Has number"
 msgstr "Có số"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Missing number"
 msgstr "Thiếu số"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Clear filters"
 msgstr "Xóa bộ lọc"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Not updated"
 msgstr "Chưa cập nhật"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Share resident information"
 msgstr "Chia sẻ thông tin cư dân"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Only the ticked fields are sent. ID, health and internal notes are never included."
 msgstr "Chỉ gửi đúng ô đã chọn. Không đưa căn cước, sức khỏe hay ghi chú nội bộ."
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Copied. Open your chat app, long-press the message box and choose Paste."
 msgstr "Đã sao chép. Mở Zalo, nhấn giữ ô soạn tin và chọn Dán."
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Could not copy. Select the text above and copy it by hand."
 msgstr "Không sao chép được. Hãy bôi đen đoạn chữ phía trên và chép tay."
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Confirm share"
 msgstr "Xác nhận chia sẻ"
 
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "Overview"
 msgstr "Tổng quan"
 
 #. translators: %d: number of residents in the trash
-#: chunks/app-D3lLeHjp.js:78
+#: chunks/app--FRKlHf7.js:78
 msgid "%d resident in the trash"
 msgid_plural "%d residents in the trash"
 msgstr[0] "%d cư dân trong thùng rác"
 
 #. translators: 1: number of residents, 2: number of households
-#: chunks/app-D3lLeHjp.js:80
+#: chunks/app--FRKlHf7.js:80
 msgid "%1$s people · %2$s households"
 msgstr "%1$s nhân khẩu · %2$s hộ"
 
-#: chunks/app-D3lLeHjp.js:80
+#: chunks/app--FRKlHf7.js:80
 msgid "Empty trash"
 msgstr "Dọn thùng rác"
 
-#: chunks/app-D3lLeHjp.js:80
+#: chunks/app--FRKlHf7.js:80
 msgid "Import data"
 msgstr "Nhập dữ liệu"
 
 #. translators: %d: number of residents in the trash
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:82
 msgid "Trash (%d)"
 msgstr "Thùng rác (%d)"
 
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:82
 msgid "Select all"
 msgstr "Chọn tất cả"
 
-#: chunks/app-D3lLeHjp.js:82
+#: chunks/app--FRKlHf7.js:82
 msgid "Deleted"
 msgstr "Ngày xoá"
 
-#: chunks/app-D3lLeHjp.js:84
+#: chunks/app--FRKlHf7.js:54
 msgid "No number"
 msgstr "Chưa có số"
 
 #. translators: %s: resident full name
-#: chunks/app-D3lLeHjp.js:86
+#: chunks/app--FRKlHf7.js:86
 msgid "Restored %s"
 msgstr "Đã khôi phục %s"
 
-#: chunks/app-D3lLeHjp.js:86
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:86
+#: chunks/app--FRKlHf7.js:94
 msgid "Loading…"
 msgstr "Đang tải…"
 
-#: chunks/app-D3lLeHjp.js:86
+#: chunks/app--FRKlHf7.js:86
 msgid "The trash is empty."
 msgstr "Thùng rác trống."
 
-#: chunks/app-D3lLeHjp.js:86
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:86
+#: chunks/app--FRKlHf7.js:94
 msgid "No matching residents."
 msgstr "Không có cư dân khớp."
 
 #. translators: 1: first row number, 2: last row number, 3: total people
-#: chunks/app-D3lLeHjp.js:88
+#: chunks/app--FRKlHf7.js:88
 msgid "Showing %1$d–%2$d of %3$d people"
 msgstr "Hiển thị %1$d–%2$d trên %3$d người"
 
-#: chunks/app-D3lLeHjp.js:88
+#: chunks/app--FRKlHf7.js:88
 msgid "Rows per page"
 msgstr "Số dòng mỗi trang"
 
 #. translators: %d: rows per page
-#: chunks/app-D3lLeHjp.js:90
+#: chunks/app--FRKlHf7.js:90
 msgid "%d rows"
 msgstr "%d dòng"
 
-#: chunks/app-D3lLeHjp.js:90
+#: chunks/app--FRKlHf7.js:90
 msgid "Import"
 msgstr "Nhập"
 
-#: chunks/app-D3lLeHjp.js:90
+#: chunks/app--FRKlHf7.js:90
 msgid "Add people from an Excel file, a pasted message or a paper form. Review the list, then confirm."
 msgstr "Thêm người từ file Excel, tin nhắn đã dán hoặc phiếu giấy. Xem lại danh sách rồi xác nhận."
 
-#: chunks/app-D3lLeHjp.js:90
+#: chunks/app--FRKlHf7.js:90
 msgid "Download Excel template"
 msgstr "Tải file Excel mẫu"
 
 #. translators: 1: people added, 2: households added, 3: people updated, 4: rows skipped
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Data saved. Added %1$d people in %2$d households · Updated %3$d · Skipped %4$d"
 msgstr "Đã ghi dữ liệu. Thêm mới %1$d nhân khẩu, %2$d hộ · Cập nhật %3$d · Bỏ qua %4$d"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "View residents now"
 msgstr "Xem danh sách cư dân ngay"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Excel / CSV file"
 msgstr "File Excel / CSV"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Paste raw data"
 msgstr "Dán dữ liệu thô"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Export"
 msgstr "Xuất"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Choose who is in the file and which columns it has, then download or print."
 msgstr "Chọn ai sẽ có trong file và các cột cần có, rồi tải về hoặc in."
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Who is in the file"
 msgstr "Chọn ai sẽ có trong file"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Keyword"
 msgstr "Từ khóa"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Health exam"
 msgstr "Khám sức khỏe"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Policy"
 msgstr "Chính sách"
 
-#: chunks/app-D3lLeHjp.js:92
+#: chunks/app--FRKlHf7.js:92
 msgid "Columns"
 msgstr "Chọn cột"
 
 #. translators: 1: number of people in the file, 2: rows shown on screen
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Preview · %1$d people · the screen shows %2$d rows, the file has all of them"
 msgstr "Xem trước · %1$d người · màn hình hiện %2$d dòng, file tải về có đủ"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Internal data. Do not share without permission."
 msgstr "Dữ liệu nội bộ, không tự ý chia sẻ."
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "The print window was blocked. Allow pop-ups for this site and try again."
 msgstr "Cửa sổ in bị chặn. Hãy cho phép cửa sổ bật lên của trang này rồi thử lại."
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Print list (PDF)"
 msgstr "In danh sách (PDF)"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Resident-list"
 msgstr "Danh-sach-dan-cu"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Download Excel"
 msgstr "Tải file Excel"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Choose at least one column."
 msgstr "Hãy chọn ít nhất một cột."
 
-#: chunks/app-D3lLeHjp.js:72
-#: chunks/app-D3lLeHjp.js:74
+#: chunks/app--FRKlHf7.js:72
+#: chunks/app--FRKlHf7.js:74
 msgid "Working…"
 msgstr "Đang xử lý…"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Backup date"
 msgstr "Ngày sao lưu"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Households"
 msgstr "Số hộ"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Restore this backup"
 msgstr "Khôi phục bản này"
 
 #. translators: 1: backup date, 2: households, 3: people
-#: chunks/app-D3lLeHjp.js:74
+#: chunks/app--FRKlHf7.js:74
 msgid "Restored the backup from %1$s: %2$d households, %3$d people. The data that was in use before was saved first."
 msgstr "Đã khôi phục bản ngày %1$s: %2$d hộ, %3$d nhân khẩu. Bản đang dùng trước đó đã được chụp lại."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Restore this backup?"
 msgstr "Khôi phục bản sao lưu này?"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "All current residents are replaced by the backup. A copy of the current data is saved first."
 msgstr "Toàn bộ cư dân hiện tại sẽ được thay bằng bản sao lưu. Dữ liệu hiện tại được chụp lại trước."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Backup restored."
 msgstr "Đã khôi phục bản sao lưu."
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Toggle theme"
 msgstr "Đổi giao diện sáng/tối"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Light"
 msgstr "Sáng"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Dark"
 msgstr "Tối"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "System"
 msgstr "Theo hệ thống"
 
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "Ward name"
 msgstr "Tên khu phố"
 
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "Ward name saved"
 msgstr "Đã lưu tên khu phố"
 
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "Ward code"
 msgstr "Mã khu phố"
 
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "2–12 characters: letters without accents, digits and hyphens."
 msgstr "2–12 ký tự, chữ không dấu, số, dấu gạch ngang."
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Page not found"
 msgstr "Không tìm thấy trang"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Something went wrong"
 msgstr "Đã có lỗi xảy ra"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Back to overview"
 msgstr "Về trang tổng quan"
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "This is not a backup file, or it is damaged."
 msgstr "Đây không phải tệp sao lưu, hoặc tệp bị hỏng."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Enter a whole number of days from 1 to 30."
 msgstr "Nhập số ngày nguyên từ 1 đến 30."
 
-#: chunks/app-D3lLeHjp.js:1
-#: chunks/app-D3lLeHjp.js:34
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:1
+#: chunks/app--FRKlHf7.js:34
+#: chunks/app--FRKlHf7.js:70
 msgid "The backup could not be saved."
 msgstr "Không thể lưu bản sao lưu."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Automatic backup needs permission to use the backup folder."
 msgstr "Sao lưu tự động cần quyền dùng thư mục sao lưu."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Continue automatic backup"
 msgstr "Tiếp tục sao lưu tự động"
 
-#: chunks/app-D3lLeHjp.js:1
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:1
+#: chunks/app--FRKlHf7.js:34
 msgid "The backup folder is gone. Choose it again in Settings."
 msgstr "Thư mục sao lưu không còn. Hãy chọn lại trong Cài đặt."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "It has been a while since the last backup."
 msgstr "Đã lâu rồi chưa sao lưu."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Open backup settings"
 msgstr "Mở cài đặt sao lưu"
 
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:34
 msgid "Backup saved to the folder."
 msgstr "Đã lưu bản sao lưu vào thư mục."
 
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:34
 msgid "Backup downloaded."
 msgstr "Đã tải bản sao lưu xuống."
 
-#: chunks/app-D3lLeHjp.js:34
+#: chunks/app--FRKlHf7.js:34
 msgid "Allow access to the backup folder to save a backup."
 msgstr "Hãy cho phép truy cập thư mục sao lưu để lưu bản sao lưu."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "No folder chosen"
 msgstr "Chưa chọn thư mục"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Change folder"
 msgstr "Đổi thư mục"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Choose folder"
 msgstr "Chọn thư mục"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Back up automatically"
 msgstr "Tự động sao lưu"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Back up now"
 msgstr "Sao lưu ngay"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Allow access"
 msgstr "Cho phép truy cập"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Choose another file…"
 msgstr "Chọn tệp khác…"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Undo the last restore"
 msgstr "Hoàn tác lần khôi phục gần nhất"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Undo the last restore?"
 msgstr "Hoàn tác lần khôi phục gần nhất?"
 
-#: chunks/app-D3lLeHjp.js:74
+#: chunks/app--FRKlHf7.js:74
 msgid "Damaged file"
 msgstr "Tệp bị hỏng"
 
 #. translators: 1: number of households, 2: number of people
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "%1$d households, %2$d people"
 msgstr "%1$d hộ, %2$d người"
 
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:76
 msgid "Choose"
 msgstr "Chọn"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "General"
 msgstr "Chung"
 
-#: chunks/app-D3lLeHjp.js:94
+#: chunks/app--FRKlHf7.js:94
 msgid "Backup & restore"
 msgstr "Sao lưu và khôi phục"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "Automatic backup"
 msgstr "Sao lưu tự động"
 
-#: chunks/app-D3lLeHjp.js:70
+#: chunks/app--FRKlHf7.js:70
 msgid "No backup yet"
 msgstr "Chưa có bản sao lưu"
 
 #. translators: %s: date and time of the last backup
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Last backup: %s"
 msgstr "Sao lưu gần nhất: %s"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Keeps a copy of all data in a folder you choose."
 msgstr "Lưu một bản sao toàn bộ dữ liệu vào thư mục bạn chọn."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Backup folder"
 msgstr "Thư mục sao lưu"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Choose a folder, ideally inside iCloud Drive or Google Drive, so a copy also leaves this computer."
 msgstr "Hãy chọn một thư mục, tốt nhất nằm trong iCloud Drive hoặc Google Drive, để có thêm một bản sao nằm ngoài máy tính này."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Every"
 msgstr "Mỗi"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "days"
 msgstr "ngày"
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "This browser cannot save to a folder: backups are downloaded instead."
 msgstr "Trình duyệt này không lưu được vào thư mục: bản sao lưu sẽ được tải xuống."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Backup files are not encrypted: keep the folder somewhere only you can open."
 msgstr "Tệp sao lưu không được mã hóa: hãy để thư mục ở nơi chỉ bạn mở được."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Go back to an earlier copy. The current data is saved first."
 msgstr "Quay lại một bản sao trước đó. Dữ liệu hiện tại được lưu trước."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "No backups in this folder yet."
 msgstr "Chưa có bản sao lưu nào trong thư mục này."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "Choose a backup folder in the card above to see its copies here."
 msgstr "Hãy chọn thư mục sao lưu ở khung phía trên để xem các bản sao tại đây."
 
-#: chunks/app-D3lLeHjp.js:72
+#: chunks/app--FRKlHf7.js:72
 msgid "The data from before the last restore comes back, and the current data is saved first."
 msgstr "Dữ liệu trước lần khôi phục gần nhất sẽ quay lại, và dữ liệu hiện tại được lưu trước."
 
-#: chunks/app-D3lLeHjp.js:74
+#: chunks/app--FRKlHf7.js:74
 msgid "Undo"
 msgstr "Hoàn tác"
 
-#: chunks/app-D3lLeHjp.js:76
+#: chunks/app--FRKlHf7.js:76
 msgid "Selected"
 msgstr "Đã chọn"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Household members"
 msgstr "Thành viên trong hộ"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Add member"
 msgstr "Thêm thành viên"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "This person may already be recorded"
 msgstr "Người này có thể đã có trong danh sách"
 
 #. translators: %s: the person's name, year of birth and address
-#: chunks/app-D3lLeHjp.js:42
+#: chunks/app--FRKlHf7.js:42
 msgid "Already in this household: %s."
 msgstr "Đã có trong hộ này: %s."
 
 #. translators: 1: household code, 2: the person's name, year of birth and address
-#: chunks/app-D3lLeHjp.js:44
+#: chunks/app--FRKlHf7.js:44
 msgid "Already in household %1$s: %2$s."
 msgstr "Đã có trong hộ %1$s: %2$s."
 
-#: chunks/app-D3lLeHjp.js:46
+#: chunks/app--FRKlHf7.js:46
 msgid "View"
 msgstr "Xem"
 
-#: chunks/app-D3lLeHjp.js:46
+#: chunks/app--FRKlHf7.js:46
 msgid "Add anyway"
 msgstr "Vẫn thêm"
 
 #. translators: %s: household code
-#: chunks/app-D3lLeHjp.js:38
-#: chunks/app-D3lLeHjp.js:46
+#: chunks/app--FRKlHf7.js:38
+#: chunks/app--FRKlHf7.js:46
 msgid "Household %s will be left without a head of household."
 msgstr "Hộ %s sẽ không còn chủ hộ."
 
-#: chunks/app-D3lLeHjp.js:40
-#: chunks/app-D3lLeHjp.js:46
+#: chunks/app--FRKlHf7.js:40
+#: chunks/app--FRKlHf7.js:46
 msgid "Move"
 msgstr "Chuyển"
 
-#: chunks/app-D3lLeHjp.js:46
+#: chunks/app--FRKlHf7.js:46
 msgid "Move to this household"
 msgstr "Chuyển sang hộ này"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Move to another household"
 msgstr "Chuyển sang hộ khác"
 
-#: chunks/app-D3lLeHjp.js:26
+#: chunks/app--FRKlHf7.js:26
 msgid "Search by head, member, address or household code"
 msgstr "Tìm theo chủ hộ, thành viên, địa chỉ hoặc mã hộ"
 
-#: chunks/app-D3lLeHjp.js:26
+#: chunks/app--FRKlHf7.js:26
 msgid "No household found."
 msgstr "Không tìm thấy hộ nào."
 
-#: chunks/app-D3lLeHjp.js:38
+#: chunks/app--FRKlHf7.js:38
 msgid "Unsaved changes in the form will be lost."
 msgstr "Các thay đổi chưa lưu trong form sẽ bị mất."
 
 #. translators: %s: household code
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Moved to household %s."
 msgstr "Đã chuyển sang hộ %s."
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "New household code: no household has it yet."
 msgstr "Mã hộ mới: chưa có hộ nào dùng mã này."
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Update this row"
 msgstr "Cập nhật dòng này"
 
-#: chunks/app-D3lLeHjp.js:48
+#: chunks/app--FRKlHf7.js:48
 msgid "Edit this row"
 msgstr "Sửa dòng này"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Details"
 msgstr "Chi tiết"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "More info"
 msgstr "Có thêm thông tin"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Already recorded: only the phone and address will be updated."
 msgstr "Đã có trong danh sách: chỉ cập nhật số điện thoại và địa chỉ."
 
-#: chunks/app-D3lLeHjp.js:1
+#: chunks/app--FRKlHf7.js:1
 msgid "Invalid phone number. Use a 10-digit mobile number (03, 05, 07, 08, 09) or an 11-digit landline starting with 02."
 msgstr "Số điện thoại không hợp lệ. Dùng số di động 10 số (đầu 03, 05, 07, 08, 09) hoặc số bàn 11 số bắt đầu bằng 02."
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "New household"
 msgstr "Hộ mới"
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "Add to an existing household"
 msgstr "Thêm vào hộ đã có"
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "This household already has a head of household."
 msgstr "Hộ này đã có chủ hộ."
 
-#: chunks/app-D3lLeHjp.js:28
+#: chunks/app--FRKlHf7.js:28
 msgid "Choose the household to add them to."
 msgstr "Chọn hộ để thêm họ vào."
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Choose an existing household"
 msgstr "Chọn hộ có sẵn"
 
-#: chunks/app-D3lLeHjp.js:54
+#: chunks/app--FRKlHf7.js:54
 msgid "Existing household"
 msgstr "Hộ có sẵn"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Personal information"
 msgstr "Thông tin cá nhân"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Household"
 msgstr "Hộ gia đình"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Residence and documents"
 msgstr "Cư trú và giấy tờ"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Policy and support"
 msgstr "Chính sách và hỗ trợ"
 
-#: chunks/app-D3lLeHjp.js:40
+#: chunks/app--FRKlHf7.js:40
 msgid "Health"
 msgstr "Sức khỏe"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Viewing"
 msgstr "Đang xem"
 
-#: chunks/app-D3lLeHjp.js:36
+#: chunks/app--FRKlHf7.js:36
 msgid "Opened from the list"
 msgstr "Mở từ danh sách"
 
 #. translators: %s: name of the resident opened from the list
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Back to %s"
 msgstr "Quay lại %s"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Unsaved changes"
 msgstr "Có thay đổi chưa lưu"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Your changes have not been saved and will be lost."
 msgstr "Các thay đổi chưa được lưu và sẽ bị mất."
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Keep editing"
 msgstr "Tiếp tục sửa"
 
-#: chunks/app-D3lLeHjp.js:50
+#: chunks/app--FRKlHf7.js:50
 msgid "Discard changes"
 msgstr "Bỏ thay đổi"
+
+#: chunks/app--FRKlHf7.js:76
+msgid "Columns of the residents table"
+msgstr "Các cột của bảng cư dân"
+
+#: chunks/app--FRKlHf7.js:76
+msgid "Tick what you want to see. The full name is always shown."
+msgstr "Đánh dấu những gì bạn muốn xem. Họ và tên luôn được hiển thị."
+
+#: chunks/app--FRKlHf7.js:76
+msgid "Reset to default"
+msgstr "Đặt lại mặc định"
+
+#: chunks/app--FRKlHf7.js:94
+msgid "Display"
+msgstr "Hiển thị"

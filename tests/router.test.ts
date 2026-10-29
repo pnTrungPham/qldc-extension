@@ -99,3 +99,7 @@ test('GET /residents?household= lists the members of one household', async () =>
   const page = await route<{ items: Resident[] }>('/residents?household=KP21-002&per_page=200');
   expect(page.items.map((r) => r.full_name)).toEqual(['Lê Văn Cường']);
 });
+
+test('choosing "head" as the relation makes the resident the head, with no separate flag sent', async () => {
+  expect(await route(`/residents/${binh.id}`, 'PATCH', { relation: 'head' })).toMatchObject({ relation: 'head', is_head: true });
+});

@@ -31,7 +31,6 @@ type Values = {
   phone: string;
   address: string;
   relation: Relation;
-  is_head: boolean;
   residence_status: ResidenceStatus;
   verify_status: VerifyStatus;
   occupation: string;
@@ -53,7 +52,6 @@ function initialValues(r: Resident | null): Values {
     phone: r?.phone ?? '',
     address: r?.address ?? '',
     relation: r?.relation ?? 'other',
-    is_head: r?.is_head ?? false,
     residence_status: r?.residence_status ?? 'unknown',
     verify_status: r?.verify_status ?? 'unverified',
     occupation: r?.occupation ?? '',
@@ -153,24 +151,13 @@ export default function ResidentForm({
         <Field label={i18n.__('Relationship to head', 'quan-li-dan-cu')}>
           <EnumSelect value={values.relation} options={RELATION_LABELS} disabled={readOnly} onChange={(v) => set('relation', v as Relation)} />
         </Field>
-        <label className="flex items-center gap-2 self-end pb-2 text-sm">
-          <Checkbox
-            checked={values.is_head}
-            disabled={readOnly}
-            onCheckedChange={(checked) => {
-              set('is_head', !!checked);
-              if (checked) set('relation', 'head');
-            }}
-          />
-          {i18n.__('Head of household', 'quan-li-dan-cu')}
-        </label>
         <Field label={i18n.__('Residence status', 'quan-li-dan-cu')}>
           <EnumSelect value={values.residence_status} options={RESIDENCE_STATUS_LABELS} disabled={readOnly} onChange={(v) => set('residence_status', v as ResidenceStatus)} />
         </Field>
         <Field label={i18n.__('Document verification', 'quan-li-dan-cu')}>
           <EnumSelect value={values.verify_status} options={VERIFY_LABELS} disabled={readOnly} onChange={(v) => set('verify_status', v as VerifyStatus)} />
         </Field>
-        <Field label={i18n.__('Occupation', 'quan-li-dan-cu')} htmlFor="occupation" className="sm:col-span-2">
+        <Field label={i18n.__('Occupation', 'quan-li-dan-cu')} htmlFor="occupation">
           <Input {...text('occupation')} maxLength={120} />
         </Field>
       </div>

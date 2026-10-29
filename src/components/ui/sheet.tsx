@@ -72,7 +72,7 @@ function SheetContent({
         className={cn(
           'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-99999 flex flex-col shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
           (side === 'right' || side === 'left') &&
-            'inset-y-0 top-0 right-0 size-full min-[800px]:top-8 min-[800px]:h-[calc(100%-32px)] sm:max-w-md md:min-w-lg',
+            'inset-y-0 top-0 right-0 size-full sm:max-w-md md:min-w-lg',
           side === 'right' &&
             'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 border-l',
           side === 'left' &&

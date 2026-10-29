@@ -101,7 +101,7 @@ export default function ResidentForm({
   defaults?: AddDefaults;
   /** Show a person the add form found to be a duplicate. */
   onOpenExisting?: (match: Resident) => void;
-  /** A saved resident's household: buttons next to the section title, and the list of its members below the fields. */
+  /** A saved resident's household: its menu next to the Household section title, and the list of its members at the top of the form. */
   household?: { actions?: ReactNode; list?: ReactNode };
   /** Editing a draft (a waiting-list row): Save hands the values back here and nothing is written. */
   onDraft?: (input: Partial<ResidentInput>) => void;
@@ -178,6 +178,8 @@ export default function ResidentForm({
   return (
     // flex-1 + mt-auto on the footer: a short form still puts Save at the bottom of the drawer, not under the last field.
     <form onSubmit={onSubmit} className="flex flex-1 flex-col gap-5">
+      {/* First thing in the drawer: who else is in the household, and the way to jump to them. */}
+      {household?.list}
       <Section title={i18n.__('Personal information', 'quan-li-dan-cu')}>
         <Field label={i18n.__('Full name', 'quan-li-dan-cu')} htmlFor="full_name" className="sm:col-span-2">
           <Input {...text('full_name')} required minLength={2} maxLength={120} />
@@ -223,7 +225,6 @@ export default function ResidentForm({
         <Field label={i18n.__('Address', 'quan-li-dan-cu')} htmlFor="address" className="sm:col-span-2">
           <Input {...text('address')} maxLength={255} />
         </Field>
-        {household?.list && <div className="sm:col-span-2">{household.list}</div>}
       </Section>
 
       <Section title={i18n.__('Residence and documents', 'quan-li-dan-cu')} hidden={!shown('residence_status', 'verify_status')}>

@@ -27,7 +27,7 @@ export function HouseholdActions({ resident, onAdd, onMove }: { resident: Reside
 }
 
 /** Everyone living in the same household as `resident`, head first. Nothing for a household of one. */
-export function HouseholdList({ resident, onOpen }: { resident: Resident; onOpen: (member: Resident) => void }) {
+export function HouseholdList({ resident, originId, onOpen }: { resident: Resident; originId?: number; onOpen: (member: Resident) => void }) {
   const members = [...(useHousehold(resident.household_code).data?.items ?? [])].sort(
     (a, b) => Number(b.is_head) - Number(a.is_head) || (a.birth_year ?? 9999) - (b.birth_year ?? 9999) || a.id - b.id,
   );
@@ -51,7 +51,7 @@ export function HouseholdList({ resident, onOpen }: { resident: Resident; onOpen
               {member.id === resident.id ? (
                 <div aria-current="true" className="flex items-center gap-3 rounded-md border border-primary bg-primary/6 px-3 py-2 text-sm">
                   {row}
-                  <span className="flex w-20 justify-end">
+                  <span className="flex w-36 justify-end">
                     <Badge variant="primary-soft">{i18n.__('Viewing', 'quan-li-dan-cu')}</Badge>
                   </span>
                 </div>
@@ -63,8 +63,9 @@ export function HouseholdList({ resident, onOpen }: { resident: Resident; onOpen
                   className="flex w-full cursor-pointer items-center gap-3 rounded-md border bg-background px-3 py-2 text-left text-sm transition-colors hover:border-primary hover:bg-muted"
                 >
                   {row}
-                  <span className="flex w-20 justify-end text-muted-foreground">
-                    <ChevronRight className="size-4" />
+                  <span className="flex w-36 items-center justify-end gap-2 text-muted-foreground">
+                    {member.id === originId && <Badge variant="dimmed">{i18n.__('Opened from the list', 'quan-li-dan-cu')}</Badge>}
+                    <ChevronRight className="size-4 shrink-0" />
                   </span>
                 </button>
               )}

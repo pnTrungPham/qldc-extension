@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Share2 } from 'lucide-react';
+import { ArrowLeft, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { i18n } from '@/lib/i18n';
@@ -21,6 +21,7 @@ export default function ResidentDetailSheet({
   resident,
   defaults,
   draft,
+  origin,
   onClose,
   onShare,
   onDelete,
@@ -33,6 +34,8 @@ export default function ResidentDetailSheet({
   defaults?: AddDefaults;
   /** Editing a waiting-list row instead of a resident: nothing is saved, the values go to `onApply`. */
   draft?: { values: Partial<ResidentInput>; notice?: string; onApply: (input: Partial<ResidentInput>) => void };
+  /** The resident opened from the list, when the drawer has since moved on to someone else in the household. */
+  origin?: Resident | null;
   onClose: () => void;
   onShare?: () => void;
   onDelete?: () => void;
@@ -93,6 +96,17 @@ export default function ResidentDetailSheet({
             <div className="grid min-w-0 flex-1 gap-0.5">
               <SheetTitle className="truncate leading-6">{resident ? resident.full_name : draft ? draft.values.full_name || i18n.__('Edit this row', 'quan-li-dan-cu') : i18n.__('Add resident', 'quan-li-dan-cu')}</SheetTitle>
               {subtitle && <SheetDescription className="m-0 leading-5">{subtitle}</SheetDescription>}
+              {resident && origin && origin.id !== resident.id && onOpenMember && (
+                <Button
+                  type="button"
+                  variant="link"
+                  size="sm"
+                  className="h-auto justify-self-start p-0 text-xs"
+                  onClick={() => leaveFor(() => onOpenMember(origin))}
+                >
+                  <ArrowLeft /> {i18n.sprintf(/* translators: %s: name of the resident opened from the list */ i18n.__('Back to %s', 'quan-li-dan-cu'), origin.full_name)}
+                </Button>
+              )}
             </div>
             {resident && (
               <Button variant="outline" size="sm" onClick={onShare}>
@@ -118,7 +132,7 @@ export default function ResidentDetailSheet({
                         onMove={() => setMoving({ formHasChanges: dirty.current })}
                       />
                     ),
-                    list: <HouseholdList resident={resident} onOpen={(member) => leaveFor(() => onOpenMember(member))} />,
+                    list: <HouseholdList resident={resident} originId={origin?.id} onOpen={(member) => leaveFor(() => onOpenMember(member))} />,
                   }
                 : undefined
             }

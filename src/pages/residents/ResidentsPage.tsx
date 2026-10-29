@@ -48,6 +48,8 @@ export default function ResidentsPage({ title }: { title: string }) {
   // Adding a member to a household: its code and address, and who to go back to afterwards.
   const [addTo, setAddTo] = useState<{ defaults: AddDefaults; returnTo: Resident } | null>(null);
   const [open, setOpen] = useState<Resident | null>(null);
+  // Who was opened from the list. `open` follows the user through the household; this stays, so they can tell and go back.
+  const [origin, setOrigin] = useState<Resident | null>(null);
   const [sharing, setSharing] = useState<Resident | null>(null);
   const [deleting, setDeleting] = useState<Resident | null>(null);
   const [selected, setSelected] = useState<number[]>([]);
@@ -79,11 +81,16 @@ export default function ResidentsPage({ title }: { title: string }) {
     setSelected([]);
   }, []);
 
+  const closeDrawer = () => {
+    setOpen(null);
+    setOrigin(null);
+  };
+
   const showTrash = (value: boolean) => {
     setTrash(value);
     setPage(1);
     setSelected([]);
-    setOpen(null);
+    closeDrawer();
   };
 
   return (
@@ -174,8 +181,12 @@ export default function ResidentsPage({ title }: { title: string }) {
                 <TableRow
                   key={resident.id}
                   className={trash ? undefined : 'cursor-pointer'}
-                  data-state={open?.id === resident.id ? 'selected' : undefined}
-                  onClick={() => !trash && setOpen(resident)}
+                  data-state={origin?.id === resident.id ? 'selected' : undefined}
+                  onClick={() => {
+                    if (trash) return;
+                    setOpen(resident);
+                    setOrigin(resident);
+                  }}
                 >
                   {caps.edit && (
                     <TableCell onClick={(e) => e.stopPropagation()}>
@@ -322,7 +333,8 @@ export default function ResidentsPage({ title }: { title: string }) {
       {open && (
         <ResidentDetailSheet
           resident={open}
-          onClose={() => setOpen(null)}
+          origin={origin}
+          onClose={closeDrawer}
           onShare={() => setSharing(open)}
           onDelete={() => setDeleting(open)}
           onOpenMember={setOpen}
@@ -360,6 +372,7 @@ export default function ResidentsPage({ title }: { title: string }) {
             setAdding(false);
             setAddTo(null);
             setOpen(match);
+            setOrigin(match);
           }}
         />
       )}
@@ -369,7 +382,7 @@ export default function ResidentsPage({ title }: { title: string }) {
           resident={deleting}
           onClose={() => setDeleting(null)}
           onDeleted={() => {
-            if (open?.id === deleting.id) setOpen(null);
+            if (open?.id === deleting.id) closeDrawer();
             setDeleting(null);
             if (items.length === 1 && page > 1) setPage(page - 1);
           }}

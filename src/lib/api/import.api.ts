@@ -10,7 +10,8 @@ import { api } from './client';
 import { invalidateResidents } from './residents.api';
 
 /** Mirror Services\ImportService responses. */
-export type PreviewRow = { index: number; missing_name: boolean; error: string | null; will_update: boolean };
+/** `joins_household`: a new person whose household code already belongs to a household in the data. */
+export type PreviewRow = { index: number; missing_name: boolean; error: string | null; will_update: boolean; joins_household: boolean };
 export type ImportPreview = { rows: PreviewRow[]; will_add: number; will_update: number; invalid: number };
 export type ImportResult = { added_people: number; added_households: number; updated: number; skipped: number };
 

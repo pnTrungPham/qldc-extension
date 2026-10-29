@@ -24,6 +24,7 @@ import { Textarea } from '@/components/ui/textarea';
 import EnumSelect from '@/components/shared/EnumSelect';
 
 import { GENDER_LABELS, POLICY_LABELS, RELATION_LABELS, SUPPORT_LABELS, VERIFY_LABELS, toDisplayDate } from '../labels';
+import ChooseHouseholdDialog from './ChooseHouseholdDialog';
 import { RESIDENCE_STATUS_LABELS } from './ResidenceStatusBadge';
 
 type Values = {
@@ -112,6 +113,7 @@ export default function ResidentForm({
 }) {
   const save = useSaveResident();
   const find = useFindMatch();
+  const [choosing, setChoosing] = useState(false);
   // The person the last save attempt found already recorded, for the name and year it was asked about.
   const [duplicate, setDuplicate] = useState<{ key: string; match: Resident } | null>(null);
   const [initial, setInitial] = useState(() => initialValues(resident, defaults));
@@ -188,6 +190,11 @@ export default function ResidentForm({
         </Field>
         <Field label={i18n.__('Household code', 'quan-li-dan-cu')} htmlFor="household_code">
           <Input {...text('household_code')} maxLength={32} />
+          {onDraft && !readOnly && (
+            <Button type="button" variant="link" size="sm" className="h-auto justify-self-start p-0" onClick={() => setChoosing(true)}>
+              {i18n.__('Choose an existing household', 'quan-li-dan-cu')}
+            </Button>
+          )}
           {newCode && !onDraft && <p className="m-0 text-xs text-muted-foreground">{i18n.__('New household code: no household has it yet.', 'quan-li-dan-cu')}</p>}
         </Field>
         <Field label={i18n.__('Address', 'quan-li-dan-cu')} htmlFor="address" className="sm:col-span-2">
@@ -237,6 +244,16 @@ export default function ResidentForm({
       </div>
 
       {save.isError && <p className="text-sm text-destructive">{save.error.message}</p>}
+      {choosing && (
+        <ChooseHouseholdDialog
+          onClose={() => setChoosing(false)}
+          onPick={(household) => {
+            // Same household, same house: the address follows unless the household has none on record.
+            setValues((prev) => ({ ...prev, household_code: household.code, address: household.address || prev.address }));
+            setChoosing(false);
+          }}
+        />
+      )}
       {duplicate?.key === personKey && (
         <DuplicateWarning
           match={duplicate.match}

@@ -132,7 +132,9 @@ test('households: search by code, member, head or address; exclude one; exact co
   expect(await codes('hai ba')).toEqual(['KP21-021']); // address
   expect(await codes('kp21-002')).toEqual(['KP21-002']);
   expect(await codes('', 'KP21-001')).toEqual(['KP21-002', 'KP21-021']);
-  expect((await residents.households('')).find((h) => h.code === 'KP21-001')).toEqual({ code: 'KP21-001', head_name: 'Nguyễn Văn An', address: '12 Đường Trần Hưng', size: 2 });
+  expect((await residents.households('')).find((h) => h.code === 'KP21-001')).toEqual({ code: 'KP21-001', head_name: 'Nguyễn Văn An', address: '12 Đường Trần Hưng', size: 2, has_head: true });
+  expect((await residents.households('cuong'))[0]).toMatchObject({ code: 'KP21-002', has_head: true });
+  expect((await residents.households('em'))[0]).toMatchObject({ code: 'KP21-021', has_head: false });
   expect(await codes('kp21-02')).toEqual(['KP21-021']); // KP21-020 has nobody left, so it is not a household any more
 
   await residents.create(input({ full_name: 'Đỗ Văn Phúc', household_code: 'AKP21-002' }));

@@ -33,12 +33,14 @@ export async function preview(rows: unknown[], autoUpdate: boolean): Promise<Imp
     const data = prepare(raw);
     if ('error' in data) {
       out.invalid++;
-      out.rows.push({ index, missing_name: data.missingName, error: data.error, will_update: false });
+      out.rows.push({ index, missing_name: data.missingName, error: data.error, will_update: false, joins_household: false });
       continue;
     }
     const willUpdate = autoUpdate && (await residents.findMatch(data.full_name, data.birth_year, data.id_last4)) !== null;
     out[willUpdate ? 'will_update' : 'will_add']++;
-    out.rows.push({ index, missing_name: false, error: null, will_update: willUpdate });
+    const code = data.household_code;
+    const joins = !willUpdate && code !== '' && !TEMP_CODE.test(code) && (await residents.householdExists(code));
+    out.rows.push({ index, missing_name: false, error: null, will_update: willUpdate, joins_household: joins });
   }
   return out;
 }

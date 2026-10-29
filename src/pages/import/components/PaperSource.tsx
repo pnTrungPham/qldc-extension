@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Plus } from 'lucide-react';
 
 import { i18n } from '@/lib/i18n';
+import type { HouseholdSummary } from '@/lib/api/residents.api';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import EnumSelect from '@/components/shared/EnumSelect';
 
+import HouseholdPicker from '../../residents/components/HouseholdPicker';
 import { GENDER_LABELS, RELATION_LABELS } from '../../residents/labels';
 import { emptyRow, type PendingRow } from '../lib/targets';
 
@@ -15,23 +17,46 @@ type Person = { full_name: string; birth_year: string; gender: string; phone: st
 
 const blank = (relation = 'head'): Person => ({ full_name: '', birth_year: '', gender: '', phone: '', relation, health_exam: false });
 
-/** Type a household from a paper form: one address, then one block per person. */
+/** Type a household from a paper form: one address, then one block per person. The household is new, or one already in the data. */
 export default function PaperSource({ onRows, nextGroup }: { onRows: (rows: PendingRow[]) => void; nextGroup: () => string }) {
   const [address, setAddress] = useState('');
+  const [mode, setMode] = useState<'new' | 'existing'>('new');
+  const [target, setTarget] = useState<HouseholdSummary | null>(null);
   const [people, setPeople] = useState<Person[]>([blank()]);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
 
   const update = (index: number, patch: Partial<Person>) => setPeople(people.map((p, i) => (i === index ? { ...p, ...patch } : p)));
 
+  function chooseMode(next: 'new' | 'existing') {
+    setMode(next);
+    if (next === 'new') setTarget(null);
+  }
+
+  function pickHousehold(household: HouseholdSummary) {
+    setTarget(household);
+    if (household.address) setAddress(household.address);
+    // The household already has its head: nobody on this form starts out as one.
+    setPeople(people.map((p) => (p.relation === 'head' ? { ...p, relation: 'other' } : p)));
+  }
+
+  const joining = mode === 'existing' && target;
+  const headClash = !!joining && target.has_head && people.some((p) => p.relation === 'head');
+
   function submit() {
+    if (mode === 'existing' && !target) {
+      return setMessage({ ok: false, text: i18n.__('Choose the household to add them to.', 'quan-li-dan-cu') });
+    }
     const named = people.filter((p) => p.full_name.trim());
     if (!named.length) {
       return setMessage({ ok: false, text: i18n.__('Enter at least one full name before adding the household.', 'quan-li-dan-cu') });
     }
 
     const group = nextGroup();
-    onRows(named.map((p) => ({ ...emptyRow('paper', group), ...p, address: address.trim() })));
+    // A real code puts them in that household; without one the list gives the group a placeholder and a new household is made.
+    onRows(named.map((p) => ({ ...emptyRow('paper', group), ...p, address: address.trim(), household_code: target?.code ?? '' })));
     setAddress('');
+    setMode('new');
+    setTarget(null);
     setPeople([blank()]);
     setMessage({
       ok: true,
@@ -45,10 +70,21 @@ export default function PaperSource({ onRows, nextGroup }: { onRows: (rows: Pend
 
   return (
     <div className="grid gap-4">
+      <div className="flex flex-wrap gap-2">
+        <Button type="button" variant={mode === 'new' ? 'primary' : 'outline'} aria-pressed={mode === 'new'} onClick={() => chooseMode('new')}>
+          {i18n.__('New household', 'quan-li-dan-cu')}
+        </Button>
+        <Button type="button" variant={mode === 'existing' ? 'primary' : 'outline'} aria-pressed={mode === 'existing'} onClick={() => chooseMode('existing')}>
+          {i18n.__('Add to an existing household', 'quan-li-dan-cu')}
+        </Button>
+      </div>
+      {mode === 'existing' && <HouseholdPicker value={target} onChange={pickHousehold} />}
+
       <div className="grid gap-1.5">
         <Label htmlFor="paper-address">{i18n.__('Address of the house', 'quan-li-dan-cu')}</Label>
-        <Input id="paper-address" value={address} onChange={(e) => setAddress(e.target.value)} />
+        <Input id="paper-address" value={address} disabled={!!joining && !!target.address} onChange={(e) => setAddress(e.target.value)} />
       </div>
+      {headClash && <p className="m-0 rounded-md border border-warning bg-warning/6 px-3 py-2 text-sm">{i18n.__('This household already has a head of household.', 'quan-li-dan-cu')}</p>}
 
       {people.map((person, index) => (
         <div key={index} className="grid gap-3 rounded-lg border p-3 sm:grid-cols-6">

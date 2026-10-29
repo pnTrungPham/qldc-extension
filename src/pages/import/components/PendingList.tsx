@@ -166,6 +166,7 @@ export default function PendingList({
                       {hasExtras(row) && <Badge variant="dimmed">{i18n.__('More info', 'quan-li-dan-cu')}</Badge>}
                     </div>
                     {flag?.will_update && <Badge variant="primary-soft">{i18n.__('Update', 'quan-li-dan-cu')}</Badge>}
+                    {flag?.joins_household && <Badge variant="primary-soft">{i18n.__('Existing household', 'quan-li-dan-cu')}</Badge>}
                     {flag?.error && (
                       <div className="grid justify-items-start gap-1">
                         <Badge variant="destructive-soft">{i18n.__('Invalid', 'quan-li-dan-cu')}</Badge>

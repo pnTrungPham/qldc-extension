@@ -72,7 +72,7 @@ export function useResidents(params: { page: number; per_page: number; search: s
 /** The live resident this input refers to (same name and birth year), or null. Asked before adding someone. */
 export const useFindMatch = () => useMutation({ mutationFn: (data: Partial<ResidentInput>) => api<Resident | null>('/residents/match', 'POST', data) });
 
-export type HouseholdSummary = { code: string; head_name: string; address: string; size: number };
+export type HouseholdSummary = { code: string; head_name: string; address: string; size: number; has_head: boolean };
 
 /** Households matching `search` (code, a member's name or an address), for moving a person into one. */
 export function useHouseholds(search: string, exclude: string) {

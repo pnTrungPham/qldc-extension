@@ -74,3 +74,13 @@ test('updating a person whose phone was valid under the old rule keeps that phon
   expect(await commit([{ full_name: 'Lê Văn Cường', birth_year: '1990', address: '9 Lê Lợi' }], true)).toMatchObject({ updated: 1 });
   expect(await residents.find(old.id)).toMatchObject({ phone: '0123456789', address: '9 Lê Lợi' });
 });
+
+test('preview says which rows join a household that already exists', async () => {
+  const rows = [
+    { full_name: 'Phạm Ngọc Trung', birth_year: '1996', household_code: 'KP21-001' }, // exists
+    { full_name: 'Phạm Ngọc Trâm', birth_year: '2000', household_code: 'KP21-777' }, // no such household yet
+    { full_name: 'Phạm Ngọc Bích', birth_year: '2001', household_code: 'PB-001' }, // placeholder
+    { full_name: 'Nguyễn Văn An', birth_year: '1978', household_code: 'KP21-001' }, // an update, not a join
+  ];
+  expect((await preview(rows, true)).rows.map((r) => r.joins_household)).toEqual([true, false, false, false]);
+});

@@ -2,15 +2,14 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { i18n } from '@/lib/i18n';
-import { useHousehold, useHouseholds, useSaveResident, type HouseholdSummary, type Relation, type Resident } from '@/lib/api/residents.api';
-import { cn } from '@/lib/utils';
+import { useHousehold, useSaveResident, type HouseholdSummary, type Relation, type Resident } from '@/lib/api/residents.api';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import EnumSelect from '@/components/shared/EnumSelect';
 
 import { RELATION_LABELS } from '../labels';
+import HouseholdPicker from './HouseholdPicker';
 
 /**
  * Move a saved resident into another household: search for it, pick it, say how they relate to its head.
@@ -28,10 +27,8 @@ export default function MoveHouseholdDialog({
   onClose: () => void;
   onMoved: (moved: Resident) => void;
 }) {
-  const [search, setSearch] = useState('');
   const [target, setTarget] = useState<HouseholdSummary | null>(null);
   const [relation, setRelation] = useState<Relation>('other');
-  const found = useHouseholds(search, resident.household_code).data ?? [];
   const save = useSaveResident();
   // Moving the head out of a household that still has other people leaves it without a head.
   const own = useHousehold(resident.household_code).data;
@@ -58,46 +55,7 @@ export default function MoveHouseholdDialog({
           <DialogTitle>{i18n.__('Move to another household', 'quan-li-dan-cu')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-3">
-          <Input
-            autoFocus
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={i18n.__('Search by head, member, address or household code', 'quan-li-dan-cu')}
-            aria-label={i18n.__('Search by head, member, address or household code', 'quan-li-dan-cu')}
-          />
-          <ul className="m-0 grid max-h-64 list-none gap-1 overflow-y-auto p-0">
-            {found.length === 0 && <li className="px-1 py-2 text-sm text-muted-foreground">{i18n.__('No household found.', 'quan-li-dan-cu')}</li>}
-            {found.map((household) => {
-              const chosen = target?.code === household.code;
-              return (
-                <li key={household.code}>
-                  <button
-                    type="button"
-                    aria-pressed={chosen}
-                    onClick={() => setTarget(household)}
-                    className={cn(
-                      'grid w-full cursor-pointer gap-0.5 rounded-md border px-3 py-2 text-left text-sm',
-                      chosen ? 'border-primary bg-primary/6' : 'hover:bg-muted',
-                    )}
-                  >
-                    <span className="flex items-center justify-between gap-3">
-                      <span className="font-medium">
-                        {household.code} · {household.head_name}
-                      </span>
-                      <span className="shrink-0 text-muted-foreground">
-                        {i18n.sprintf(
-                          /* translators: %d: number of people in the household */
-                          i18n._n('%d person', '%d people', household.size, 'quan-li-dan-cu'),
-                          household.size,
-                        )}
-                      </span>
-                    </span>
-                    {household.address && <span className="truncate text-muted-foreground">{household.address}</span>}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+          <HouseholdPicker autoFocus exclude={resident.household_code} value={target} onChange={setTarget} />
           {target && (
             <div className="grid gap-1.5">
               <Label>{i18n.__('Relationship to head', 'quan-li-dan-cu')}</Label>

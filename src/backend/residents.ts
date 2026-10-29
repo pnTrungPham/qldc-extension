@@ -64,7 +64,7 @@ export async function all(filters: Filters): Promise<Resident[]> {
   return found.map(toResident);
 }
 
-export type HouseholdSummary = { code: string; head_name: string; address: string; size: number };
+export type HouseholdSummary = { code: string; head_name: string; address: string; size: number; has_head: boolean };
 
 /**
  * Households with someone alive in them, for picking one to move a person into. `search` matches the code,
@@ -80,7 +80,7 @@ export async function households(search: string, exclude = '', limit = 20): Prom
     .filter(([code, rows]) => term === '' || fold(code).includes(term) || rows.some((row) => row.full_name_search.includes(term) || fold(row.address).includes(term)))
     .map(([code, rows]) => {
       const head = rows.find((row) => row.is_head) ?? rows[0];
-      return { code, head_name: head.full_name, address: head.address, size: rows.length };
+      return { code, head_name: head.full_name, address: head.address, size: rows.length, has_head: rows.some((row) => row.is_head) };
     })
     .sort((a, b) => Number(fold(b.code) === term) - Number(fold(a.code) === term) || a.code.localeCompare(b.code))
     .slice(0, limit);

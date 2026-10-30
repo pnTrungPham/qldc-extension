@@ -1,22 +1,24 @@
 import { useCallback, useState } from 'react';
-import { Plus, Trash2, Undo2, Upload } from 'lucide-react';
+import { ArrowDown, ArrowUp, Plus, Trash2, Undo2, Upload } from 'lucide-react';
 import { toast } from 'sonner';
 import { useNavigate, useSearchParams } from 'react-router';
 
 import { i18n } from '@/lib/i18n';
 import { caps } from '@/lib/caps';
 import { useColumns } from '@/lib/columns';
-import { useBulkResidents, useResidents, type Resident } from '@/lib/api/residents.api';
+import { fetchResidentIds, useBulkResidents, useResidents, type Resident, type SortKey } from '@/lib/api/residents.api';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Pagination } from '@/components/ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import PageLayout from '@/components/layout/PageLayout';
 
 import { COLUMN_VIEW } from './columns';
+import { POLICY_LABELS, SUPPORT_LABELS, VERIFY_LABELS } from './labels';
 import BulkDeleteDialog from './components/BulkDeleteDialog';
 import DeleteResidentDialog from './components/DeleteResidentDialog';
 import { RESIDENCE_STATUS_LABELS } from './components/ResidenceStatusBadge';
@@ -27,6 +29,11 @@ import ResidentFilters, { NO_FILTERS, type Filters } from './components/Resident
 import ShareDialog from './components/ShareDialog';
 
 const PAGE_SIZES = [5, 10, 20];
+
+/** The table columns that can be sorted, by their column id; the name is always there. */
+const SORTABLE: Partial<Record<string, SortKey>> = { birth_year: 'birth_year', exam_date: 'exam_date' };
+
+type Sorting = { key: SortKey; order: 'asc' | 'desc' } | null
 
 export default function ResidentsPage({ title }: { title: string }) {
   const navigate = useNavigate();
@@ -41,8 +48,14 @@ export default function ResidentsPage({ title }: { title: string }) {
       status: pick('status', Object.keys(RESIDENCE_STATUS_LABELS)),
       exam: pick('exam', ['yes', 'no']),
       phone: pick('phone', ['yes', 'no']),
+      head: pick('head', ['yes', 'no']),
+      verify: pick('verify', Object.keys(VERIFY_LABELS)),
+      policy: pick('policy', Object.keys(POLICY_LABELS)),
+      support: pick('support', Object.keys(SUPPORT_LABELS)),
     };
   });
+  // Clicking a header: ascending, then descending, then back to the default order (newest first).
+  const [sorting, setSorting] = useState<Sorting>(null);
   const [adding, setAdding] = useState(false);
   // Adding a member to a household: its code and address, and who to go back to afterwards.
   const [addTo, setAddTo] = useState<{ defaults: AddDefaults; returnTo: Resident } | null>(null);
@@ -61,7 +74,7 @@ export default function ResidentsPage({ title }: { title: string }) {
   // The trash shows when each person was deleted where the health exam would be.
   const shown = trash ? columns.filter((id) => id !== 'exam') : columns;
 
-  const residents = useResidents({ page, per_page: perPage, ...filters, trash });
+  const residents = useResidents({ page, per_page: perPage, ...filters, trash, sort: sorting?.key, order: sorting?.order });
   const items = residents.data?.items ?? [];
   const total = residents.data?.total ?? 0;
   const households = residents.data?.households ?? 0;
@@ -71,11 +84,25 @@ export default function ResidentsPage({ title }: { title: string }) {
   const to = Math.min(page * perPage, total);
 
   const allSelected = items.length > 0 && items.every((r) => selected.includes(r.id));
+  // Every page of the current filters, when the user asked for them all; the bar below the table says so.
+  const [pickingAll, setPickingAll] = useState(false);
+  const everyResultSelected = total > items.length && selected.length === total;
 
-  // A new page or filter shows other rows, so the old selection no longer applies.
+  async function selectEveryResult() {
+    setPickingAll(true);
+    try {
+      setSelected(await fetchResidentIds({ ...filters, trash }));
+    } catch (error) {
+      toast.error((error as Error).message);
+    } finally {
+      setPickingAll(false);
+    }
+  }
+
+  // A new page shows other rows, so the old selection no longer applies, unless it already covers every result.
   const goToPage = (next: number) => {
     setPage(next);
-    setSelected([]);
+    if (!everyResultSelected) setSelected([]);
   };
 
   const onFilters = useCallback((next: Filters) => {
@@ -84,6 +111,12 @@ export default function ResidentsPage({ title }: { title: string }) {
     setSelected([]);
   }, []);
 
+  const sortBy = (key: SortKey) => {
+    setSorting(sorting?.key !== key ? { key, order: 'asc' } : sorting.order === 'asc' ? { key, order: 'desc' } : null);
+    setPage(1);
+    if (!everyResultSelected) setSelected([]);
+  };
+
   const closeDrawer = () => {
     setOpen(null);
     setOrigin(null);
@@ -91,6 +124,7 @@ export default function ResidentsPage({ title }: { title: string }) {
 
   const showTrash = (value: boolean) => {
     setTrash(value);
+    setSorting(null);
     setPage(1);
     setSelected([]);
     closeDrawer();
@@ -153,6 +187,23 @@ export default function ResidentsPage({ title }: { title: string }) {
 
       <ResidentFilters value={filters} onChange={onFilters} />
 
+      {caps.edit && allSelected && total > items.length && (
+        <p className="m-0 flex flex-wrap items-center gap-2 rounded-md bg-primary/6 px-3 py-2 text-sm">
+          {everyResultSelected
+            ? i18n.sprintf(/* translators: %d: number of residents */ i18n.__('All %d people matching the filters are selected.', 'quan-li-dan-cu'), total)
+            : i18n.sprintf(/* translators: %d: number of residents on this page */ i18n.__('The %d people on this page are selected.', 'quan-li-dan-cu'), items.length)}
+          {everyResultSelected ? (
+            <Button variant="link" className="h-auto p-0" onClick={() => setSelected([])}>
+              {i18n.__('Clear selection', 'quan-li-dan-cu')}
+            </Button>
+          ) : (
+            <Button variant="link" className="h-auto p-0" disabled={pickingAll} onClick={selectEveryResult}>
+              {i18n.sprintf(/* translators: %d: number of residents matching the filters */ i18n.__('Select all %d people matching the filters', 'quan-li-dan-cu'), total)}
+            </Button>
+          )}
+        </p>
+      )}
+
       {residents.isError ? (
         <p className="text-sm text-destructive">{residents.error.message}</p>
       ) : (
@@ -169,11 +220,11 @@ export default function ResidentsPage({ title }: { title: string }) {
                     />
                   </TableHead>
                 )}
-                <TableHead>{i18n.__('Full name', 'quan-li-dan-cu')}</TableHead>
+                <SortHead label={i18n.__('Full name', 'quan-li-dan-cu')} sortKey="name" sorting={sorting} onSort={sortBy} />
                 {shown.map((id) => (
-                  <TableHead key={id}>{COLUMN_VIEW[id].label}</TableHead>
+                  <SortHead key={id} label={COLUMN_VIEW[id].label} sortKey={SORTABLE[id]} sorting={sorting} onSort={sortBy} />
                 ))}
-                {trash && <TableHead>{i18n.__('Deleted', 'quan-li-dan-cu')}</TableHead>}
+                {trash && <SortHead label={i18n.__('Deleted', 'quan-li-dan-cu')} sortKey="deleted" sorting={sorting} onSort={sortBy} />}
                 {trash && caps.edit && <TableHead />}
               </TableRow>
             </TableHeader>
@@ -205,16 +256,13 @@ export default function ResidentsPage({ title }: { title: string }) {
                       {resident.full_name}
                       {resident.is_head && <Badge variant="primary-soft">{i18n.__('Head', 'quan-li-dan-cu')}</Badge>}
                     </div>
-                    {resident.household_code && (
+                    {!!resident.household_size && (
                       <div className="text-xs text-muted-foreground">
-                        {resident.household_code}
-                        {resident.household_size
-                          ? ` · ${i18n.sprintf(
-                              /* translators: %d: number of people in the household */
-                              i18n._n('%d person', '%d people', resident.household_size, 'quan-li-dan-cu'),
-                              resident.household_size,
-                            )}`
-                          : ''}
+                        {i18n.sprintf(
+                          /* translators: %d: number of people in the household */
+                          i18n._n('%d person', '%d people', resident.household_size, 'quan-li-dan-cu'),
+                          resident.household_size,
+                        )}
                       </div>
                     )}
                   </TableCell>
@@ -380,5 +428,37 @@ export default function ResidentsPage({ title }: { title: string }) {
         />
       )}
     </PageLayout>
+  );
+}
+
+/** A column title; when the column can be sorted it is a button showing the direction it is sorted in, if any. */
+function SortHead({ label, sortKey, sorting, onSort }: { label: string; sortKey?: SortKey; sorting: Sorting; onSort: (key: SortKey) => void }) {
+  if (!sortKey) return <TableHead>{label}</TableHead>;
+  const order = sorting?.key === sortKey ? sorting.order : null;
+  const Arrow = order === 'desc' ? ArrowDown : ArrowUp;
+  return (
+    <TableHead aria-sort={order === 'asc' ? 'ascending' : order === 'desc' ? 'descending' : undefined}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            type="button"
+            onClick={() => onSort(sortKey)}
+            className="inline-flex cursor-pointer items-center gap-1 rounded border-0 bg-transparent p-0 text-xs tracking-wide uppercase outline-none hover:text-foreground focus-visible:ring-[1.5px] focus-visible:ring-primary"
+            style={{ color: order ? 'var(--primary)' : 'inherit', font: 'inherit', textTransform: 'inherit', letterSpacing: 'inherit' }}
+          >
+            {label}
+            {order && <Arrow className="size-3.5" />}
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="normal-case tracking-normal">
+          {order === 'asc'
+            ? i18n.__('Click to sort descending', 'quan-li-dan-cu')
+            : order === 'desc'
+              ? i18n.__('Click to remove the sort', 'quan-li-dan-cu')
+              : i18n.__('Click to sort ascending', 'quan-li-dan-cu')}
+          {sortKey === 'name' && <div className="opacity-80">{i18n.__('Names are sorted by the given name, the last word.', 'quan-li-dan-cu')}</div>}
+        </TooltipContent>
+      </Tooltip>
+    </TableHead>
   );
 }

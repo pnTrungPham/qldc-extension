@@ -11,8 +11,10 @@ let binh: Resident;
 
 beforeEach(async () => {
   await Promise.all([db.residents.clear(), db.audit.clear(), db.meta.clear()]);
-  an = await route<Resident>('/residents', 'POST', { full_name: 'Nguyễn Văn An', relation: 'head', exam_date: '05/03/2026', id_last4: '1234' });
-  binh = await route<Resident>('/residents', 'POST', { full_name: 'Trần Thị Bình', health_exam: true });
+  // Straight into the data: through the API a person with no household would start one.
+  const make = (input: Record<string, unknown>) => residents.create(sanitize(input) as ResidentInput);
+  an = await make({ full_name: 'Nguyễn Văn An', relation: 'head', exam_date: '05/03/2026', id_last4: '1234' });
+  binh = await make({ full_name: 'Trần Thị Bình', health_exam: true });
 });
 
 test('invalid input rejects with invalid_arguments', async () => {
@@ -48,8 +50,8 @@ test('bulk: unticking the exam clears the date', async () => {
   expect(await route(`/residents/${binh.id}`)).toMatchObject({ health_exam: false, exam_date: null });
 });
 
-test('bulk: more than 200 ids is invalid', async () => {
-  const ids = Array.from({ length: 201 }, (_, i) => i + 1);
+test('bulk: an absurd number of ids is invalid', async () => {
+  const ids = Array.from({ length: 10001 }, (_, i) => i + 1);
   await expect(route('/residents/bulk', 'POST', { ids, action: 'delete' })).rejects.toMatchObject({ code: 'invalid_arguments' });
 });
 
@@ -153,4 +155,58 @@ test('there is nothing to split for someone alone in their household or in none'
   await expect(route(`/residents/${alone.id}/split`, 'POST')).rejects.toMatchObject({ code: 'invalid_arguments' });
   await expect(route(`/residents/${an.id}/split`, 'POST')).rejects.toMatchObject({ code: 'invalid_arguments' }); // no household code
   await expect(route('/residents/9999/split', 'POST')).rejects.toMatchObject({ code: 'not_found' });
+});
+
+test('adding someone with no household starts a new one with the next code, and they head it', async () => {
+  const first = await route<Resident>('/residents', 'POST', { full_name: 'Lê Văn Cường', relation: 'child' });
+  expect(first).toMatchObject({ household_code: expect.stringMatching(/-001$/), relation: 'head', is_head: true });
+  const second = await route<Resident>('/residents', 'POST', { full_name: 'Phạm Thị Dung' });
+  expect(second.household_code).toMatch(/-002$/);
+  // A given household is left alone.
+  expect(await route('/residents', 'POST', { full_name: 'Võ Văn Em', household_code: first.household_code, relation: 'child' })).toMatchObject({ household_code: first.household_code, relation: 'child', is_head: false });
+});
+
+test('the list filters by head, verification, policy tag and support flag, and rejects unknown values', async () => {
+  await route(`/residents/${an.id}`, 'PATCH', { policy_tags: ['elderly'], support_flags: ['mobility'], verify_status: 'verified' });
+  const names = async (query: string) => (await route<{ items: Resident[] }>(`/residents?${query}`)).items.map((r) => r.full_name);
+  expect(await names('head=yes')).toEqual(['Nguyễn Văn An']);
+  expect(await names('head=no')).toEqual(['Trần Thị Bình']);
+  expect(await names('verify=verified')).toEqual(['Nguyễn Văn An']);
+  expect(await names('policy=elderly')).toEqual(['Nguyễn Văn An']);
+  expect(await names('support=mobility')).toEqual(['Nguyễn Văn An']);
+  expect(await names('policy=elderly&support=evacuation')).toEqual([]);
+  await expect(route('/residents?support=nope')).rejects.toMatchObject({ code: 'invalid_arguments' });
+});
+
+test('bulk can set verification and add or remove one policy tag without touching the others', async () => {
+  await route(`/residents/${an.id}`, 'PATCH', { policy_tags: ['elderly'] });
+  const both = [an.id, binh.id];
+  expect(await route('/residents/bulk', 'POST', { ids: both, action: 'add_policy_tag', value: 'poor_household' })).toEqual({ affected: 2 });
+  expect(await route(`/residents/${an.id}`)).toMatchObject({ policy_tags: expect.arrayContaining(['elderly', 'poor_household']) });
+  expect(await route(`/residents/${binh.id}`)).toMatchObject({ policy_tags: ['poor_household'] });
+  await route('/residents/bulk', 'POST', { ids: both, action: 'remove_policy_tag', value: 'poor_household' });
+  expect(await route(`/residents/${an.id}`)).toMatchObject({ policy_tags: ['elderly'] });
+  await route('/residents/bulk', 'POST', { ids: both, action: 'set_verify_status', value: 'verified' });
+  expect(await route(`/residents/${binh.id}`)).toMatchObject({ verify_status: 'verified' });
+  await expect(route('/residents/bulk', 'POST', { ids: both, action: 'add_policy_tag', value: 'nope' })).rejects.toMatchObject({ code: 'invalid_arguments' });
+});
+
+test('GET /residents/ids returns everyone the filters match, and export can be limited to chosen ids', async () => {
+  expect(await route('/residents/ids?head=yes')).toEqual({ ids: [an.id] });
+  expect(await route('/residents/ids')).toEqual({ ids: [binh.id, an.id] });
+  expect(await route<{ total: number }>(`/export?ids[]=${an.id}`)).toMatchObject({ total: 1 });
+});
+
+test('sorting by name goes by the given name, with Vietnamese letters in their place, and blanks last', async () => {
+  const make = (input: Record<string, unknown>) => residents.create(sanitize(input) as ResidentInput);
+  await make({ full_name: 'Lê Hồng Anh', birth_year: 1980 });
+  await make({ full_name: 'Phạm Văn Đức', birth_year: 1950 });
+  await make({ full_name: 'Dương Minh Khoa', birth_year: 2001 });
+  const names = async (query: string) => (await route<{ items: Resident[] }>(`/residents?${query}`)).items.map((r) => r.full_name);
+  expect(await names('sort=name&order=asc')).toEqual(['Nguyễn Văn An', 'Lê Hồng Anh', 'Trần Thị Bình', 'Phạm Văn Đức', 'Dương Minh Khoa']);
+  expect((await names('sort=name&order=desc'))[0]).toBe('Dương Minh Khoa');
+  // an and binh have no birth year: last in both directions
+  expect((await names('sort=birth_year&order=asc')).slice(0, 3)).toEqual(['Phạm Văn Đức', 'Lê Hồng Anh', 'Dương Minh Khoa']);
+  expect((await names('sort=birth_year&order=desc')).slice(0, 3)).toEqual(['Dương Minh Khoa', 'Lê Hồng Anh', 'Phạm Văn Đức']);
+  await expect(route('/residents?sort=nope')).rejects.toMatchObject({ code: 'invalid_arguments' });
 });

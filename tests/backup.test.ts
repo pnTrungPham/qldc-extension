@@ -3,7 +3,9 @@ import { beforeEach, expect, test, vi } from 'vitest';
 import { inspect, isDue, isOverdue, restore, snapshot, undoRestore } from '@/backend/backup';
 import { db } from '@/backend/db';
 import { route } from '@/backend/router';
-import type { Resident } from '@/lib/api/residents.api';
+import { sanitize } from '@/backend/resident';
+import * as residents from '@/backend/residents';
+import type { Resident, ResidentInput } from '@/lib/api/residents.api';
 
 let an: Resident;
 let binh: Resident;
@@ -16,7 +18,8 @@ beforeEach(async () => {
   await route(`/residents/${binh.id}`, 'DELETE');
 });
 
-const addThird = () => route('/residents', 'POST', { full_name: 'Lê Văn Cường' });
+// Straight into the data: through the API a person with no household would start one.
+const addThird = () => residents.create(sanitize({ full_name: 'Lê Văn Cường' }) as ResidentInput);
 
 test('round trip', async () => {
   const file = await snapshot();

@@ -50,6 +50,13 @@ export function formatPhone(phone: string): string {
 /** 2026-03-05 → 05/03/2026 (the format the form shows and the API accepts). */
 export function toDisplayDate(date: string | null): string {
   if (!date) return '';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return date; // typed by hand and not a date: show it as it is
   const [y, m, d] = date.split('-');
   return `${d}/${m}/${y}`;
+}
+
+/** 05/03/2026 → 2026-03-05; anything else is returned as it is (the server will say if it is not a date). */
+export function fromDisplayDate(text: string): string {
+  const m = text.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  return m ? `${m[3]}-${m[2]}-${m[1]}` : text;
 }

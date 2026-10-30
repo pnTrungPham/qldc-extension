@@ -11,6 +11,18 @@ test('name shorter than 2 is invalid', () => expect(isInvalid(sanitize({ full_na
 test('phone separators are removed', () => expect(ok({ phone: '0903.412.885' }).phone).toBe('0903412885'));
 test('+84 becomes 0', () => expect(ok({ phone: '+84912000111' }).phone).toBe('0912000111'));
 test('phone without leading 0 is invalid', () => expect(bad({ phone: '912345678' })).toBe(true));
+test.each(['0321234567', '0561234567', '0701234567', '0851234567', '0961234567'])('mobile %s is valid', (phone) => expect(ok({ phone }).phone).toBe(phone));
+test.each(['0123456789', '0412345678', '0612345678', '090321320', '0903abc885'])('%s is not a phone number', (phone) => expect(bad({ phone })).toBe(true));
+test('an 11-digit landline starting with 02 is valid, with separators or +84', () => {
+  expect(ok({ phone: '02838123456' }).phone).toBe('02838123456');
+  expect(ok({ phone: '0243 812 3456' }).phone).toBe('02438123456');
+  expect(ok({ phone: '+842838123456' }).phone).toBe('02838123456');
+});
+test.each(['0283812345', '028381234567'])('a landline of the wrong length (%s) is invalid', (phone) => expect(bad({ phone })).toBe(true));
+test('a phone that was stored under the old rule is accepted again only when it is unchanged', () => {
+  expect(isInvalid(sanitize({ full_name: 'Nguyễn Văn An', phone: '0123456789' }, '0123456789'))).toBe(false);
+  expect(isInvalid(sanitize({ full_name: 'Nguyễn Văn An', phone: '0123456780' }, '0123456789'))).toBe(true);
+});
 test('year from dd/mm/yyyy', () => expect(ok({ birth_year: '15/03/1985' }).birth_year).toBe(1985));
 test('year from yyyy-mm-dd', () => expect(ok({ birth_year: '1987-06-20' }).birth_year).toBe(1987));
 test('empty year is null', () => expect(ok({ birth_year: '' }).birth_year).toBeNull());

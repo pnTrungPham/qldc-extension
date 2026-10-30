@@ -49,3 +49,38 @@ test('an import that fails halfway writes nothing', async () => {
   expect((await residents.paginate(1, 200, {})).total).toBe(2);
 });
 
+
+test('a new person keeps the extra details given in the waiting-list drawer', async () => {
+  const row = {
+    full_name: 'Phạm Ngọc Trung', birth_year: '1996', household_code: 'PB-001', relation: 'head',
+    residence_status: 'temporary', verify_status: 'verified', occupation: 'Thợ điện', bhyt_number: 'DN123',
+    policy_tags: ['elderly', 'not-a-tag'], support_flags: ['mobility'], exam_date: '2026-03-05', exam_place: 'Trạm y tế',
+  };
+  expect(await commit([row], true)).toMatchObject({ added_people: 1 });
+  expect((await residents.all({ search: 'pham ngoc trung' }))[0]).toMatchObject({
+    residence_status: 'temporary', verify_status: 'verified', occupation: 'Thợ điện', bhyt_number: 'DN123',
+    policy_tags: ['elderly'], support_flags: ['mobility'], exam_date: '2026-03-05', exam_place: 'Trạm y tế', health_exam: true,
+  });
+});
+
+test('for a person who already exists only the phone and address are updated, whatever extras the row carries', async () => {
+  const row = { full_name: 'Nguyễn Văn An', birth_year: '1978', phone: '0911222333', occupation: 'Thợ điện', policy_tags: ['elderly'], residence_status: 'moved' };
+  expect(await commit([row], true)).toMatchObject({ added_people: 0, updated: 1 });
+  expect((await residents.all({ search: 'nguyen van an' }))[0]).toMatchObject({ phone: '0911222333', occupation: '', policy_tags: [], residence_status: 'unknown' });
+});
+
+test('updating a person whose phone was valid under the old rule keeps that phone and still updates the address', async () => {
+  const old = await residents.create({ ...(sanitize({ full_name: 'Lê Văn Cường', birth_year: 1990 }) as ResidentInput), phone: '0123456789' });
+  expect(await commit([{ full_name: 'Lê Văn Cường', birth_year: '1990', address: '9 Lê Lợi' }], true)).toMatchObject({ updated: 1 });
+  expect(await residents.find(old.id)).toMatchObject({ phone: '0123456789', address: '9 Lê Lợi' });
+});
+
+test('preview says which rows join a household that already exists', async () => {
+  const rows = [
+    { full_name: 'Phạm Ngọc Trung', birth_year: '1996', household_code: 'KP21-001' }, // exists
+    { full_name: 'Phạm Ngọc Trâm', birth_year: '2000', household_code: 'KP21-777' }, // no such household yet
+    { full_name: 'Phạm Ngọc Bích', birth_year: '2001', household_code: 'PB-001' }, // placeholder
+    { full_name: 'Nguyễn Văn An', birth_year: '1978', household_code: 'KP21-001' }, // an update, not a join
+  ];
+  expect((await preview(rows, true)).rows.map((r) => r.joins_household)).toEqual([true, false, false, false]);
+});

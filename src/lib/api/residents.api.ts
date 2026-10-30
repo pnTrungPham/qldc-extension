@@ -55,17 +55,58 @@ export type ResidentPage = {
   trashed: number;
 };
 
-export function useResidents(params: { page: number; per_page: number; search: string; status?: string; exam?: string; phone?: string; trash?: boolean }) {
-  const query = new URLSearchParams(
+export type SortKey = 'name' | 'birth_year' | 'exam_date' | 'deleted';
+type ListParams = { search: string; trash?: boolean; sort?: SortKey; order?: 'asc' | 'desc' } & Partial<Record<'status' | 'exam' | 'phone' | 'head' | 'verify' | 'policy' | 'support', string>>;
+
+const listQuery = (params: Record<string, unknown>) =>
+  new URLSearchParams(
     Object.entries(params)
       .filter(([, value]) => value !== undefined && value !== '' && value !== false)
       .map(([key, value]) => [key, String(value)]),
   );
 
+export function useResidents(params: { page: number; per_page: number } & ListParams) {
   return useQuery({
     queryKey: ['residents', params],
-    queryFn: () => api<ResidentPage>(`/residents?${query}`),
+    queryFn: () => api<ResidentPage>(`/residents?${listQuery(params)}`),
     placeholderData: keepPreviousData,
+  });
+}
+
+/** Everyone the filters match, not only the page on screen: what "select all results" acts on. */
+export const fetchResidentIds = (params: ListParams) => api<{ ids: number[] }>(`/residents/ids?${listQuery(params)}`).then((r) => r.ids);
+
+/** The live resident this input refers to (same name and birth year), or null. Asked before adding someone. */
+export const useFindMatch = () => useMutation({ mutationFn: (data: Partial<ResidentInput>) => api<Resident | null>('/residents/match', 'POST', data) });
+
+export type HouseholdSummary = { code: string; head_name: string; address: string; size: number; has_head: boolean };
+
+/** Households matching `search` (code, a member's name or an address), for moving a person into one. */
+export function useHouseholds(search: string, exclude: string) {
+  const query = new URLSearchParams({ search, exclude });
+  return useQuery({
+    // Starts with 'residents' so every change to residents refreshes it.
+    queryKey: ['residents', 'households', search, exclude],
+    queryFn: () => api<HouseholdSummary[]>(`/households?${query}`),
+    placeholderData: keepPreviousData,
+  });
+}
+
+/** One person leaves their household and heads a new one with the next free code. */
+export function useSplitHousehold() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api<Resident>(`/residents/${id}/split`, 'POST'),
+    onSuccess: () => invalidateResidents(queryClient),
+  });
+}
+
+/** The live residents of one household (a household has far fewer than 200 people). */
+export function useHousehold(code: string) {
+  return useQuery({
+    queryKey: ['residents', 'household', code],
+    queryFn: () => api<ResidentPage>(`/residents?household=${encodeURIComponent(code)}&per_page=200`),
+    enabled: code !== '',
   });
 }
 
@@ -90,7 +131,9 @@ export function useDeleteResident() {
 export type BulkAction =
   | { action: 'delete' | 'restore' | 'purge' }
   | { action: 'set_residence_status'; value: ResidenceStatus }
-  | { action: 'set_health_exam'; value: 'yes' | 'no' };
+  | { action: 'set_health_exam'; value: 'yes' | 'no' }
+  | { action: 'set_verify_status'; value: VerifyStatus }
+  | { action: 'add_policy_tag' | 'remove_policy_tag'; value: string };
 
 /** One change for many residents, applied all-or-nothing. Resolves with how many rows changed. */
 export function useBulkResidents() {

@@ -1,21 +1,71 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { queryOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import type { AuditRow } from '@/backend/db';
+
+import type { Resident } from './residents.api';
 import { api } from './client';
+import type { Settings } from './settings.api';
+import { restoreBackup, undoLastRestore } from '../auto-backup';
 
-/** Mirror Services\BackupService. `content` is the base64 of the .kpb file. */
+/** The backup file: every table, as plain JSON. */
+export type BackupFile = {
+  format: 'qldc-backup';
+  version: 1;
+  created_at: string;
+  counts: { households: number; people: number };
+  residents: Resident[];
+  audit: AuditRow[];
+  settings: Settings;
+};
+
+/** What a backup holds; `date` is its `created_at`. */
 export type BackupSummary = { date: string; households: number; people: number };
 
-export const useCreateBackup = () =>
-  useMutation({ mutationFn: () => api<BackupSummary & { content: string }>('/backup', 'POST', {}) });
+export type BackupOptions = { auto: boolean; days: number };
+export type BackupStatus = BackupOptions & {
+  last_backup_at: string | null;
+  due: boolean;
+  overdue: boolean;
+  warned_today: boolean;
+  can_undo: boolean;
+  /** What undo would bring back, null when there is nothing to undo. */
+  undo: BackupSummary | null;
+};
 
-export const useInspectBackup = () =>
-  useMutation({ mutationFn: (content: string) => api<BackupSummary>('/restore/inspect', 'POST', { content }) });
+const statusQuery = queryOptions({
+  queryKey: ['backup-status'],
+  queryFn: () => api<BackupStatus>('/backup/status'),
+});
+
+export function useBackupStatus() {
+  return useQuery(statusQuery);
+}
+
+export function useSaveBackupOptions() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: BackupOptions) => api<BackupOptions>('/backup/options', 'POST', data),
+    onSuccess: (saved) => {
+      queryClient.setQueryData(statusQuery.queryKey, (old: BackupStatus | undefined) => old && { ...old, ...saved });
+      void queryClient.invalidateQueries({ queryKey: statusQuery.queryKey }); // due/overdue come from the server
+    },
+  });
+}
+
+export const useInspectBackup = () => useMutation({ mutationFn: (file: unknown) => api<BackupSummary>('/restore/inspect', 'POST', { file }) });
 
 export function useRestoreBackup() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (content: string) => api<BackupSummary>('/restore/commit', 'POST', { content }),
-    // Residents, ward settings and the export preview all changed.
+    mutationFn: (file: unknown) => restoreBackup(file),
+    onSuccess: () => queryClient.invalidateQueries(),
+  });
+}
+
+export function useUndoRestore() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: undoLastRestore,
     onSuccess: () => queryClient.invalidateQueries(),
   });
 }

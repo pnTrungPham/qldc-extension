@@ -11,7 +11,7 @@ import { POLICY_TAGS, RESIDENCE_STATUSES, SUPPORT_FLAGS } from './resident';
  * except through the trash filter, findTrashed, restore and purge.
  */
 
-export type Filters = { trash?: boolean; search?: string; status?: string; exam?: string; phone?: string; policy?: string };
+export type Filters = { trash?: boolean; search?: string; status?: string; exam?: string; phone?: string; policy?: string; support?: string; verify?: string; head?: string; household?: string; ids?: number[]; sort?: string; order?: string };
 
 const toResident = ({ full_name_search: _, ...row }: ResidentRow): Resident => row;
 
@@ -26,21 +26,55 @@ function matches(filters: Filters): (row: ResidentRow) => boolean {
     // Address folds too: PLUGIN relied on the MySQL collation to ignore accents there.
     // A search of only punctuation must not match every phone (PHP: "phone LIKE '%%'").
     if (search && !(row.full_name_search.includes(term) || fold(row.address).includes(term) || (phone !== '' && row.phone.includes(phone)))) return false;
+    if (filters.ids && !filters.ids.includes(row.id)) return false;
     if (filters.status && row.residence_status !== filters.status) return false;
     if (filters.exam && row.health_exam !== (filters.exam === 'yes')) return false;
+    if (filters.household && row.household_code !== filters.household) return false;
     if (filters.policy && !row.policy_tags.includes(filters.policy)) return false;
+    if (filters.support && !row.support_flags.includes(filters.support)) return false;
+    if (filters.verify && row.verify_status !== filters.verify) return false;
+    if (filters.head && row.is_head !== (filters.head === 'yes')) return false;
     if (filters.phone && (row.phone !== '') !== (filters.phone === 'yes')) return false;
     return true;
   };
 }
 
+const collator = new Intl.Collator('vi');
+/** Vietnamese names are sorted by the given name, the last word: "Nguyễn Văn An" comes under A. */
+const givenName = (fullName: string) => fullName.trim().split(/\s+/).at(-1) ?? '';
+
+const SORT_KEYS: Record<string, (row: ResidentRow) => string | number | null> = {
+  name: (row) => givenName(row.full_name),
+  birth_year: (row) => row.birth_year,
+  exam_date: (row) => row.exam_date,
+  deleted: (row) => row.deleted_at,
+};
+export const SORTS = Object.keys(SORT_KEYS);
+
+const blank = (value: string | number | null) => value === null || value === '';
+
+/** The order the list is shown in: the chosen column, else newest first (most recently trashed first in the trash). Blank values go last either way. */
+function sorter(filters: Filters): (a: ResidentRow, b: ResidentRow) => number {
+  const key = filters.sort ? SORT_KEYS[filters.sort] : undefined;
+  if (!key) return filters.trash ? (a, b) => (b.deleted_at ?? '').localeCompare(a.deleted_at ?? '') || b.id - a.id : (a, b) => b.id - a.id;
+
+  const direction = filters.order === 'desc' ? -1 : 1;
+  return (a, b) => {
+    const x = key(a);
+    const y = key(b);
+    if (blank(x) || blank(y)) return Number(blank(x)) - Number(blank(y)) || b.id - a.id;
+    const by = typeof x === 'number' && typeof y === 'number' ? x - y : collator.compare(String(x), String(y));
+    return direction * by || collator.compare(a.full_name, b.full_name) || b.id - a.id;
+  };
+}
+
 const live = () => db.residents.filter((row) => row.deleted_at === null);
 
-/** One page of residents, newest first (or most recently trashed first with the trash filter). */
+/** One page of residents, in the order `sorter` gives. */
 export async function paginate(page: number, perPage: number, filters: Filters): Promise<ResidentPage> {
   const rows = await db.residents.toArray();
   const found = rows.filter(matches(filters));
-  found.sort(filters.trash ? (a, b) => (b.deleted_at ?? '').localeCompare(a.deleted_at ?? '') || b.id - a.id : (a, b) => b.id - a.id);
+  found.sort(sorter(filters));
 
   const sizes = new Map<string, number>();
   for (const row of rows) {
@@ -56,11 +90,40 @@ export async function paginate(page: number, perPage: number, filters: Filters):
   };
 }
 
+/** The ids of everyone matching the filters, newest first: what "select all results" acts on. */
+export async function ids(filters: Filters): Promise<number[]> {
+  const found = (await db.residents.toArray()).filter(matches(filters));
+  found.sort((a, b) => b.id - a.id);
+  return found.map((row) => row.id);
+}
+
 /** Every resident matching the filters, by household with the head first. For exports. */
 export async function all(filters: Filters): Promise<Resident[]> {
   const found = (await db.residents.toArray()).filter(matches(filters));
   found.sort((a, b) => a.household_code.localeCompare(b.household_code) || Number(b.is_head) - Number(a.is_head) || a.id - b.id);
   return found.map(toResident);
+}
+
+export type HouseholdSummary = { code: string; head_name: string; address: string; size: number; has_head: boolean };
+
+/**
+ * Households with someone alive in them, for picking one to move a person into. `search` matches the code,
+ * a member's name or an address (accents ignored); an exact code comes first, then by code.
+ */
+export async function households(search: string, exclude = '', limit = 20): Promise<HouseholdSummary[]> {
+  const groups = new Map<string, ResidentRow[]>();
+  for (const row of await live().toArray()) {
+    if (row.household_code !== '' && row.household_code !== exclude) groups.set(row.household_code, [...(groups.get(row.household_code) ?? []), row]);
+  }
+  const term = fold(search);
+  return [...groups]
+    .filter(([code, rows]) => term === '' || fold(code).includes(term) || rows.some((row) => row.full_name_search.includes(term) || fold(row.address).includes(term)))
+    .map(([code, rows]) => {
+      const head = rows.find((row) => row.is_head) ?? rows[0];
+      return { code, head_name: head.full_name, address: head.address, size: rows.length, has_head: rows.some((row) => row.is_head) };
+    })
+    .sort((a, b) => Number(fold(b.code) === term) - Number(fold(a.code) === term) || a.code.localeCompare(b.code))
+    .slice(0, limit);
 }
 
 /** Counts for the overview page, over residents that are not in the trash. */
@@ -181,6 +244,21 @@ export async function maxHouseholdNumber(prefix: string): Promise<number> {
     if (row.household_code.toUpperCase().startsWith(start)) max = Math.max(max, parseInt(row.household_code.slice(start.length), 10) || 0);
   });
   return max;
+}
+
+/** How many people are alive in a household. */
+export async function householdSize(code: string): Promise<number> {
+  return code === '' ? 0 : live().filter((row) => row.household_code === code).count();
+}
+
+/** The next free "{ward}-NNN": above every code ever used under the ward (the trash counts), and not taken. */
+export async function nextHouseholdCode(ward: string): Promise<string> {
+  let n = await maxHouseholdNumber(ward);
+  let code: string;
+  do {
+    code = `${ward}-${String(++n).padStart(3, '0')}`;
+  } while (await householdExists(code));
+  return code;
 }
 
 export async function householdExists(code: string): Promise<boolean> {

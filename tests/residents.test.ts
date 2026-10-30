@@ -110,3 +110,33 @@ test('transaction() rolls back nested repository writes, even from a plain arrow
   expect(await residents.find(an.id)).toMatchObject({ phone: '0903412885' });
   expect(await residents.find(binh.id)).not.toBeNull();
 });
+
+test('household filter returns only that household, trash excluded', async () => {
+  const other = await residents.create(input({ full_name: 'Lê Văn Cường', household_code: 'KP21-002' }));
+  const old = await residents.create(input({ full_name: 'Phạm Thị Dung', household_code: 'KP21-001' }));
+  await residents.trash(old.id);
+  expect(names((await residents.paginate(1, 20, { household: 'KP21-001' })).items)).toEqual(['Nguyễn Văn An', 'Trần Thị Bình']);
+  expect(names((await residents.paginate(1, 20, { household: 'KP21-002' })).items)).toEqual([other.full_name]);
+  expect((await residents.paginate(1, 20, { household: 'NOPE' })).items).toEqual([]);
+});
+
+test('households: search by code, member, head or address; exclude one; exact code first', async () => {
+  await residents.create(input({ full_name: 'Lê Văn Cường', household_code: 'KP21-002', relation: 'head', address: '5 Lê Lợi' }));
+  const dung = await residents.create(input({ full_name: 'Phạm Thị Dung', household_code: 'KP21-020', address: '7 Hai Bà Trưng' }));
+  await residents.create(input({ full_name: 'Phạm Văn Em', household_code: 'KP21-021', address: '7 Hai Bà Trưng' }));
+  await residents.trash(dung.id); // KP21-020 now has nobody alive
+
+  const codes = async (search: string, exclude?: string) => (await residents.households(search, exclude)).map((h) => h.code);
+  expect(await codes('')).toEqual(['KP21-001', 'KP21-002', 'KP21-021']); // no empty households
+  expect(await codes('cuong')).toEqual(['KP21-002']); // a member's name, no accents
+  expect(await codes('hai ba')).toEqual(['KP21-021']); // address
+  expect(await codes('kp21-002')).toEqual(['KP21-002']);
+  expect(await codes('', 'KP21-001')).toEqual(['KP21-002', 'KP21-021']);
+  expect((await residents.households('')).find((h) => h.code === 'KP21-001')).toEqual({ code: 'KP21-001', head_name: 'Nguyễn Văn An', address: '12 Đường Trần Hưng', size: 2, has_head: true });
+  expect((await residents.households('cuong'))[0]).toMatchObject({ code: 'KP21-002', has_head: true });
+  expect((await residents.households('em'))[0]).toMatchObject({ code: 'KP21-021', has_head: false });
+  expect(await codes('kp21-02')).toEqual(['KP21-021']); // KP21-020 has nobody left, so it is not a household any more
+
+  await residents.create(input({ full_name: 'Đỗ Văn Phúc', household_code: 'AKP21-002' }));
+  expect(await codes('kp21-002')).toEqual(['KP21-002', 'AKP21-002']); // the exact code comes first
+});

@@ -1,5 +1,4 @@
 import { Settings } from 'lucide-react';
-import { useState } from 'react';
 import { NavLink } from 'react-router';
 
 import { i18n } from '@/lib/i18n';
@@ -11,11 +10,9 @@ import { HeaderNavMenuItem, HeaderNavMenuList } from '@/components/ui/navmenu-he
 import { TABS } from '@/tabs';
 
 import ThemeToggle from './ThemeToggle';
-import WardDialog from './WardDialog';
 
 export default function Header() {
   const { data: settings } = useSettings();
-  const [editingWard, setEditingWard] = useState(false);
 
   return (
     <header className="relative flex h-13.5 items-center gap-4 border-b bg-background pr-3 sm:gap-5 lg:pr-6">
@@ -43,12 +40,13 @@ export default function Header() {
       <div className="flex items-center gap-2">
         <ThemeToggle />
         {caps.manage && (
-          <Button variant="outline" size="icon" onClick={() => setEditingWard(true)} aria-label={i18n.__('Ward settings', 'quan-li-dan-cu')}>
-            <Settings />
+          <Button asChild variant="outline" size="icon" aria-label={i18n.__('Settings', 'quan-li-dan-cu')}>
+            <NavLink to="/settings">
+              <Settings />
+            </NavLink>
           </Button>
         )}
       </div>
-      {editingWard && <WardDialog onClose={() => setEditingWard(false)} />}
     </header>
   );
 }

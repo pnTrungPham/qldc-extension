@@ -15,7 +15,11 @@ import { getSettings } from './settings';
 export const MAX_ROWS = 5000;
 
 /** Keys the browser may send; anything else is dropped. */
-const FIELDS = ['full_name', 'birth_year', 'gender', 'phone', 'address', 'household_code', 'relation', 'id_last4', 'note', 'health_exam'];
+const FIELDS = [
+  'full_name', 'birth_year', 'gender', 'phone', 'address', 'household_code', 'relation', 'id_last4', 'note', 'health_exam',
+  // From the waiting-list drawer. They only matter for a person who is new: an existing one is updated by phone and address.
+  'residence_status', 'verify_status', 'occupation', 'bhyt_number', 'exam_date', 'exam_place', 'policy_tags', 'support_flags',
+];
 
 /** Placeholder household codes the browser invents (VB = file/paste, PB = paper form). */
 const TEMP_CODE = /^(VB|PB)-\d+$/i;
@@ -29,12 +33,14 @@ export async function preview(rows: unknown[], autoUpdate: boolean): Promise<Imp
     const data = prepare(raw);
     if ('error' in data) {
       out.invalid++;
-      out.rows.push({ index, missing_name: data.missingName, error: data.error, will_update: false });
+      out.rows.push({ index, missing_name: data.missingName, error: data.error, will_update: false, joins_household: false });
       continue;
     }
     const willUpdate = autoUpdate && (await residents.findMatch(data.full_name, data.birth_year, data.id_last4)) !== null;
     out[willUpdate ? 'will_update' : 'will_add']++;
-    out.rows.push({ index, missing_name: false, error: null, will_update: willUpdate });
+    const code = data.household_code;
+    const joins = !willUpdate && code !== '' && !TEMP_CODE.test(code) && (await residents.householdExists(code));
+    out.rows.push({ index, missing_name: false, error: null, will_update: willUpdate, joins_household: joins });
   }
   return out;
 }
@@ -71,7 +77,7 @@ async function write(rows: unknown[], autoUpdate: boolean): Promise<ImportResult
         (['phone', 'address'] as const).filter((key) => data[key] !== '' && data[key] !== match[key]).map((key) => [key, data[key]]),
       );
       if (Object.keys(patch).length) {
-        await residents.update(match.id, { ...(sanitize(match) as ResidentInput), ...patch });
+        await residents.update(match.id, { ...(sanitize(match, match.phone) as ResidentInput), ...patch });
         counts.updated++;
       } else {
         counts.skipped++;
@@ -107,23 +113,25 @@ async function write(rows: unknown[], autoUpdate: boolean): Promise<ImportResult
 function prepare(raw: unknown): Prepared {
   const source = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
   // PHP casts scalars to trimmed strings: true → '1', false → ''.
-  const input: Record<string, string> = Object.fromEntries(
+  const input: Record<string, unknown> = Object.fromEntries(
     FIELDS.filter((key) => key in source).map((key) => {
       const value = source[key];
+      // The two tag lists stay lists; sanitize keeps only the tags it knows.
+      if (Array.isArray(value)) return [key, value.filter((item) => typeof item === 'string')];
       return [key, typeof value === 'boolean' ? (value ? '1' : '') : ['string', 'number'].includes(typeof value) ? String(value).trim() : ''];
     }),
   );
-  if ((input.full_name ?? '') === '') {
+  if (((input.full_name as string) ?? '') === '') {
     return { error: i18n.__('Full name is missing.', 'quan-li-dan-cu'), missingName: true };
   }
-  input.gender = gender(input.gender ?? '');
-  input.relation = relation(input.relation ?? '');
+  input.gender = gender((input.gender as string) ?? '');
+  input.relation = relation((input.relation as string) ?? '');
   const data = sanitize(input);
   return isInvalid(data) ? { error: data.error, missingName: false } : data;
 }
 
-/** "Nam" / "Nữ" / "male" … → stored code ('' when blank). */
-function gender(text: string): string {
+/** "Nam" / "Nữ" / "male" … → stored code ('' when blank). The waiting list shows rows through the same rule. */
+export function gender(text: string): string {
   const key = fold(text);
   if (key === '') return '';
   if (['nam', 'male', 'm'].includes(key)) return 'male';
@@ -131,7 +139,7 @@ function gender(text: string): string {
 }
 
 /** "Chủ hộ" / "Vợ" / "Con" … → stored code. */
-function relation(text: string): string {
+export function relation(text: string): string {
   const key = fold(text);
   if ((RELATIONS as string[]).includes(key)) return key;
   const words: Array<[string, RegExp]> = [

@@ -209,7 +209,7 @@ export default function ResidentForm({
       >
         <Field label={i18n.__('Household code', 'quan-li-dan-cu')} htmlFor="household_code">
           {/* Never typed: it comes from choosing a household, or from Manage household (move, split). */}
-          <Input {...text('household_code')} readOnly disabled />
+          <Input {...text('household_code')} readOnly disabled placeholder={resident ? '' : i18n.__('Created when saved', 'quan-li-dan-cu')} />
         </Field>
         <Field label={i18n.__('Relationship to head', 'quan-li-dan-cu')}>
           <EnumSelect value={values.relation} options={RELATION_LABELS} disabled={readOnly} onChange={(v) => set('relation', v as Relation)} />

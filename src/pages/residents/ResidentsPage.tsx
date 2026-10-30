@@ -193,11 +193,11 @@ export default function ResidentsPage({ title }: { title: string }) {
             ? i18n.sprintf(/* translators: %d: number of residents */ i18n.__('All %d people matching the filters are selected.', 'quan-li-dan-cu'), total)
             : i18n.sprintf(/* translators: %d: number of residents on this page */ i18n.__('The %d people on this page are selected.', 'quan-li-dan-cu'), items.length)}
           {everyResultSelected ? (
-            <Button variant="link" className="h-auto p-0" onClick={() => setSelected([])}>
+            <Button variant="link" className="h-auto p-0 text-primary underline" onClick={() => setSelected([])}>
               {i18n.__('Clear selection', 'quan-li-dan-cu')}
             </Button>
           ) : (
-            <Button variant="link" className="h-auto p-0" disabled={pickingAll} onClick={selectEveryResult}>
+            <Button variant="link" className="h-auto p-0 text-primary underline" disabled={pickingAll} onClick={selectEveryResult}>
               {i18n.sprintf(/* translators: %d: number of residents matching the filters */ i18n.__('Select all %d people matching the filters', 'quan-li-dan-cu'), total)}
             </Button>
           )}

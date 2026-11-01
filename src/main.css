@@ -3,6 +3,8 @@
 @layer theme, base, components, utilities;
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tw-animate-css';
+/* The web build's Vite root is entrypoints/app, so Tailwind's auto-detection would miss src/. */
+@source '.';
 
 /* Unlayered + nested under body.qldc-ui (AdminPage::body_class): wp-admin CSS is unlayered,
    so layered utilities would lose to rules like `a { color }` regardless of specificity. */

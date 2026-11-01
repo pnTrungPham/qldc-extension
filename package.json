@@ -8,6 +8,7 @@
     "dev": "wxt",
     "build": "wxt build",
     "zip": "wxt zip",
+    "build:web": "vite build -c vite.web.config.ts",
     "check": "wxt prepare && tsc --noEmit",
     "test": "vitest run",
     "postinstall": "wxt prepare"

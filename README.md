@@ -32,6 +32,12 @@ pnpm test         # vitest
 pnpm check        # typecheck
 ```
 
+### Website (GitHub Pages)
+
+The same app also runs as a plain website, without the extension: `pnpm build:web` → `.output/web`.
+Each push to `main` deploys it via `.github/workflows/pages.yml` (Settings → Pages → Source: **GitHub Actions**).
+Data still lives only in the visitor's browser, and separately from the extension's: move it with a backup and restore.
+
 ### Load unpacked
 
 1. `pnpm wxt build`
